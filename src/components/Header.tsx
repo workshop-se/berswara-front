@@ -3,16 +3,16 @@ import Link from "next/link";
 export default function Header() {
   let navItems = [
     { name: "Home", url: "/" },
-    { name: "Candidates", url: "/" },
-    { name: "News", url: "/" },
-    { name: "How to Vote", url: "/" },
-    { name: "Forum", url: "/" },
-    { name: "Profile", url: "/" },
+    { name: "Candidates", url: "/candidates" },
+    { name: "News", url: "/news" },
+    { name: "How to Vote", url: "/howtovote" },
+    { name: "Forum", url: "/forum" },
+    { name: "Profile", url: "/profile" },
   ];
 
   let authButton = [
-    { name: "Sign up", url: "/" },
-    { name: "Log in", url: "/" },
+    { name: "Sign up", url: "/auth/signup" },
+    { name: "Log in", url: "/auth/login" },
   ]
 
   return (
