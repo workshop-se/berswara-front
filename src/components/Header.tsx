@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   let navItems = [
@@ -17,7 +18,9 @@ export default function Header() {
 
   return (
     <nav className="flex h-[70px]">
-      <div className="m-auto">Logo</div>
+      <div className="m-auto">
+        <Image className="mx-[12px] h-[51px]" src="/images/logo.svg" width={206} height={36} alt="Logo" />
+      </div>
       <div className="grow flex justify-center m-auto">
         {navItems.map((item) => (
           <Link href={item.url} className="p-[10px]">{item.name}</Link>
