@@ -1,8 +1,11 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
 import type { Metadata } from "next";
 import { Sen } from "next/font/google";
 import "./globals.css";
 
-const font = Sen({weight: "700", subsets: ["latin"] });
+const font = Sen({ weight: "700", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Header />
       <body className={font.className}>{children}</body>
+      <Footer />
     </html>
   );
 }
