@@ -19,9 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Header />
-      <body className={font.className}>{children}</body>
-      <Footer />
+      <body className={font.className}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
