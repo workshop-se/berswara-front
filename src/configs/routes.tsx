@@ -8,9 +8,9 @@ const navItems = [
 ];
 
 const authButton = [
-  { name: "Sign up", url: "/auth/signup" },
-  { name: "Log in", url: "/auth/login" },
-  { name: "Forgot your password", url: "/auth/forgot" },
+  { name: "Sign up", url: "/signup" },
+  { name: "Log in", url: "/login" },
+  { name: "Forgot your password", url: "/forgot" },
 ]
 
 const socialAuths = [

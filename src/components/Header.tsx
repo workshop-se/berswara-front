@@ -1,21 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import { navItems, authButton } from "@/configs/routes";
 
 export default function Header() {
-  let navItems = [
-    { name: "Home", url: "/" },
-    { name: "Candidates", url: "/candidates" },
-    { name: "News", url: "/news" },
-    { name: "How to Vote", url: "/howtovote" },
-    { name: "Forum", url: "/forum" },
-    { name: "Profile", url: "/profile" },
-  ];
-
-  let authButton = [
-    { name: "Sign up", url: "/auth/signup" },
-    { name: "Log in", url: "/auth/login" },
-  ]
-
   return (
     <nav className="flex h-[70px]">
       <div className="m-auto">
