@@ -1,20 +1,15 @@
 'use client'
 
-//test
 import { Poppins } from "next/font/google";
 import Link from 'next/link';
 import FormCard from '@/components/FormCard';
-import { authButton } from "@/configs/routes";
+import { authButton, socialAuths } from "@/configs/routes";
 import Image from 'next/image';
 
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
 const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
 
-const socials = [
-  { name: "Sign up with Facebook", src: "/images/facebook-color.svg", action: () => { throw "Not implemented yet!"; } },
-  { name: "Sign up with Google", src: "/images/google-color.svg", action: () => { throw "Not implemented yet!" } },
-]
 
 export default function Page() {
   return (
@@ -27,7 +22,7 @@ export default function Page() {
         <div className='w-[333px] mx-auto text-[18px]'>
           <h1 className={`${poppinsMed.className} text-center p-[30px]`}>Sign up</h1>
           <div className="grid grid-rows-2 gap-[15px]">
-            {socials.map((social) => (
+            {socialAuths.map((social) => (
               <button onClick={social.action} className="bg-white flex items-center justify-center p-[10px] rounded-[30px] text-[14px] ring-1 ring-black">
                 <Image src={social.src} width={20} height={20} alt={social.name} />
                 <span className="ml-[10px]">{social.name}</span>

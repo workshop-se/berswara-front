@@ -1,4 +1,4 @@
-let navItems = [
+const navItems = [
   { name: "Home", url: "/" },
   { name: "Candidates", url: "/candidates" },
   { name: "News", url: "/news" },
@@ -7,9 +7,15 @@ let navItems = [
   { name: "Profile", url: "/profile" },
 ];
 
-let authButton = [
+const authButton = [
   { name: "Sign up", url: "/auth/signup" },
   { name: "Log in", url: "/auth/login" },
+  { name: "Forgot your password", url: "/auth/forgot" },
 ]
 
-export {navItems, authButton}
+const socialAuths = [
+  { name: "Sign up with Facebook", src: "/images/facebook-color.svg", action: () => { throw "Not implemented yet!"; } },
+  { name: "Sign up with Google", src: "/images/google-color.svg", action: () => { throw "Not implemented yet!" } },
+]
+
+export {navItems, authButton, socialAuths}
