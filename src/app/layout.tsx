@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Background from '@/components/Background';
 
 import type { Metadata } from "next";
 import { Sen } from "next/font/google";
@@ -21,7 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <Header />
-        {children}
+        <Background>
+          {children}
+        </Background>
         <Footer />
       </body>
     </html>
