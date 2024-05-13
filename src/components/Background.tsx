@@ -1,11 +1,22 @@
+import Image from 'next/image';
 export default function Background({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-[#FFFCF7]">
-      {children}
+    <div className="relative bg-[#FFFCF7] min-h-[1000px] overflow-hidden">
+      <Image
+        src="/images/background.svg"
+        layout="fill"
+        alt="Background"
+        className="z-0 object-cover"
+        width={0}
+        height={0}
+      />
+      <div className="absolute inset-0 z-1">
+        {children}
+      </div>
     </div>
   );
 }
