@@ -1,9 +1,10 @@
+import FormCard from '@/components/FormCard';
 export default function Page() {
   return (
     <main className="">
-      <div>
-        Todo: Sign-up page
-      </div>
+      <FormCard>
+        Todo: Signup page
+      </FormCard>
     </main>
   );
 }
