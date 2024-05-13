@@ -14,8 +14,8 @@ const authButton = [
 ]
 
 const socialAuths = [
-  { name: "Sign up with Facebook", src: "/images/facebook-color.svg", action: () => { throw "Not implemented yet!"; } },
-  { name: "Sign up with Google", src: "/images/google-color.svg", action: () => { throw "Not implemented yet!" } },
+  { name: "Facebook", src: "/images/facebook-color.svg", action: () => { throw "Not implemented yet!"; } },
+  { name: "Google", src: "/images/google-color.svg", action: () => { throw "Not implemented yet!" } },
 ]
 
 export {navItems, authButton, socialAuths}

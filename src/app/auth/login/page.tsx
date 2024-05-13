@@ -25,7 +25,7 @@ export default function Page() {
             {socialAuths.map((social) => (
               <button onClick={social.action} className="bg-white flex items-center justify-center p-[10px] rounded-[30px] text-[14px] ring-1 ring-black">
                 <Image src={social.src} width={20} height={20} alt={social.name} />
-                <span className="ml-[10px]">{social.name}</span>
+                <span className="ml-[10px]">Continue with {social.name}</span>
               </button>
             ))}
           </div>
