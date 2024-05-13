@@ -1,9 +1,18 @@
 import FormCard from '@/components/FormCard';
 export default function Page() {
   return (
-    <main className="">
+    <main className="flex justify-center p-[40px]">
       <FormCard>
-        Todo: Login Page
+        <div>
+          Todo: Signup login button
+        </div>
+        <h1>Sign up</h1>
+        <div>
+          Todo: Signup with social media
+        </div>
+        <div>
+          Todo: Form
+        </div>
       </FormCard>
     </main>
   );
