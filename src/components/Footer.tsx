@@ -3,7 +3,7 @@ import { Jost, Sen } from "next/font/google";
 const jost = Jost({weight:"400", subsets: ["latin"] });
 const sen = Sen({weight:"400", subsets: ["latin"] });
 
-let medias = [
+const medias = [
   { name: "Facebook", src: "/images/facebook.svg" },
   { name: "Twitter", src: "/images/twitter.svg" },
   { name: "Youtube", src: "/images/youtube.svg" },
