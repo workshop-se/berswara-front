@@ -67,6 +67,15 @@ export default function Page() {
               </div>
             </div>
           ))}
+
+          <div className='flex gap-x-[4px] pb-[52px] pt-[70px]'>
+            <div className='bg-[#6059C9] text-white px-[11px] pt-[3px] rounded-full'>1</div>
+            <div className='bg-[#F2EAE1] text-[#5F5F75] px-[11px] pt-[3px] rounded-full'>2</div>
+            <div className='bg-[#F2EAE1] text-[#5F5F75] px-[11px] pt-[3px] rounded-full'>3</div>
+            <div className='bg-[#F2EAE1] text-[#5F5F75] px-[11px] pt-[3px] rounded-full'>4</div>
+            <div className='bg-[#F2EAE1] text-[#5F5F75] px-[11px] pt-[3px] rounded-full'>5</div>
+          </div>
+
         </div>
         <div>
           <div>
