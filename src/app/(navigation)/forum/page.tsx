@@ -20,6 +20,12 @@ const fPosts = Array.from({ length: 5 }, () => ({
   thumbnail: faker.image.image(),
 }))
 
+const fPetitions = Array.from({ length: 5 }, () => ({
+  title: faker.lorem.sentence(),
+  numSupporters: faker.datatype.number(2000),
+  thumbnail: faker.image.image(),
+}))
+
 export default function Page() {
   return (
     <div className='w-[1128px] m-auto pt-[105px]'>
@@ -103,8 +109,25 @@ export default function Page() {
               </div>
             ))}
           </div>
-          <div>
-            todo: posts
+
+          <div className='min-w-[317px] flex flex-col gap-y-[32px] mt-[76px]'>
+            <h2 className='text-[24px]'>Featured Posts</h2>
+            {fPetitions.map((petition) => (
+              <div className='flex gap-x-[24px]'>
+                <div className='min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] relative'>
+                  <Image
+                    className='object-cover rounded-[10px]'
+                    src={petition.thumbnail}
+                    alt={petition.title}
+                    layout='fill'
+                  />
+                </div>
+                <div>
+                  <h3 className='self-center text-[16px]'>{petition.title}</h3>
+                  <p className='text-[#7A7A7A] text-[12px]'>{petition.numSupporters} supporters</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
