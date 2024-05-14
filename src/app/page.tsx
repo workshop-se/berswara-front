@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
 
-const a = "hello"
-
 const heroButton = [
   {name : "Get Started", url : "/"},
   {name : "Learn More", url : "/"}
