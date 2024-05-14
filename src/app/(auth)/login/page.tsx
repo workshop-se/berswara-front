@@ -23,7 +23,7 @@ export default function Page() {
           <h1 className={`${poppinsMed.className} text-center p-[30px]`}>Log in</h1>
           <div className="grid grid-rows-2 gap-[15px]">
             {socialAuths.map((social) => (
-              <button onClick={social.action} className="bg-white flex items-center justify-center p-[10px] rounded-[30px] text-[14px] ring-1 ring-black">
+              <button key={social.name} onClick={social.action} className="bg-white flex items-center justify-center p-[10px] rounded-[30px] text-[14px] ring-1 ring-black">
                 <Image src={social.src} width={20} height={20} alt={social.name} />
                 <span className="ml-[10px]">Continue with {social.name}</span>
               </button>

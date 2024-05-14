@@ -10,7 +10,7 @@ export default function Header() {
       </div>
       <div className="grow flex justify-center m-auto">
         {navItems.map((item) => (
-          <Link href={item.url} className="p-[10px]">{item.name}</Link>
+          <Link key={item.name} href={item.url} className="p-[10px]">{item.name}</Link>
         ))}
       </div>
       <div className="m-auto w-[206px] h-[36px] rounded-[10px] bg-red-100 mx-[12px] grid grid-cols-2 overflow-hidden">

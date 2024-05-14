@@ -19,7 +19,7 @@ export default function Footer() {
         <p className={`${sen.className} text-[16px] grow`}>© 2024 Berswara -  All rights reserved</p>
         <div className="flex">
           {medias.map((media) => (
-            <Image className="mx-[8px]" src={media.src} height={28} width={28} alt={media.name} />
+            <Image key={media.name} className="mx-[8px]" src={media.src} height={28} width={28} alt={media.name} />
           ))}
         </div>
       </div>

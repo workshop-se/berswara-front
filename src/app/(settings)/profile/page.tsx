@@ -66,7 +66,7 @@ export default function Page() {
                 <label htmlFor="city" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Kota/Kabupaten</label>
                 <select id="city" className="w-[160px] h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]">
                   {cities.map((city) => (
-                    <option value={city}>{city}</option>
+                    <option key={city} value={city}>{city}</option>
                   ))}
                 </select>
               </div>
@@ -75,7 +75,7 @@ export default function Page() {
                 <label htmlFor="province" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Provinsi</label>
                 <select id="province" className="w-[160px] h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]">
                   {provinces.map((province) => (
-                    <option value={province}>{province}</option>
+                    <option key={province} value={province}>{province}</option>
                   ))}
                 </select>
               </div>
