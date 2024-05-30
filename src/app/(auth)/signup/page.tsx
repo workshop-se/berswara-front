@@ -35,24 +35,20 @@ export default function Page() {
             </fieldset>
           </div>
           <form>
-            <div className="grid grid-cols-2 gap-[15px]">
-              <div>
-                <label htmlFor="firstName" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>First Name</label>
-                <input type="text" id="firstName" className="w-[160px] h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
-              </div>
-              <div>
-                <label htmlFor="lastName" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>First Name</label>
-                <input type="text" id="lastName" className="w-[160px] h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]"/>
+            <div className="flex flex-col gap-[15px]">
+              <div className="flex flex-col">
+                <label htmlFor="fullname" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Full Name</label>
+                <input type="text" id="fullname" name="fullname" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]"/>
               </div>
 
-              <div className="col-span-2 flex flex-col">
+              <div className="flex flex-col">
                 <label htmlFor="email" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Email Address</label>
-                <input type="email" id="email" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]"/>
+                <input type="email" id="email" name="email" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]"/>
               </div>
 
-              <div className="col-span-2 flex flex-col">
+              <div className="flex flex-col">
                 <label htmlFor="password" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Password</label>
-                <input type="password" id="password" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]"/>
+                <input type="password" id="password" name="password" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]"/>
               </div>
 
               <button type="submit" className={`rounded-[30px] text-white h-[41px] col-span-2 bg-[#C4C4C4] ${poppinsMed.className}`}>Sign up</button>
