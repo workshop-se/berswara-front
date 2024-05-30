@@ -11,6 +11,7 @@ const authButton = [
   { name: "Sign up", url: "/signup" },
   { name: "Log in", url: "/login" },
   { name: "Forgot your password", url: "/forgot" },
+  { name: "Sign out", url: "/" },
 ]
 
 const socialAuths = [
