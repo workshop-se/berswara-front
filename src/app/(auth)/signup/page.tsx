@@ -47,6 +47,11 @@ export default function Page() {
               </div>
 
               <div className="flex flex-col">
+                <label htmlFor="username" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Username</label>
+                <input type="text" id="username" name="username" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]"/>
+              </div>
+
+              <div className="flex flex-col">
                 <label htmlFor="password" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Password</label>
                 <input type="password" id="password" name="password" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]"/>
               </div>
