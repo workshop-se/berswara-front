@@ -1,7 +1,7 @@
-const HOST = process.env.BE_HOST||'http://localhost:3501';
+const HOST_AD = process.env.HOST_AD||'http://localhost:3501';
 const login = async (username: string, password: string) => {
   try {
-    const response = await fetch(`${HOST}/authentications`, {
+    const response = await fetch(`${HOST_AD}/authentications`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ const login = async (username: string, password: string) => {
 
 const signup = async (fullname:string, email:string, username:string, password:string) => {
   try {
-    const response = await fetch(`${HOST}/users`, {
+    const response = await fetch(`${HOST_AD}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
