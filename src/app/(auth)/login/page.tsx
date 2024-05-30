@@ -5,13 +5,44 @@ import Link from 'next/link';
 import FormCard from '@/components/FormCard';
 import { authButton, socialAuths } from "@/configs/routes";
 import Image from 'next/image';
-
+import { login } from "@/api/auth";
+import { useState, useEffect } from "react";
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
 const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
 
-
 export default function Page() {
+  const [errMsg, setErrMsg] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = Cookies.get('accessToken');
+    if (token) {
+      console.log("User detected! Redirecting to forum...")
+      router.push('/forum');
+    }
+  }, [router]);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    const data = await login(
+      formData.get('username') as string,
+      formData.get('password') as string
+    );
+
+    if (data.error) {
+      setErrMsg(data.message);
+    } else {
+      Cookies.set('accessToken', data.data.accessToken);
+      Cookies.set('refreshToken', data.data.refreshToken);
+      router.push('/forum');
+    }
+  };
+
   return (
     <main className="flex justify-center p-[40px]">
       <FormCard>
@@ -34,19 +65,20 @@ export default function Page() {
               <legend className="mx-auto px-4 text-[13.5px]">OR</legend>
             </fieldset>
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-[15px]">
 
               <div className="col-span-2 flex flex-col">
-                <label htmlFor="email" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Email Address</label>
-                <input type="email" id="email" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
+                <label htmlFor="username" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Username</label>
+                <input type="text" id="username" name="username" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
               </div>
 
               <div className="col-span-2 flex flex-col">
                 <label htmlFor="password" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Password</label>
-                <input type="password" id="password" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
+                <input type="password" id="password" name="password" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
               </div>
 
+              {errMsg && <p className="col-span-2 text-[14px] text-red-500">{errMsg}</p>}
 
               <Link href={authButton[2].url} className={`${poppinsReg.className} text-[10px] underline`}>{authButton[2].name}</Link>
 
