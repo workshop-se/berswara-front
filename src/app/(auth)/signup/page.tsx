@@ -5,9 +5,10 @@ import Link from 'next/link';
 import FormCard from '@/components/FormCard';
 import { authButton, socialAuths } from "@/configs/routes";
 import Image from 'next/image';
-import { signup } from "@/api/auth";
-import { useState } from "react";
+import { login, signup } from "@/api/auth";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
@@ -18,11 +19,19 @@ export default function Page() {
   const [errMsg, setErrMsg] = useState('');
   const router = useRouter();
 
+  useEffect(() => {
+    const token = Cookies.get('accessToken');
+    if (token) {
+      console.log("User detected! Redirecting to forum...")
+      router.push('/forum');
+    }
+  }, [router]);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    const data = await signup(
+    let data = await signup(
       formData.get('fullname') as string,
       formData.get('email') as string,
       formData.get('username') as string,
@@ -32,8 +41,21 @@ export default function Page() {
     if (data.error) {
       console.error(data.message);
       setErrMsg(data.message);
+      return
+    }
+
+    console.log(data.message);
+
+    data = await login(
+      formData.get('username') as string,
+      formData.get('password') as string
+    );
+
+    if (data.error) {
+      setErrMsg(data.message);
     } else {
-      console.log(data.message);
+      Cookies.set('accessToken', data.data.accessToken);
+      Cookies.set('refreshToken', data.data.refreshToken);
       router.push('/forum');
     }
   }
