@@ -33,21 +33,4 @@ const signup = async (fullname:string, email:string, username:string, password:s
   }
 }
 
-const logout = async (refreshToken:string) => {
-  try {
-    const response = await fetch(`${HOST_AD}/authentications`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        
-      },
-      body: JSON.stringify({ refreshToken }),
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-export { login, signup, logout };
+export { login, signup };
