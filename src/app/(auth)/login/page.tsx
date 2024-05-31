@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { login } from "@/lib/auth";
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
 const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
@@ -16,14 +16,6 @@ const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
 export default function Page() {
   const [errMsg, setErrMsg] = useState('');
   const router = useRouter();
-
-  useEffect(() => {
-    const token = Cookies.get('accessToken');
-    if (token) {
-      console.log("User detected! Redirecting to forum...")
-      router.push('/forum');
-    }
-  }, [router]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,8 +29,6 @@ export default function Page() {
     if (data.error) {
       setErrMsg(data.message);
     } else {
-      Cookies.set('accessToken', data.data.accessToken);
-      Cookies.set('refreshToken', data.data.refreshToken);
       router.push('/forum');
     }
   };

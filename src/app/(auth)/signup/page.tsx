@@ -6,9 +6,8 @@ import FormCard from '@/ui/FormCard';
 import { authButton, socialAuths } from "@/configs/routes";
 import Image from 'next/image';
 import { login, signup } from "@/lib/auth";
-import { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
+import { useState } from "react";
+import {useRouter} from 'next/router';
 
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
@@ -19,13 +18,6 @@ export default function Page() {
   const [errMsg, setErrMsg] = useState('');
   const router = useRouter();
 
-  useEffect(() => {
-    const token = Cookies.get('accessToken');
-    if (token) {
-      console.log("User detected! Redirecting to forum...")
-      router.push('/forum');
-    }
-  }, [router]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,8 +46,6 @@ export default function Page() {
     if (data.error) {
       setErrMsg(data.message);
     } else {
-      Cookies.set('accessToken', data.data.accessToken);
-      Cookies.set('refreshToken', data.data.refreshToken);
       router.push('/forum');
     }
   }
