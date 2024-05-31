@@ -1,6 +1,6 @@
 'use client'
 
-import FormCard from "@/components/FormCard";
+import FormCard from "@/ui/FormCard";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 

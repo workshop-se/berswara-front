@@ -1,6 +1,6 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Background from '@/components/Background';
+import Header from '@/ui/Header';
+import Footer from '@/ui/Footer';
+import Background from '@/ui/Background';
 
 import type { Metadata } from "next";
 import { Sen } from "next/font/google";

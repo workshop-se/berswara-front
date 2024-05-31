@@ -2,10 +2,10 @@
 
 import { Poppins } from "next/font/google";
 import Link from 'next/link';
-import FormCard from '@/components/FormCard';
+import FormCard from '@/ui/FormCard';
 import { authButton, socialAuths } from "@/configs/routes";
 import Image from 'next/image';
-import { login } from "@/api/auth";
+import { login } from "@/lib/auth";
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';

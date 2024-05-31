@@ -5,7 +5,7 @@ import Image from "next/image";
 import { navItems, authButton } from "@/configs/routes";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { logout } from "@/api/auth";
+import { logout } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
