@@ -7,7 +7,7 @@ import { authButton, socialAuths } from "@/configs/routes";
 import Image from 'next/image';
 import { login, signup } from "@/lib/auth";
 import { useState } from "react";
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/navigation';
 
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
