@@ -94,7 +94,6 @@ const updateSession = async (request: NextRequest) => {
     });
     const data = await response.json();
     const accessToken = parseJwt(data.data.accessToken);
-    const refreshToken = parseJwt(data.data.refreshToken);
     const res = NextResponse.next()
     res.cookies.set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/' });
     return res
