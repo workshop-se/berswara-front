@@ -1,15 +1,15 @@
 'use client'
 
-import { Poppins } from "next/font/google";
 import Link from 'next/link';
 import FormCard from '@/ui/FormCard';
-import { authButton, socialAuths } from "@/configs/routes";
 import Image from 'next/image';
+import useSWR from "swr";
+
+import { Poppins } from "next/font/google";
+import { authButton, socialAuths } from "@/configs/routes";
 import { login, signup } from "@/lib/auth";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
-import { cookies } from "next/headers";
-import useSWR from "swr";
 
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });

@@ -1,8 +1,8 @@
-import { faker } from '@faker-js/faker';
 import Image from 'next/image';
+import { faker } from '@faker-js/faker';
 
 const candidates = Array.from({ length: 12 }, () => ({
-  name: faker.person.firstName() + " " + faker.person.lastName(),
+  name: faker.person.fullName(),
   avatar: faker.image.avatar(),
   party: faker.company.name()
 }))
@@ -28,7 +28,7 @@ export default function Page() {
           <div key={candidate.name} className='h-[354px] relative'>
             <div className="w-[263.26px] h-[305.3px] overflow-hidden">
               <Image
-                className="object-cover"
+                className="object-cover relative"
                 src={candidate.avatar}
                 alt={candidate.name}
                 layout='fill'

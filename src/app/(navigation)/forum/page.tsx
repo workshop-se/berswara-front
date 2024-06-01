@@ -1,5 +1,4 @@
 import { faker } from '@faker-js/faker';
-import Link from 'next/link';
 import Image from 'next/image';
 
 const forums = Array.from({ length: 12 }, () => ({
@@ -7,23 +6,23 @@ const forums = Array.from({ length: 12 }, () => ({
   description: faker.lorem.paragraph(20),
   type: "Petition",
   date: faker.date.recent().toDateString(),
-  numComments: faker.datatype.number(100),
-  minRead: faker.datatype.number(10),
-  author: faker.name.firstName() + " " + faker.name.lastName(),
+  numComments: faker.number.int(100),
+  minRead: faker.number.int(10),
+  author: faker.person.fullName(),
   authorAvatar: faker.image.avatar(),
-  thumbnail: faker.image.image(),
+  thumbnail: faker.image.url(),
 }))
 
 const fPosts = Array.from({ length: 5 }, () => ({
   title: faker.lorem.sentence(),
   date: faker.date.recent().toDateString(),
-  thumbnail: faker.image.image(),
+  thumbnail: faker.image.url(),
 }))
 
 const fPetitions = Array.from({ length: 5 }, () => ({
   title: faker.lorem.sentence(),
-  numSupporters: faker.datatype.number(2000),
-  thumbnail: faker.image.image(),
+  numSupporters: faker.number.int(2000),
+  thumbnail: faker.image.url(),
 }))
 
 export default function Page() {
@@ -34,7 +33,7 @@ export default function Page() {
       <div className='flex max-w-[1128px] gap-x-[48px]'>
         <div className='grow flex flex-col gap-y-[32px] rounded-[16px]'>
           {forums.map((forum) => (
-            <div className='bg-white flex overflow-hidden h-[304px] rounded-[16px] drop-shadow-md' key={forum.date}>
+            <div className='bg-white flex overflow-hidden h-[304px] rounded-[16px] drop-shadow-md' key={forum.title}>
               <div className='min-w-[238px] relative'>
                 <Image
                   className='object-cover'
@@ -93,7 +92,7 @@ export default function Page() {
           <div className='min-w-[317px] flex flex-col gap-y-[32px]'>
             <h2 className='text-[24px]'>Featured Posts</h2>
             {fPosts.map((post) => (
-              <div className='flex gap-x-[24px]'>
+              <div key={post.title} className='flex gap-x-[24px]'>
                 <div className='min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] relative'>
                   <Image
                     className='object-cover rounded-[10px]'
@@ -113,7 +112,7 @@ export default function Page() {
           <div className='min-w-[317px] flex flex-col gap-y-[32px] mt-[76px]'>
             <h2 className='text-[24px]'>Featured Posts</h2>
             {fPetitions.map((petition) => (
-              <div className='flex gap-x-[24px]'>
+              <div key={petition.title} className='flex gap-x-[24px]'>
                 <div className='min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] relative'>
                   <Image
                     className='object-cover rounded-[10px]'

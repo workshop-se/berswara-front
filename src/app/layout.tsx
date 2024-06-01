@@ -5,7 +5,6 @@ import Background from '@/ui/Background';
 import type { Metadata } from "next";
 import { Sen } from "next/font/google";
 import "./globals.css";
-import { updateSession } from '@/lib/auth';
 
 const font = Sen({ weight: "700", subsets: ["latin"] });
 

@@ -16,7 +16,7 @@ export default function Page() {
       <p className='text-[24px] pb-[60px]'>Come join the team!</p>
       <div className='flex flex-col gap-y-[47px] pb-[126px]'>
         {newses.map((news) => (
-          <div className='bg-white p-[48px] rounded-[16px] drop-shadow-md flex gap-[48px]'>
+          <div key={news.title} className='bg-white p-[48px] rounded-[16px] drop-shadow-md flex gap-[48px]'>
             <div className='grow'>
               <h2 className='text-[36px]'>
                 {news.title}

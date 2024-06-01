@@ -1,6 +1,5 @@
 'use server'
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
 
 const HOST_AD = process.env.HOST_AD || 'http://localhost:3501';
 
@@ -65,25 +64,13 @@ const logout = async () => {
       body: JSON.stringify({ refreshToken: cookies().get('refreshToken') }),
     });
     const data = await response.json();
-    // cookies().set('accessToken', '', { expires: new Date(0) });
     cookies().delete('accessToken');
-    // cookies().set('refreshToken', '', { expires: new Date(0) });
     cookies().delete('refreshToken');
     return data;
   } catch (error) {
     console.error('Error:', error);
   }
 }
-
-// const getSession = async () => {
-//   const accessTokenCookie = cookies().get('accessToken');
-//   if (accessTokenCookie) {
-//     const session = parseJwt(accessTokenCookie.value);
-//     return session;
-//   }
-//   return null;
-// };
-
 
 const updateSession = async () => {
   if (!cookies().has('refreshToken')) return null;
