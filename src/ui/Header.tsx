@@ -3,8 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { navItems, authButton } from "@/configs/routes";
-import { logout, updateSession } from "@/lib/auth";
-import { useEffect, useState } from "react";
+import { logout } from "@/lib/auth";
 import useSWR from "swr";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());

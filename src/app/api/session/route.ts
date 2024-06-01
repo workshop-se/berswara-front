@@ -9,7 +9,7 @@ export async function GET() {
     } else {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
