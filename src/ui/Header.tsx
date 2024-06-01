@@ -5,20 +5,17 @@ import Image from "next/image";
 import { navItems, authButton } from "@/configs/routes";
 import { logout, updateSession } from "@/lib/auth";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Header() {
-  const [session, setSession] = useState(null);
-  const handleClick = () => {
-    logout();
+  const { data: session, mutate } = useSWR('/api/session', fetcher);
+
+  const handleClick = async () => {
+    await logout();
+    mutate(null, true);
   };
-
-  useEffect(() => {
-    updateSession().then((data) => {
-      setSession(data);
-      console.log(data)
-    });
-  }, []);
-
 
   return (
     <>
@@ -31,7 +28,7 @@ export default function Header() {
             <Link key={item.name} href={item.url} className="p-[10px]">{item.name}</Link>
           ))}
         </div>
-        {session
+        {!session?.error
           ? <Link onClick={handleClick} href={authButton[3].url} className="m-auto p-[10px] mx-[12px]">{authButton[3].name}</Link>
           : <div className="m-auto w-[206px] h-[36px] rounded-[10px] bg-red-100 mx-[12px] grid grid-cols-2 overflow-hidden">
             <Link href={authButton[0].url} className="bg-gray-800 flex items-center justify-center text-white">{authButton[0].name}</Link>

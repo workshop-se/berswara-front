@@ -9,15 +9,18 @@ import { login, signup } from "@/lib/auth";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { cookies } from "next/headers";
+import useSWR from "swr";
 
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
 const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Page() {
   const [errMsg, setErrMsg] = useState('');
   const router = useRouter();
+  const { mutate } = useSWR('/api/session', fetcher);
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -47,6 +50,7 @@ export default function Page() {
     if (data.error) {
       setErrMsg(data.message);
     } else {
+      mutate(null, true);
       router.push('/forum');
     }
   }
