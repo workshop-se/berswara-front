@@ -3,6 +3,7 @@
 import FormCard from "@/ui/FormCard";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
+import { faker } from "@faker-js/faker";
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
 const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
@@ -22,40 +23,49 @@ const provinces = [
   "Jawa Tengah",
 ]
 
+const placeHolders = {
+  fullname: faker.person.fullName(),  
+  avatar: faker.image.avatar(),
+  email: faker.internet.email(),
+  nik: faker.number.bigInt({ min: BigInt(1000000000000000), max: BigInt(9999999999999999) }),
+  address: faker.address.streetAddress(),
+  telephone: faker.phone.number(),
+}
+
 export default function Page() {
   return (
     <main className="flex justify-center p-[40px]">
       <FormCard>
         <div className="flex w-[857px]">
-          <div>
-            <Image src="/photos/avatar-example.png" alt="hero" width={110} height={110} />
+          <div className="self-start rounded-full overflow-hidden">
+            <Image src={placeHolders.avatar} alt="hero" width={110} height={110} objectFit="cover" />
           </div>
           <form className="pl-[40px] grow">
             <div className="flex flex-col gap-[15px]">
               <div className="flex flex-col">
-                <label htmlFor="firstName" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Nama Depan</label>
-                <input type="text" id="firstName" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <label htmlFor="firstName" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Nama Lengkap</label>
+                <input type="text" id="firstName" placeholder={placeHolders.fullname} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
               </div>
 
               <div className="flex flex-col">
                 <label htmlFor="email" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Email Address</label>
-                <input type="email" id="email" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <input type="email" id="email" placeholder={placeHolders.email} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
               </div>
 
               <div className="flex flex-col">
                 <label htmlFor="nik" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>NIK</label>
-                <input type="number" id="nik" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <input type="number" id="nik" placeholder={`${placeHolders.nik}`} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
               </div>
 
 
               <div className="flex flex-col">
                 <label htmlFor="address" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Alamat KTP</label>
-                <input type="text" id="address" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <input type="text" id="address" placeholder={placeHolders.address} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
               </div>
 
               <div className="flex flex-col">
                 <label htmlFor="telephone" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>No. Telepon</label>
-                <input type="text" id="telephone" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <input type="text" id="telephone" placeholder={placeHolders.telephone} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
               </div>
 
               <div className="flex gap-x-[38px]">
