@@ -5,7 +5,7 @@ import Background from '@/ui/Background';
 import type { Metadata } from "next";
 import { Sen } from "next/font/google";
 import "./globals.css";
-import { getSession } from '@/lib/auth';
+import { updateSession } from '@/lib/auth';
 
 const font = Sen({ weight: "700", subsets: ["latin"] });
 
@@ -19,11 +19,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getSession();
   return (
     <html lang="en">
       <body className={font.className}>
-        <Header session={session}/>
+        <Header/>
         <Background>
           {children}
         </Background>

@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { login, signup } from "@/lib/auth";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
+import { cookies } from "next/headers";
 
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });

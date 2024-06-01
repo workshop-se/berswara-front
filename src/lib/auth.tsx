@@ -25,13 +25,16 @@ const login = async (username: string, password: string) => {
       body: JSON.stringify({ username, password }),
     });
     const data = await response.json();
-    const accessToken = parseJwt(data.data.accessToken);
-    const refreshToken = parseJwt(data.data.refreshToken);
-    cookies().set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/' });
-    cookies().set('refreshToken', data.data.refreshToken, { expires: new Date(refreshToken.exp * 1000), path: '/' });
+    if (!data.error) {
+      const accessToken = parseJwt(data.data.accessToken);
+      const refreshToken = parseJwt(data.data.refreshToken);
+      cookies().set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/' });
+      cookies().set('refreshToken', data.data.refreshToken, { expires: new Date(refreshToken.exp * 1000), path: '/' });
+    }
     return data;
   } catch (error) {
     console.error('Error:', error);
+    return { error: true, message: error };
   }
 }
 
@@ -62,46 +65,51 @@ const logout = async () => {
       body: JSON.stringify({ refreshToken: cookies().get('refreshToken') }),
     });
     const data = await response.json();
-    cookies().set('accessToken', '', { expires: new Date(0) });
-    cookies().set('refreshToken', '', { expires: new Date(0) });
+    // cookies().set('accessToken', '', { expires: new Date(0) });
+    cookies().delete('accessToken');
+    // cookies().set('refreshToken', '', { expires: new Date(0) });
+    cookies().delete('refreshToken');
     return data;
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
-const getSession = async () => {
-  const accessTokenCookie = cookies().get('accessToken');
-  if (accessTokenCookie) {
-    const session = parseJwt(accessTokenCookie.value);
-    return session;
-  }
-  return null;
-};
+// const getSession = async () => {
+//   const accessTokenCookie = cookies().get('accessToken');
+//   if (accessTokenCookie) {
+//     const session = parseJwt(accessTokenCookie.value);
+//     return session;
+//   }
+//   return null;
+// };
 
 
-const updateSession = async (request: NextRequest) => {
-  const session = request.cookies.get("refreshToken")?.value;
-  if (!session) return null
-
+const updateSession = async () => {
+  if (!cookies().has('refreshToken')) return null;
+  const session = cookies().get('refreshToken')?.value;
   try {
     const response = await fetch(`${HOST_AD}/authentications`, {
-      method: 'DELETE',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ refreshToken: session }),
     });
     const data = await response.json();
+    if (data.error) {
+      cookies().delete('accessToken');
+      cookies().delete('refreshToken');
+      return data;
+    }
     const accessToken = parseJwt(data.data.accessToken);
-    const res = NextResponse.next()
-    res.cookies.set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/' });
-    return res
+    cookies().set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/' });
+    return data;
 
   } catch (error) {
     console.error('Error:', error);
-    return null
+    return error
   }
 }
 
-export { login, signup, logout, getSession, updateSession };
+export { login, signup, logout, updateSession };

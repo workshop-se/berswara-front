@@ -3,18 +3,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import { navItems, authButton } from "@/configs/routes";
-import { logout } from "@/lib/auth";
-type HeaderProps = {
-  session: any;
-};
+import { logout, updateSession } from "@/lib/auth";
+import { useEffect, useState } from "react";
 
-const Header: React.FC<HeaderProps> = ({ session }) => {
-
+export default function Header() {
+  const [session, setSession] = useState(null);
   const handleClick = () => {
-    if (session) {
-      logout();
-    }
+    logout();
   };
+
+  useEffect(() => {
+    updateSession().then((data) => {
+      setSession(data);
+      console.log(data)
+    });
+  }, []);
+
 
   return (
     <>
@@ -40,4 +44,3 @@ const Header: React.FC<HeaderProps> = ({ session }) => {
   );
 }
 
-export default Header;

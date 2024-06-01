@@ -9,6 +9,7 @@ import { getSession, login } from "@/lib/auth";
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
 const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
