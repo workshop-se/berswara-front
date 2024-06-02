@@ -2,21 +2,20 @@ import { faker } from '@faker-js/faker';
 import Link from 'next/link';
 
 const newses = Array.from({ length: 4 }, () => ({
+  id: faker.string.uuid(),
   title: faker.lorem.sentence(),
   description: faker.lorem.paragraph(),
-  isOngoing: faker.datatype.boolean(),
-  tags: Array.from({ length: 3 }, () => faker.lorem.word()),
+  date: faker.date.recent().toDateString(),
   link: faker.internet.url()
 }))
 
 export default function Page() {
   return (
     <div className='w-[1128px] m-auto pt-[105px]'>
-      <h1 className='text-[64px]'>Baca berita terbaru</h1>
-      <p className='text-[24px] pb-[60px]'>Come join the team!</p>
+      <h1 className='text-[64px]'>Baca berita terbaru!</h1>
       <div className='flex flex-col gap-y-[47px] pb-[126px]'>
         {newses.map((news) => (
-          <div key={news.title} className='bg-white p-[48px] rounded-[16px] drop-shadow-md flex gap-[48px]'>
+          <div key={news.id} className='bg-white px-[48px] py-[40px] rounded-[16px] drop-shadow-md flex flex-col gap-[48px]'>
             <div className='grow'>
               <h2 className='text-[36px]'>
                 {news.title}
@@ -25,11 +24,9 @@ export default function Page() {
                 {news.description}
               </p>
             </div>
-            <div className='w-[201px] flex flex-col gap-y-[13px]'>
-              <Link className='bg-[#6059C9] text-white text-center p-[13px] rounded-[10px]' href={news.link}>
-                Apply now
-              </Link>
-              <p className='text-center text-[18px]'>On going what?</p>
+            <div className='flex justify-between'>
+              <div className='flex items-center text-[#7A7A7A]'>{news.date}</div>
+              <Link className='w-[201px] h-[48px] bg-[#B30D19] text-white rounded-[10px] flex items-center justify-center' href={news.link}>Read More</Link>
             </div>
           </div>
         ))}
