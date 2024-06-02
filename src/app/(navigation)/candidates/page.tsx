@@ -1,15 +1,30 @@
+'use client'
 import Image from 'next/image';
 import { faker } from '@faker-js/faker';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
-const candidates = Array.from({ length: 12 }, () => ({
-  name: faker.person.fullName(),
-  id: faker.string.uuid(),
-  avatar: faker.image.avatar(),
-  party: faker.company.name()
-}))
+interface Candidate {
+  name: string;
+  id: string;
+  avatar: string;
+  party: string;
+}
 
 export default function Page() {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
+
+  useEffect(() => {
+    const newCandidates: Candidate[] = Array.from({ length: 12 }, () => ({
+      name: faker.person.fullName(),
+      id: faker.string.uuid(),
+      avatar: faker.image.avatar(),
+      party: faker.company.name()
+    }));
+    setCandidates(newCandidates);
+  }, []);
+
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-[48px] text-center pt-[75px]">Kenali Kandidatmu</h1>
@@ -28,21 +43,36 @@ export default function Page() {
       <div className='grid grid-cols-4 mt-[75px] mb-[120px] gap-x-[24px] gap-y-[116px]'>
         {candidates.map((candidate) => (
           <Link key={candidate.id} className='h-[354px] relative' href={`/candidates/${candidate.id}`} >
-            <div className="w-[263.26px] h-[305.3px] overflow-hidden">
-              <Image
-                className="object-cover relative"
-                src={candidate.avatar}
-                alt={candidate.name}
-                layout='fill'
-              />
-            </div>
-            <div className='relative b-0 bg-white h-[86.26px] w-[212.85px] z-1 m-auto flex flex-col place-content-center rounded-[10px]'>
-              <div className='flex justify-center'>
-                <p className='text-[18px] text-center'>{candidate.name}</p>
+            <div
+              className="relative rounded-[10px] overflow-hidden"
+              onMouseEnter={() => setHoveredId(candidate.id)}
+              onMouseLeave={() => setHoveredId(null)}
+            >
+              <div className="w-[263px] h-[346px] relative">
+                <Image
+                  className="object-cover"
+                  src={candidate.avatar}
+                  alt={candidate.name}
+                  layout='fill'
+                />
               </div>
-              <div className='flex justify-center'>
-                <p className='text-[14px] text-center'>{candidate.party}</p>
-              </div>
+
+              {hoveredId === candidate.id ? (
+                <div className='absolute top-0 left-0 w-full h-full bg-white bg-gradient-to-b from-[#FFFCF7] to-[#DBCCC1] flex backdrop-filter backdrop-blur-sm opacity-95 rounded-[10px] transition-all duration-300'>
+                  <div className='flex flex-col justify-center items-center w-full h-full px-auto'>
+                    <h2 className='text-[18px] text-center'>{candidate.name}</h2>
+                    <h3 className='text-[14px] text-center'>{candidate.party}</h3>
+                    <h4 className='bg-[#B30D19] text-white rounded-[10px] text-center p-2 mt-[10px]'>Read More</h4>
+                  </div>
+                </div>
+              ) : (
+                <div className='absolute bottom-0 left-0 w-full bg-white backdrop-filter backdrop-blur-sm opacity-95 rounded-[10px] transition-all duration-300'>
+                  <div className='flex flex-col justify-center items-center p-4'>
+                    <h2 className='text-[18px] text-center'>{candidate.name}</h2>
+                    <h3 className='text-[14px] text-center'>{candidate.party}</h3>
+                  </div>
+                </div>
+              )}
             </div>
           </Link>
         ))}
