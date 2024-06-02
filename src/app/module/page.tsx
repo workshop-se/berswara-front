@@ -12,7 +12,7 @@ const modules = Array.from({ length: 9 }, () => ({
 export default function Page() {
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-[48px] text-center pt-[75px]">Kenali Kandidatmu</h1>
+      <h1 className="text-[48px] text-center pt-[75px]">Module Seputar Pemilihan Umum</h1>
       <p className='text-24px w-[851px]'>Our brand identity system expresses our spirits and inspires our behaviors. The current system consists of 9 core elements that help unify and communicate Campoal brand with consistency and clarity.</p>
       <div className='grid grid-cols-3 mt-[75px] mb-[120px] gap-x-[27px] gap-y-[47px]'>
         {modules.map((module) => (
