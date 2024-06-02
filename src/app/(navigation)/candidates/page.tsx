@@ -1,4 +1,5 @@
 'use client'
+
 import Image from 'next/image';
 import { faker } from '@faker-js/faker';
 import Link from 'next/link';
@@ -14,6 +15,7 @@ interface Candidate {
 export default function Page() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const newCandidates: Candidate[] = Array.from({ length: 12 }, () => ({
@@ -24,6 +26,10 @@ export default function Page() {
     }));
     setCandidates(newCandidates);
   }, []);
+
+  const filteredCandidates = candidates.filter(candidate =>
+    candidate.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="flex flex-col items-center">
@@ -37,11 +43,11 @@ export default function Page() {
             </path>
           </svg>
         </div>
-        <input className="grow focus:outline-none" type="text" placeholder="Cari kandidat" />
+        <input className="grow focus:outline-none" type="text" placeholder="Cari kandidat" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
       </div>
 
       <div className='grid grid-cols-4 mt-[75px] mb-[120px] gap-x-[24px] gap-y-[116px]'>
-        {candidates.map((candidate) => (
+        {filteredCandidates.map((candidate) => (
           <Link key={candidate.id} className='h-[354px] relative' href={`/candidates/${candidate.id}`} >
             <div
               className="relative rounded-[10px] overflow-hidden"
