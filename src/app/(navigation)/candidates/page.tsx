@@ -50,7 +50,7 @@ export default function Page() {
         {filteredCandidates.map((candidate) => (
           <Link key={candidate.id} className='h-[354px] relative' href={`/candidates/${candidate.id}`} >
             <div
-              className="relative rounded-[10px] overflow-hidden"
+              className="relative rounded-[10px] overflow-hidden shadow-md"
               onMouseEnter={() => setHoveredId(candidate.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -67,7 +67,7 @@ export default function Page() {
                 <div className='absolute top-0 left-0 w-full h-full bg-white bg-gradient-to-b from-[#FFFCF7] to-[#DBCCC1] flex backdrop-filter backdrop-blur-sm opacity-95 rounded-[10px] transition-all duration-300'>
                   <div className='flex flex-col justify-center items-center w-full h-full px-auto'>
                     <h2 className='text-[18px] text-center'>{candidate.name}</h2>
-                    <h3 className='text-[14px] text-center'>{candidate.party}</h3>
+                    <h3 className='text-[14px] text-center text-[#5F5F75]'>{candidate.party}</h3>
                     <h4 className='bg-[#B30D19] text-white rounded-[10px] text-center p-2 mt-[10px]'>Read More</h4>
                   </div>
                 </div>
@@ -75,7 +75,7 @@ export default function Page() {
                 <div className='absolute bottom-0 left-0 w-full bg-white backdrop-filter backdrop-blur-sm opacity-95 rounded-[10px] transition-all duration-300'>
                   <div className='flex flex-col justify-center items-center p-4'>
                     <h2 className='text-[18px] text-center'>{candidate.name}</h2>
-                    <h3 className='text-[14px] text-center'>{candidate.party}</h3>
+                    <h3 className='text-[14px] text-center text-[#5F5F75]'>{candidate.party}</h3>
                   </div>
                 </div>
               )}
