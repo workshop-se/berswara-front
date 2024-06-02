@@ -4,12 +4,12 @@ import Link from "next/link"
 export default function Template({ children }: { children: React.ReactNode }) {
   const search = { title: "Search", icon: "/icons/search.svg", url: "/forum/search" }
   const menus = [
-    { title: "Questions", icon: "/icons/list.svg", url: "/questions" },
+    { title: "Questions", icon: "/icons/list.svg", url: "/" },
     { title: "Tag", icon: "/icons/tag.svg", url: "/forum/tags" },
     { title: "Ranking", icon: "/icons/award.svg", url: "/news/ranking" },
   ]
   const navs = [
-    { title: "Your Questions", icon: "/icons/help-circle.svg", url: "/forum" },
+    { title: "Your Questions", icon: "/icons/help-circle.svg", url: "/forum/yquestions" },
     { title: "Your Answers", icon: "/icons/message-circle.svg", url: "/forum/answers" },
     { title: "Your likes & votes", icon: "/icons/heart.svg", url: "/forum/likesandvotes" },
   ]
