@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import { faker } from '@faker-js/faker';
+import Link from 'next/link';
 
 const candidates = Array.from({ length: 12 }, () => ({
   name: faker.person.fullName(),
+  id: faker.string.uuid(),
   avatar: faker.image.avatar(),
   party: faker.company.name()
 }))
@@ -25,7 +27,7 @@ export default function Page() {
 
       <div className='grid grid-cols-4 mt-[75px] mb-[120px] gap-x-[24px] gap-y-[116px]'>
         {candidates.map((candidate) => (
-          <div key={candidate.name} className='h-[354px] relative'>
+          <Link key={candidate.id} className='h-[354px] relative' href={`/candidates/${candidate.id}`} >
             <div className="w-[263.26px] h-[305.3px] overflow-hidden">
               <Image
                 className="object-cover relative"
@@ -42,7 +44,7 @@ export default function Page() {
                 <p className='text-[14px] text-center'>{candidate.party}</p>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
