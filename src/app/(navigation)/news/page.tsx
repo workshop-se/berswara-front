@@ -6,7 +6,7 @@ const newses = Array.from({ length: 4 }, () => ({
   title: faker.lorem.sentence(),
   description: faker.lorem.paragraph(),
   date: faker.date.recent().toDateString(),
-  link: faker.internet.url()
+  // link: faker.internet.url()
 }))
 
 export default function Page() {
@@ -26,7 +26,7 @@ export default function Page() {
             </div>
             <div className='flex justify-between'>
               <div className='flex items-center text-[#7A7A7A]'>{news.date}</div>
-              <Link className='w-[201px] h-[48px] bg-[#B30D19] text-white rounded-[10px] flex items-center justify-center' href={news.link}>Read More</Link>
+              <Link className='w-[201px] h-[48px] bg-[#B30D19] text-white rounded-[10px] flex items-center justify-center' href={`/news/${news.id}`}>Read More</Link>
             </div>
           </div>
         ))}
