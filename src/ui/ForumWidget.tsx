@@ -14,7 +14,7 @@ export default function ForumWidget() {
     { title: faker.lorem.words(3), link: faker.string.uuid() },
   ]
   return (
-    <div className="w-[270px] py-[30px] px-[20px] bg-white shadow rounded-[5px] flex flex-col gap-y-[40px]">
+    <div className="w-[270px] py-[30px] px-[20px] bg-white shadow rounded-[5px] flex flex-col gap-y-[40px] self-start">
       <SubWidget title="Must Read Posts" lists={mustReadPosts} />
       <SubWidget title="Featured Links" lists={featuredLinks} />
     </div>
