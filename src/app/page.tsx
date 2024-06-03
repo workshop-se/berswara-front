@@ -188,10 +188,10 @@ export default function Home() {
             <p className="text-wrap w-[409px]">Millions of people come to Campoal to start and sign petitions that boldly call for social change. Become a member today and fuel our mission to empower everyone to create the kind of change they want to see.</p>
             <br></br>
             <div className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]">
-              <div className="flex flex-row justify-center items-center">
+              <Link className="flex flex-row justify-center items-center" href="/quiz">
                 <p className="text-[18px] text-[#B30D19] mr-[13px]">Mulai Quiz</p>
-                <Image className="object-cover w-[12px] h-[24px] " src="/images/angle-right-red.svg" alt="angle-right-red" width={0} height={0} />
-              </div>
+                <Image className="object-cover" src="/images/angle-right-red.svg" alt="angle-right-red" width={12} height={12} />
+              </Link>
             </div>
           </div>
           <div>
