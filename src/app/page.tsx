@@ -295,7 +295,7 @@ export default function Home() {
             </p>
             <br></br>
             <div className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]">
-              <div className="flex flex-row justify-center items-center">
+              <Link className="flex flex-row justify-center items-center" href="/quiz">
                 <p className="text-[18px] text-[#B30D19] mr-[13px]">
                   Mulai Quiz
                 </p>
@@ -306,7 +306,7 @@ export default function Home() {
                   width={0}
                   height={0}
                 />
-              </div>
+              </Link>
             </div>
           </div>
           <div>
@@ -328,18 +328,18 @@ export default function Home() {
           <CandidateCards candidates={candidates} />
         </div>
         <div className="bg-[#FFFCF7] w-[195px] h-[48px] rounded-[10px] pt-[11px] mb-[64px]">
-              <div className="flex flex-row justify-center items-center">
-                <p className="text-[18px] text-[#B30D19] mr-[13px]">
-                  Cari Kandidat
-                </p>
-                <Image
-                  className="object-cover w-[12px] h-[24px] "
-                  src="/images/angle-right-red.svg"
-                  alt="angle-right-red"
-                  width={0}
-                  height={0}
-                />
-              </div>
+          <div className="flex flex-row justify-center items-center">
+            <p className="text-[18px] text-[#B30D19] mr-[13px]">
+              Cari Kandidat
+            </p>
+            <Image
+              className="object-cover w-[12px] h-[24px] "
+              src="/images/angle-right-red.svg"
+              alt="angle-right-red"
+              width={0}
+              height={0}
+            />
+          </div>
         </div>
       </div>
       <div className="bg-[#FFFCF7] pb-[146px]">
