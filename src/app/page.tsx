@@ -155,7 +155,7 @@ export default function Home() {
        </div>
       </div>
       <div className="bg-[#FFFCF7] p-[148px]">
-        <h1 className="text-[48px] text-center font-bold ">
+        <h1 className="text-[48px] text-center font-bold">
           Quiz Kebangsaan Interaktif
         </h1>
         <div className="flex flex-row justify-center mt-[79px]">
@@ -177,7 +177,29 @@ export default function Home() {
         
 
       </div>
-        
+      <div className="bg-[#FFFCF7]">
+        <div className="flex flex-col justify-center">
+          <h1 className="text-[48px] text-center font-extrabold">Mulai berdiskusi dalam forum!</h1>
+          <p className="text-[18px] text-[#5F5F75] text-center font-extrabold"> Campoal supports a variety of the most popular category.</p>
+        </div>
+        <div className="flex justify-center mt-[200px]">
+          <div className="bg-[#F5EFE0] w-[1127px] h-[336px] rounded-[16px]">
+            <div className="pt-[48px] pl-[48px]">
+              <h1 className="text-[36px] font-extrabold">Mulai berdiskusi dalam forum!</h1>
+              <p className="text-[18px] font-normal w-[470px]">
+                People everywhere are empowered to start campaigns, mobilize supporters, and work with Decision Makers to drive solutions.
+              </p>
+              <div className="bg-[#B30D19] w-[219px] h-[48px] rounded-[10px] pt-[11px] absolute bottom-10">
+                  <div className="flex flex-row justify-center items-center">
+                    <Image className="object-cover w-[24px] h-[24px] mr-[19px]" src="/images/feather.svg" alt="feather" width={0} height={0} />
+                    <p className="text-[18px] text-[#F5EFE0] mr-[13px]">Start a petition</p> 
+                  </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
