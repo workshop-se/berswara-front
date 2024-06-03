@@ -184,7 +184,7 @@ export default function Home() {
         </div>
         <div className="flex flex-auto justify-center">
           <div className="flex flex-row gap-6">
-            <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+            <div className="group bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px] hover:bg-[#B30D19]">
               <div className="flex flex-col items-center mt-[37px] ">
                 <Image
                   className="object-cover w-[96px] h-[96px]"
@@ -193,17 +193,17 @@ export default function Home() {
                   width={0}
                   height={0}
                 />
-                <h1 className="text-[36px] text-[2B2B39] text-center font-bold">
+                <h1 className="text-[36px] text-[2B2B39] text-center font-bold group-hover:text-[#FFFCF7]">
                   Sejarah & Dasar Hukum Pemilu
                 </h1>
-                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal group-hover:text-[#FFFCF7]">
                   Modul ini memberikan gambaran lengkap mengenai sejarah dan
                   evolusi pemilihan umum di Indonesia, serta dasar-dasar hukum
                   yang mengatur proses pemilu.
                 </p>
               </div>
             </div>
-            <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+            <div className="group bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px] hover:bg-[#B30D19]">
               <div className="flex flex-col items-center mt-[37px]">
                 <Image
                   className="object-cover w-[96px] h-[96px]"
@@ -212,16 +212,16 @@ export default function Home() {
                   width={0}
                   height={0}
                 />
-                <h1 className="text-[36px] text-[2B2B39] text-center font-bold">
+                <h1 className="text-[36px] text-[2B2B39] text-center font-bold group-hover:text-[#F5EFE0]">
                   Syarat & Prosedur Bagi Calon
                 </h1>
-                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal group-hover:text-[#F5EFE0]">
                   Modul ini menguraikan prosedur dan persyaratan bagi individu
                   yang ingin mencalonkan diri dalam pemilu.
                 </p>
               </div>
             </div>
-            <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+            <div className="group bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px] hover:bg-[#B30D19]">
               <div className="flex flex-col items-center mt-[37px]">
                 <Image
                   className="object-cover w-[96px] h-[96px]"
@@ -230,10 +230,10 @@ export default function Home() {
                   width={0}
                   height={0}
                 />
-                <h1 className="text-[36px] text-[2B2B39] text-center font-bold">
+                <h1 className="text-[36px] text-[2B2B39] text-center font-bold group-hover:text-[#F5EFE0]">
                   Verifikasi & Validasi Data Pemilih
                 </h1>
-                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal group-hover:text-[#F5EFE0]">
                   Modul ini fokus pada pentingnya verifikasi dan validasi data
                   pemilih untuk memastikan integritas pemilu.
                 </p>
