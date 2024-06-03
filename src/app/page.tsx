@@ -262,7 +262,7 @@ export default function Home() {
               </Swiper> */}
         </div>
         <div className="flex flex-row justify-center mt-[53px]">
-          <div className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]">
+          <Link className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]" href="/howtovote">
             <div className="flex flex-row justify-center items-center">
               <p className="text-[18px] text-[#B30D19] mr-[13px]">
                 Modul Lengkap
@@ -275,7 +275,7 @@ export default function Home() {
                 height={0}
               />
             </div>
-          </div>
+          </Link>
         </div>
       </div>
       <div className="bg-[#FFFCF7] p-[148px]">
@@ -327,7 +327,7 @@ export default function Home() {
         <div className="">
           <CandidateCards candidates={candidates} />
         </div>
-        <div className="bg-[#FFFCF7] w-[195px] h-[48px] rounded-[10px] pt-[11px] mb-[64px]">
+        <Link className="bg-[#FFFCF7] w-[195px] h-[48px] rounded-[10px] pt-[11px] mb-[64px]" href="/candidates">
           <div className="flex flex-row justify-center items-center">
             <p className="text-[18px] text-[#B30D19] mr-[13px]">
               Cari Kandidat
@@ -340,7 +340,7 @@ export default function Home() {
               height={0}
             />
           </div>
-        </div>
+        </Link>
       </div>
       <div className="bg-[#FFFCF7] pb-[146px]">
         <div className="flex flex-col justify-center">
@@ -363,7 +363,7 @@ export default function Home() {
                 People everywhere are empowered to start campaigns, mobilize
                 supporters, and work with Decision Makers to drive solutions.
               </p>
-              <div className="bg-[#B30D19] w-[219px] h-[48px] rounded-[10px] pt-[11px] absolute bottom-10">
+              <Link className="bg-[#B30D19] w-[219px] h-[48px] rounded-[10px] pt-[11px] absolute bottom-10" href="/forum">
                 <div className="flex flex-row justify-center items-center">
                   <Image
                     className="object-cover w-[24px] h-[24px] mr-[19px]"
@@ -376,7 +376,7 @@ export default function Home() {
                     Start a petition
                   </p>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="absolute bottom-0 right-8">
               <Image
