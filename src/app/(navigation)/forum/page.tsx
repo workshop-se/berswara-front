@@ -1,6 +1,7 @@
 import ForumWidget from "@/ui/ForumWidget";
 import { faker } from "@faker-js/faker";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   const posts = Array.from({ length: 10 }, () => (
@@ -58,6 +59,9 @@ export default function Page() {
         </div>
       </div>
       <ForumWidget></ForumWidget>
+      <Link href="/forum/add" className="fixed bottom-[50px] right-[50px] bg-[#B30D19] text-white px-4 py-2 rounded-[5px] shadow-lg">
+        Ask a question
+      </Link>
     </div>
   );
 }
