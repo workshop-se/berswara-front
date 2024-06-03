@@ -87,13 +87,44 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bg-[#FFFCF7]">
-        <div className="">
+      <div className="bg-[#FFFCF7] pt-[150px]">
+        <div className="flex flex-col justify-center">
             <h1 className="text-[48px] text-center font-bold">Modul Prosedur Proses Pemilihan</h1>
-            <p className="text-[18px] text-center text-[#5F5F75] w-[577px]">Berikut adalah langkah-langkah yang harus anda lakukan agar dapat mengikuti pemilihan dan menggunakan hak suara anda.</p>
+            <div className="flex justify-center pb-[53px]">
+              <p className="text-[18px] text-[#5F5F75] w-[577px] text-center">Berikut adalah langkah-langkah yang harus anda lakukan agar dapat mengikuti pemilihan dan menggunakan hak suara anda.</p>
+            </div>
         </div>
-       <div className="flex flex-auto">
-            todo : cards
+       <div className="flex flex-auto justify-center">
+            <div className="flex flex-row gap-6">
+              <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+                <div className="flex flex-col items-center mt-[37px] ">
+                  <Image className="object-cover w-[96px] h-[96px]" src="/images/card-logo-1.svg" alt="card-logo-1" width={0} height={0} />
+                  <h1 className="text-[36px] text-[2B2B39] text-center font-bold">Sejarah & Dasar Hukum Pemilu</h1>
+                  <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                  Modul ini memberikan gambaran lengkap mengenai sejarah dan evolusi pemilihan umum di Indonesia, serta dasar-dasar hukum yang mengatur proses pemilu. 
+                  </p>
+                </div>
+              </div>
+              <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+                <div className="flex flex-col items-center mt-[37px]">
+                  <Image className="object-cover w-[96px] h-[96px]" src="/images/card-logo-2.svg" alt="card-logo-2" width={0} height={0} />
+                  <h1 className="text-[36px] text-[2B2B39] text-center font-bold">Syarat & Prosedur Bagi Calon</h1>
+                  <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                  Modul ini menguraikan prosedur dan persyaratan bagi individu yang ingin mencalonkan diri dalam pemilu. 
+                  </p>
+                </div>
+              </div>
+              <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+                <div className="flex flex-col items-center mt-[37px]">
+                  <Image className="object-cover w-[96px] h-[96px]" src="/images/card-logo-3.svg" alt="card-logo-3" width={0} height={0} />
+                  <h1 className="text-[36px] text-[2B2B39] text-center font-bold">Verifikasi & Validasi Data Pemilih</h1>
+                  <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                  Modul ini fokus pada pentingnya verifikasi dan validasi data pemilih untuk memastikan integritas pemilu. 
+                  </p>
+                </div>
+              </div>
+            </div>
+           
                 {/* <Swiper
                   slidesPerView={3}
                   spaceBetween={30}
@@ -114,8 +145,16 @@ export default function Home() {
                   <SwiperSlide>Slide 9</SwiperSlide>
               </Swiper> */}
        </div>
+       <div className="flex flex-row justify-center mt-[53px]">
+        <div className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]">
+                <div className="flex flex-row justify-center items-center">
+                  <p className="text-[18px] text-[#B30D19] mr-[13px]">Modul Lengkap</p> 
+                  <Image className="object-cover w-[12px] h-[24px] " src="/images/angle-right-red.svg" alt="angle-right-red" width={0} height={0} />
+                </div>
+        </div>
+       </div>
       </div>
-      <div className="bg-[#FFFCF7]">
+      <div className="bg-[#FFFCF7] p-[148px]">
         <h1 className="text-[48px] text-center font-bold ">
           Quiz Kebangsaan Interaktif
         </h1>
@@ -124,7 +163,12 @@ export default function Home() {
               <h2 className="text-[30px] text-wrap w-[439px] mb-[15px]">Uji Pengetahuan mu dengan Quiz kami!</h2>
               <p className="text-wrap w-[409px]">Millions of people come to Campoal to start and sign petitions that boldly call for social change. Become a member today and fuel our mission to empower everyone to create the kind of change they want to see.</p>
               <br></br>
-              todo:button Mulai Quiz
+              <div className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]">
+                <div className="flex flex-row justify-center items-center">
+                  <p className="text-[18px] text-[#B30D19] mr-[13px]">Mulai Quiz</p> 
+                  <Image className="object-cover w-[12px] h-[24px] " src="/images/angle-right-red.svg" alt="angle-right-red" width={0} height={0} />
+                </div>
+              </div>
           </div>
           <div>
             <Image src="/images/hero-quiz.svg" alt="hero-quiz" width={0} height={0} className="object-scale-down w-[637px]"/>
