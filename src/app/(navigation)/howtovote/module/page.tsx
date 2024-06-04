@@ -19,7 +19,7 @@ export default function Page() {
           <div key={module.id} className='relative' >
             <Link
               className='hover:cursor-pointer relative z-10 w-[359px] h-full bg-white rounded-[16px] flex flex-col overflow-hidden drop-shadow-md transform transition-transform duration-200 hover:-translate-x-[7px] hover:-translate-y-[6px] hover:bg-gray-300'
-              href={`/module/${module.id}`}
+              href={`module/${module.id}`}
             >
               <div className='bg-[#F5EFE0] h-[359px] overflow-hidden flex place-items-center'>
                 <Image className='object-cover w-[128px] h-[128px] m-auto' src={module.icon} alt={module.name} width={0} height={0} />
