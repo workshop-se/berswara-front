@@ -66,13 +66,13 @@ export default function Home() {
           <div className="flex justify-center m-[52px] z-10 relative">
             <Link
               href={heroButton[0].url}
-              className="mx-[16.5px] text-white bg-[#B30D19] py-[13px] px-[49px] rounded-[27px]"
+              className="mx-[16.5px] text-white bg-firebrick-0 py-[13px] px-[49px] rounded-[27px]"
             >
               {heroButton[0].name}
             </Link>
             <Link
               href={heroButton[1].url}
-              className="mx-[16.5px] bg-[#F1ECE8] py-[13px] px-[49px] rounded-[27px]"
+              className="mx-[16.5px] bg-whitesmoke py-[13px] px-[49px] rounded-[27px]"
             >
               {heroButton[1].name}
             </Link>
@@ -90,13 +90,13 @@ export default function Home() {
         <div className="text-center">todo : image slide</div>
       </div>
       <HowToVotePage/>
-      <div className="bg-[#FFFCF7] pt-[150px]">
+      <div className="bg-floralwhite pt-[150px]">
         <div className="flex flex-col justify-center">
           <h1 className="text-[48px] text-center font-bold">
             Modul Prosedur Proses Pemilihan
           </h1>
           <div className="flex justify-center pb-[53px]">
-            <p className="text-[18px] text-[#5F5F75] w-[577px] text-center">
+            <p className="text-[18px] text-slategray w-[577px] text-center">
               Berikut adalah langkah-langkah yang harus anda lakukan agar dapat
               mengikuti pemilihan dan menggunakan hak suara anda.
             </p>
@@ -104,7 +104,7 @@ export default function Home() {
         </div>
         <div className="flex flex-auto justify-center">
           <div className="flex flex-row gap-6">
-            <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+            <div className="bg-oldlace w-[359px] h-[448px] rounded-[16px]">
               <div className="flex flex-col items-center mt-[37px] ">
                 <Image
                   className="object-cover w-[96px] h-[96px]"
@@ -116,14 +116,14 @@ export default function Home() {
                 <h1 className="text-[36px] text-[2B2B39] text-center font-bold">
                   Sejarah & Dasar Hukum Pemilu
                 </h1>
-                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                <p className="text-[18px] text-slategray text-center m-[32px] font-normal">
                   Modul ini memberikan gambaran lengkap mengenai sejarah dan
                   evolusi pemilihan umum di Indonesia, serta dasar-dasar hukum
                   yang mengatur proses pemilu.
                 </p>
               </div>
             </div>
-            <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+            <div className="bg-oldlace w-[359px] h-[448px] rounded-[16px]">
               <div className="flex flex-col items-center mt-[37px]">
                 <Image
                   className="object-cover w-[96px] h-[96px]"
@@ -135,13 +135,13 @@ export default function Home() {
                 <h1 className="text-[36px] text-[2B2B39] text-center font-bold">
                   Syarat & Prosedur Bagi Calon
                 </h1>
-                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                <p className="text-[18px] text-slategray text-center m-[32px] font-normal">
                   Modul ini menguraikan prosedur dan persyaratan bagi individu
                   yang ingin mencalonkan diri dalam pemilu.
                 </p>
               </div>
             </div>
-            <div className="bg-[#F5EFE0] w-[359px] h-[448px] rounded-[16px]">
+            <div className="bg-oldlace w-[359px] h-[448px] rounded-[16px]">
               <div className="flex flex-col items-center mt-[37px]">
                 <Image
                   className="object-cover w-[96px] h-[96px]"
@@ -153,7 +153,7 @@ export default function Home() {
                 <h1 className="text-[36px] text-[2B2B39] text-center font-bold">
                   Verifikasi & Validasi Data Pemilih
                 </h1>
-                <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal">
+                <p className="text-[18px] text-slategray text-center m-[32px] font-normal">
                   Modul ini fokus pada pentingnya verifikasi dan validasi data
                   pemilih untuk memastikan integritas pemilu.
                 </p>
@@ -182,9 +182,9 @@ export default function Home() {
               </Swiper> */}
         </div>
         <div className="flex flex-row justify-center mt-[53px]">
-          <div className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]">
+          <div className="bg-oldlace w-[195px] h-[48px] rounded-[10px] pt-[11px]">
             <div className="flex flex-row justify-center items-center">
-              <p className="text-[18px] text-[#B30D19] mr-[13px]">
+              <p className="text-[18px] text-firebrick-0 mr-[13px]">
                 Modul Lengkap
               </p>
               <Image
@@ -198,7 +198,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-[#FFFCF7] p-[148px]">
+      <div className="bg-floralwhite p-[148px]">
         <h1 className="text-[48px] text-center font-bold">
           Quiz Kebangsaan Interaktif
         </h1>
@@ -214,9 +214,9 @@ export default function Home() {
               want to see.
             </p>
             <br></br>
-            <div className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]">
+            <div className="bg-oldlace w-[195px] h-[48px] rounded-[10px] pt-[11px]">
               <Link className="flex flex-row justify-center items-center" href="/quiz">
-                <p className="text-[18px] text-[#B30D19] mr-[13px]">
+                <p className="text-[18px] text-firebrick-0 mr-[13px]">
                   Mulai Quiz
                 </p>
                 <Image
@@ -247,9 +247,9 @@ export default function Home() {
         <div className="">
           <CandidateCards candidates={candidates} />
         </div>
-        <div className="bg-[#FFFCF7] w-[195px] h-[48px] rounded-[10px] pt-[11px] mb-[64px]">
+        <div className="bg-floralwhite w-[195px] h-[48px] rounded-[10px] pt-[11px] mb-[64px]">
           <div className="flex flex-row justify-center items-center">
-            <p className="text-[18px] text-[#B30D19] mr-[13px]">
+            <p className="text-[18px] text-firebrick-0 mr-[13px]">
               Cari Kandidat
             </p>
             <Image
@@ -262,19 +262,19 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-[#FFFCF7] pb-[146px]">
+      <div className="bg-floralwhite pb-[146px]">
         <div className="flex flex-col justify-center">
           <h1 className="text-[48px] text-center font-extrabold mt-[100px]">
             Mulai berdiskusi dalam forum!
           </h1>
-          <p className="text-[18px] text-[#5F5F75] text-center font-normal">
+          <p className="text-[18px] text-slategray text-center font-normal">
             {" "}
             Campoal supports a variety of the most popular category.
           </p>
         </div>
 
         <div className="flex justify-center mt-[200px]">
-          <div className="bg-[#F5EFE0] w-[1127px] h-[336px] rounded-[16px] flex relative">
+          <div className="bg-oldlace w-[1127px] h-[336px] rounded-[16px] flex relative">
             <div className="pt-[48px] pl-[48px]">
               <h1 className="text-[36px] font-extrabold">
                 Mulai berdiskusi dalam forum!
@@ -283,7 +283,7 @@ export default function Home() {
                 People everywhere are empowered to start campaigns, mobilize
                 supporters, and work with Decision Makers to drive solutions.
               </p>
-              <div className="bg-[#B30D19] w-[219px] h-[48px] rounded-[10px] pt-[11px] absolute bottom-10">
+              <div className="bg-firebrick-0 w-[219px] h-[48px] rounded-[10px] pt-[11px] absolute bottom-10">
                 <div className="flex flex-row justify-center items-center">
                   <Image
                     className="object-cover w-[24px] h-[24px] mr-[19px]"
@@ -292,7 +292,7 @@ export default function Home() {
                     width={0}
                     height={0}
                   />
-                  <p className="text-[18px] text-[#F5EFE0] mr-[13px]">
+                  <p className="text-[18px] text-oldlace mr-[13px]">
                     Start a petition
                   </p>
                 </div>

@@ -72,7 +72,7 @@ export default function Page() {
             <h1 className='text-[48px] text-center mb-[55px]'>Quiz Kebangsaan Interaktif</h1>
             <div className='flex justify-center align-middle gap-x-[81px]'>
               <div className="w-[421px] h-[292px] bg-white rounded-[10px] overflow-hidden flex flex-col text-center self-center">
-                <div className="bg-[#B30D19] h-[28px] mb-[30px]"></div>
+                <div className="bg-firebrick-0 h-[28px] mb-[30px]"></div>
                 <div className="text-[41.92px]">Skor</div>
                 <div className="text-[100px] font-normal">{Math.round((score * 100) / length)}</div>
               </div>
@@ -87,25 +87,25 @@ export default function Page() {
             <div className="px-[80px] flex flex-col gap-y-[32px]">
               <div className="cursor-pointer" onClick={handleBackClick}>&larr; Back</div>
               <div className="flex gap-x-[34.73px]">
-                <div className="text-[23.16px] text-[#99A9A9]">Pertanyaan {currentQuestionIndex + 1}/{length}</div>
-                <div className="text-[23.16px] text-[#99A9A9] font-normal">Skor: {score}</div>
+                <div className="text-[23.16px] text-darkgray">Pertanyaan {currentQuestionIndex + 1}/{length}</div>
+                <div className="text-[23.16px] text-darkgray font-normal">Skor: {score}</div>
               </div>
-              <div className="text-[46.31px] font-normal text-[#404040]">{currentQuestion.question}</div>
+              <div className="text-[46.31px] font-normal text-darkslategray">{currentQuestion.question}</div>
               <div className="flex flex-col gap-y-[11.58px]">
                 {currentQuestion.answers.map((answer, index) => {
-                  let bgColor = 'bg-[#F2F4F7]';
+                  let bgColor = 'bg-whitesmoke';
                   if (userAnswers[currentQuestionIndex]) {
                     if (userAnswers[currentQuestionIndex].answer === index) {
-                      bgColor = userAnswers[currentQuestionIndex].correct ? 'bg-green-500' : 'bg-red-500';
+                      bgColor = userAnswers[currentQuestionIndex].correct ? 'bg-darkseagreen' : 'bg-lightpink';
                     } else if (index === currentQuestion.answer) {
-                      bgColor = 'bg-green-500';
+                      bgColor = 'bg-darkseagreen';
                     }
                   }
 
                   return (
                     <div
                       key={index}
-                      className={`text-[23.16px] text-[#404040] p-[23px] ${bgColor} rounded-full text-center cursor-pointer`}
+                      className={`text-[23.16px] text-darkslategray p-[23px] ${bgColor} rounded-full text-center cursor-pointer`}
                       onClick={() => handleAnswerClick(index)}
                     >
                       {answer}

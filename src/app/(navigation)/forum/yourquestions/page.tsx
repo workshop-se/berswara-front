@@ -25,7 +25,7 @@ export default function Page() {
                 <Image className="rounded-full" src={question.avatar} alt={question.title} width={40} height={40}></Image>
                 <div className="grow">
                   <div className="text-[13px]">{question.username}</div>
-                  <div className="text-[10px] text-[#808080]">{`${question.time}`}</div>
+                  <div className="text-[10px] text-gray">{`${question.time}`}</div>
                 </div>
               </div>
               <div>
@@ -35,10 +35,10 @@ export default function Page() {
               <div className="flex justify-between">
                 <div className="flex gap-x-[10px]">
                   {question.tags.map((tag) => (
-                    <div key={tag} className="bg-[#EAEAEA] px-[10px] py-[5px] font-normal rounded-[5px] self-center">{tag}</div>
+                    <div key={tag} className="bg-whitesmoke px-[10px] py-[5px] font-normal rounded-[5px] self-center">{tag}</div>
                   ))}
                 </div>
-                <div className="bg-[#B30D19] rounded-[5px] text-white px-[20px] py-[12px] flex gap-x-[12px]">
+                <div className="bg-firebrick-0 rounded-[5px] text-white px-[20px] py-[12px] flex gap-x-[12px]">
                   <span>&uarr;</span>
                   <span>Vote</span>
                 </div>
@@ -46,17 +46,17 @@ export default function Page() {
             </div>
           ))}
 
-          <span className="text-center text-[#808080] text-[18px]">Suggestions</span>
+          <span className="text-center text-gray text-[18px]">Suggestions</span>
 
           <form className="bg-white shadow rounded-[5px] px-[40px] py-[30px] flex flex-col gap-y-[10px]">
 
-            <textarea placeholder="Type your question" className="pl-[10px] py-[10px] h-[43px] bg-white rounded-[5px] ring ring-[#EAEAEA] text-[#808080] text-[12px] font-light" />
+            <textarea placeholder="Type your question" className="pl-[10px] py-[10px] h-[43px] bg-white rounded-[5px] ring ring-whitesmoke text-gray text-[12px] font-light" />
             <div className="flex justify-end gap-[12px]">
 
-              <div className="bg-[#EAEAEA] rounded-[5px] text-[#808080] px-[20px] py-[12px] flex gap-x-[12px]">
+              <div className="bg-whitesmoke rounded-[5px] text-gray px-[20px] py-[12px] flex gap-x-[12px]">
                 <span>Cancel</span>
               </div>
-              <div className="bg-[#B30D19] rounded-[5px] text-white px-[20px] py-[12px] flex gap-x-[12px]">
+              <div className="bg-firebrick-0 rounded-[5px] text-white px-[20px] py-[12px] flex gap-x-[12px]">
                 <span>&uarr;</span>
                 <span>Vote</span>
               </div>

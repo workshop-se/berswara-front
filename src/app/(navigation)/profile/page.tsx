@@ -43,35 +43,35 @@ export default function Page() {
           <form className="pl-[40px] grow">
             <div className="flex flex-col gap-[15px]">
               <div className="flex flex-col">
-                <label htmlFor="firstName" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Nama Lengkap</label>
-                <input type="text" id="firstName" placeholder={placeHolders.fullname} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <label htmlFor="firstName" className={`text-gray ${poppinsReg.className} text-[12px]`}>Nama Lengkap</label>
+                <input type="text" id="firstName" placeholder={placeHolders.fullname} className="h-[41px] ring-1 ring-silver rounded-[3.23px]" />
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="email" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Email Address</label>
-                <input type="email" id="email" placeholder={placeHolders.email} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <label htmlFor="email" className={`text-gray ${poppinsReg.className} text-[12px]`}>Email Address</label>
+                <input type="email" id="email" placeholder={placeHolders.email} className="h-[41px] ring-1 ring-silver rounded-[3.23px]" />
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="nik" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>NIK</label>
-                <input type="number" id="nik" placeholder={`${placeHolders.nik}`} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <label htmlFor="nik" className={`text-gray ${poppinsReg.className} text-[12px]`}>NIK</label>
+                <input type="number" id="nik" placeholder={`${placeHolders.nik}`} className="h-[41px] ring-1 ring-silver rounded-[3.23px]" />
               </div>
 
 
               <div className="flex flex-col">
-                <label htmlFor="address" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Alamat KTP</label>
-                <input type="text" id="address" placeholder={placeHolders.address} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <label htmlFor="address" className={`text-gray ${poppinsReg.className} text-[12px]`}>Alamat KTP</label>
+                <input type="text" id="address" placeholder={placeHolders.address} className="h-[41px] ring-1 ring-silver rounded-[3.23px]" />
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="telephone" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>No. Telepon</label>
-                <input type="text" id="telephone" placeholder={placeHolders.telephone} className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]" />
+                <label htmlFor="telephone" className={`text-gray ${poppinsReg.className} text-[12px]`}>No. Telepon</label>
+                <input type="text" id="telephone" placeholder={placeHolders.telephone} className="h-[41px] ring-1 ring-silver rounded-[3.23px]" />
               </div>
 
               <div className="flex gap-x-[38px]">
                 <div className="grow flex flex-col">
-                  <label htmlFor="city" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Kota/Kabupaten</label>
-                  <select id="city" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]">
+                  <label htmlFor="city" className={`text-gray ${poppinsReg.className} text-[12px]`}>Kota/Kabupaten</label>
+                  <select id="city" className="h-[41px] ring-1 ring-silver rounded-[3.23px]">
                     {cities.map((city) => (
                       <option key={city} value={city}>{city}</option>
                     ))}
@@ -79,8 +79,8 @@ export default function Page() {
                 </div>
 
                 <div className="grow flex flex-col">
-                  <label htmlFor="province" className={`text-[#858585] ${poppinsReg.className} text-[12px]`}>Provinsi</label>
-                  <select id="province" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[3.23px]">
+                  <label htmlFor="province" className={`text-gray ${poppinsReg.className} text-[12px]`}>Provinsi</label>
+                  <select id="province" className="h-[41px] ring-1 ring-silver rounded-[3.23px]">
                     {provinces.map((province) => (
                       <option key={province} value={province}>{province}</option>
                     ))}
@@ -89,8 +89,8 @@ export default function Page() {
               </div>
 
               <div className="flex justify-end gap-x-[16px]">
-                <button type="submit" className={`w-[116.11px] text-white items-center justify-center h-[41px] bg-[#D30D19] ${poppinsMed.className}`}>Save</button>
-                <button type="reset" className={`w-[116.11px] text-[#D30D19] items-center justify-center h-[41px] ring-1 ring-[#D30d19] ${poppinsMed.className}`}>Cancel</button>
+                <button type="submit" className={`w-[116.11px] text-white items-center justify-center h-[41px] bg-crimson ${poppinsMed.className}`}>Save</button>
+                <button type="reset" className={`w-[116.11px] text-crimson items-center justify-center h-[41px] ring-1 ring-crimson ${poppinsMed.className}`}>Cancel</button>
               </div>
 
             </div>

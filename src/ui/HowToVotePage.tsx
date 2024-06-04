@@ -3,13 +3,13 @@ import Image from "next/image";
 export default function HowToVotePage() {
   return (
 
-    <div className="bg-[#FFFCF7]">
+    <div className="bg-floralwhite">
       <div className="grid grid-col-2">
         <div className="col-span-2 mb-[30px]">
           <h1 className="text-[48px] text-center font-bold">
             Learn How to Vote Today!
           </h1>
-          <p className="text-[18px] text-center text-[#5F5F75]">
+          <p className="text-[18px] text-center text-slategray">
             Berswara memiliki beberapa fitur untuk membantu kamu menentukan
             suaramu.
           </p>
@@ -29,7 +29,7 @@ export default function HowToVotePage() {
               <h1 className="text-[24px] font-bold text-left">
                 Modul Belajar Pemilu
               </h1>
-              <p className="text-[18px] text-[#5F5F75] text-left">
+              <p className="text-[18px] text-slategray text-left">
                 Belajar langkah-langkah dan prosedur pemilihan umum.
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function HowToVotePage() {
               <h1 className="text-[24px] font-bold text-left">
                 Quiz Interaktif
               </h1>
-              <p className="text-[18px] text-[#5F5F75] text-left">
+              <p className="text-[18px] text-slategray text-left">
                 Uji pengetahuan kebangsaan dan pengetahuan politikmu!
               </p>
             </div>
@@ -67,7 +67,7 @@ export default function HowToVotePage() {
               <h1 className="text-[24px] font-bold text-left">
                 Kenali Calon Kandidatmu!
               </h1>
-              <p className="text-[18px] text-[#5F5F75] text-left">
+              <p className="text-[18px] text-slategray text-left">
                 Kenali calon kandidat yang mewakili suaramu!
               </p>
             </div>

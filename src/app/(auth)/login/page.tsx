@@ -41,7 +41,7 @@ export default function Page() {
     <main className="flex justify-center p-[40px]">
       <FormCard>
         <div className="w-[442px] h-[41px] rounded-[10px] bg-red-100 grid grid-cols-2 overflow-hidden">
-          <Link href={authButton[0].url} className="bg-[#C3C3C3] flex items-center justify-center text-white">{authButton[0].name}</Link>
+          <Link href={authButton[0].url} className="bg-silver flex items-center justify-center text-white">{authButton[0].name}</Link>
           <Link href={authButton[1].url} className="bg-gray-800 flex items-center justify-center text-white">{authButton[1].name}</Link>
         </div>
         <div className='w-[333px] mx-auto text-[18px]'>
@@ -55,7 +55,7 @@ export default function Page() {
             ))}
           </div>
           <div className="py-[30px]">
-            <fieldset className="border-t border-[#666666]">
+            <fieldset className="border-t border-dimgray">
               <legend className="mx-auto px-4 text-[13.5px]">OR</legend>
             </fieldset>
           </div>
@@ -63,20 +63,20 @@ export default function Page() {
             <div className="grid grid-cols-2 gap-[15px]">
 
               <div className="col-span-2 flex flex-col">
-                <label htmlFor="username" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Username</label>
-                <input type="text" id="username" name="username" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
+                <label htmlFor="username" className={`text-dimgray ${poppinsReg.className} text-[12px]`}>Username</label>
+                <input type="text" id="username" name="username" className="h-[41px] ring-1 ring-silver rounded-[9px]" />
               </div>
 
               <div className="col-span-2 flex flex-col">
-                <label htmlFor="password" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Password</label>
-                <input type="password" id="password" name="password" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
+                <label htmlFor="password" className={`text-dimgray ${poppinsReg.className} text-[12px]`}>Password</label>
+                <input type="password" id="password" name="password" className="h-[41px] ring-1 ring-silver rounded-[9px]" />
               </div>
 
               {errMsg && <p className="col-span-2 text-[14px] text-red-500">{errMsg}</p>}
 
               <Link href={authButton[2].url} className={`${poppinsReg.className} text-[10px] underline`}>{authButton[2].name}</Link>
 
-              <button type="submit" className={`rounded-[30px] text-white h-[41px] col-span-2 bg-[#C4C4C4] ${poppinsMed.className}`}>Log in</button>
+              <button type="submit" className={`rounded-[30px] text-white h-[41px] col-span-2 bg-silver ${poppinsMed.className}`}>Log in</button>
             </div>
           </form>
         </div>

@@ -27,13 +27,13 @@ export default function Page() {
               <h2 className='text-[36px]'>
                 {news.title}
               </h2>
-              <p className='text-[18px] text-[#7A7A7A]'>
+              <p className='text-[18px] text-gray'>
                 {news.body}
               </p>
             </div>
             <div className='flex justify-between'>
-              <div className='flex items-center text-[#7A7A7A]'>{news.publishedAt}</div>
-              <Link className='w-[201px] h-[48px] bg-[#B30D19] text-white rounded-[10px] flex items-center justify-center' href={`/news/${news.id}`}>Read More</Link>
+              <div className='flex items-center text-gray'>{news.publishedAt}</div>
+              <Link className='w-[201px] h-[48px] bg-firebrick-0 text-white rounded-[10px] flex items-center justify-center' href={`/news/${news.id}`}>Read More</Link>
             </div>
           </div>
         ))}

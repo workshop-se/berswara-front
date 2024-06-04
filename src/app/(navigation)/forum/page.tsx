@@ -23,10 +23,10 @@ export default function Page() {
     <div className="flex gap-x-[45px] px-[45px] py-[40px]">
       <div className="grow flex flex-col gap-y-[30px]">
         <div className="flex gap-x-[10px] text-[13px]">
-          <div className="rounded-[100px] bg-[#B30D19] text-white p-2">New</div>
-          <div className="rounded-[100px] bg-[#EAEAEA] text-[#808080] p-2">Top</div>
-          <div className="rounded-[100px] bg-[#EAEAEA] text-[#808080] p-2">Hot</div>
-          <div className="rounded-[100px] bg-[#EAEAEA] text-[#808080] p-2">Closed</div>
+          <div className="rounded-[100px] bg-firebrick-0 text-white p-2">New</div>
+          <div className="rounded-[100px] bg-whitesmoke text-gray p-2">Top</div>
+          <div className="rounded-[100px] bg-whitesmoke text-gray p-2">Hot</div>
+          <div className="rounded-[100px] bg-whitesmoke text-gray p-2">Closed</div>
         </div>
         <div className="flex flex-col gap-y-[23px]">
           {posts.map((post) => (
@@ -35,7 +35,7 @@ export default function Page() {
                 <Image className="rounded-full" src={post.avatar} alt={post.title} width={40} height={40}></Image>
                 <div className="grow">
                   <div className="text-[13px]">{post.username}</div>
-                  <div className="text-[10px] text-[#808080]">{`${post.time}`}</div>
+                  <div className="text-[10px] text-gray">{`${post.time}`}</div>
                 </div>
               </div>
               <div>
@@ -45,7 +45,7 @@ export default function Page() {
               <div className="flex justify-between">
                 <div className="flex gap-x-[10px]">
                   {post.tags.map((tag) => (
-                    <div key={tag} className="bg-[#EAEAEA] px-[10px] py-[5px] font-normal rounded-[5px]">{tag}</div>
+                    <div key={tag} className="bg-whitesmoke px-[10px] py-[5px] font-normal rounded-[5px]">{tag}</div>
                   ))}
                 </div>
                 <div className="flex gap-x-[15px] font-normal">
@@ -59,7 +59,7 @@ export default function Page() {
         </div>
       </div>
       <ForumWidget></ForumWidget>
-      <Link href="/forum/add" className="fixed bottom-[50px] right-[50px] bg-[#B30D19] text-white px-4 py-2 rounded-[5px] shadow-lg">
+      <Link href="/forum/add" className="fixed bottom-[50px] right-[50px] bg-firebrick-0 text-white px-4 py-2 rounded-[5px] shadow-lg">
         Ask a question
       </Link>
     </div>

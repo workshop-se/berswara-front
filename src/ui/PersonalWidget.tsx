@@ -20,7 +20,7 @@ export default function PersonalWidget() {
       <div className="h-[1px] bg-gray-200 w-full"></div>
       <div className="flex justify-center gap-x-[5px]">
         <Image src="/icons/award-red.svg" alt="ranking" width={24} height={24}></Image>
-        <span className="font-normal text-[22px] text-[#B30D19]">{profile.rank}</span>
+        <span className="font-normal text-[22px] text-firebrick-0">{profile.rank}</span>
       </div>
       <div className="h-[1px] bg-gray-200 w-full"></div>
       <div className="flex justify-center gap-x-[10px]">
