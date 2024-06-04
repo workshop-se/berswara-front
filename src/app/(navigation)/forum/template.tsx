@@ -9,7 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     { title: "Ranking", icon: "/icons/award.svg", url: "/news/ranking" },
   ]
   const navs = [
-    { title: "Your Questions", icon: "/icons/help-circle.svg", url: "/forum/yquestions" },
+    { title: "Your Questions", icon: "/icons/help-circle.svg", url: "/forum/yourquestions" },
     { title: "Your Answers", icon: "/icons/message-circle.svg", url: "/forum/answers" },
     { title: "Your likes & votes", icon: "/icons/heart.svg", url: "/forum/likesandvotes" },
   ]
