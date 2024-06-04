@@ -1,6 +1,9 @@
+'use client'
+import { Module, getModules } from '@/lib/module';
 import { faker } from '@faker-js/faker';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 const modules = Array.from({ length: 9 }, () => ({
   name: faker.lorem.words(1),
@@ -10,6 +13,19 @@ const modules = Array.from({ length: 9 }, () => ({
 }))
 
 export default function Page() {
+  const [modules, setModules] = useState<Module[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchModules = async () => {
+      const data = await getModules(1, 9);
+      if (data.error) {
+        console.error('Failed to fetch modules:', data.error);
+      }
+      setModules(data);
+      setLoading(false);
+    }
+    fetchModules()
+  }, [])
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-[48px] text-center pt-[75px]">Module Seputar Pemilihan Umum</h1>
@@ -19,14 +35,14 @@ export default function Page() {
           <div key={module.id} className='relative' >
             <Link
               className='hover:cursor-pointer relative z-10 w-[359px] h-full bg-white rounded-[16px] flex flex-col overflow-hidden drop-shadow-md transform transition-transform duration-200 hover:-translate-x-[7px] hover:-translate-y-[6px] hover:bg-gray-300'
-              href={`module/${module.id}`}
+              href={module.url}
             >
               <div className='bg-[#F5EFE0] h-[359px] overflow-hidden flex place-items-center'>
-                <Image className='object-cover w-[128px] h-[128px] m-auto' src={module.icon} alt={module.name} width={0} height={0} />
+                <Image className='object-cover w-[128px] h-[128px] m-auto' src={module.thumbnail} alt={module.title} width={0} height={0} />
               </div>
               <div className='p-[24px]'>
-                <h2 className='text-center text-[24px]'>{module.name}</h2>
-                <p className='leading-[22px] text-[#5F5F75]'>{module.description}</p>
+                <h2 className='text-center text-[24px]'>{module.title}</h2>
+                {/*}<p className='leading-[22px] text-[#5F5F75]'>{module.title}</p>*/}
               </div>
             </Link>
             <div className="absolute top-0 left-0 z-0 w-full h-full bg-[#CCC0B2] rounded-[16px] flex items-center justify-center text-gray-500">
