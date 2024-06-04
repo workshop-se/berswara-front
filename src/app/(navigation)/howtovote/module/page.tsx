@@ -38,7 +38,7 @@ export default function Page() {
               href={module.url}
             >
               <div className='bg-[#F5EFE0] h-[359px] overflow-hidden flex place-items-center'>
-                <Image className='object-cover w-[128px] h-[128px] m-auto' src={module.thumbnail} alt={module.title} width={0} height={0} />
+                <Image className='object-cover w-[100%] h-[100%] m-auto' src={module.thumbnail} alt={module.title} width={359} height={359} /> 
               </div>
               <div className='p-[24px]'>
                 <h2 className='text-center text-[24px]'>{module.title}</h2>

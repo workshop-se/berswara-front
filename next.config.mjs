@@ -6,7 +6,8 @@ const nextConfig = {
       'avatars.githubusercontent.com', 
       'loremflickr.com',
       'picsum.photos',
-      'm.media-amazon.com'
+      'm.media-amazon.com',
+      'yazidrizkik.sirv.com'
     ],
   },
   reactStrictMode: false,

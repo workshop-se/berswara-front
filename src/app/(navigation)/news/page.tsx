@@ -32,7 +32,7 @@ export default function Page() {
               </p>
             </div>
             <div className='flex justify-between'>
-              <div className='flex items-center text-[#7A7A7A]'>{news.publishedAt}</div>
+              <div className='flex items-center text-[#7A7A7A]'>{new Date(news.publishedAt).toLocaleDateString('id-ID')}</div>
               <Link className='w-[201px] h-[48px] bg-[#B30D19] text-white rounded-[10px] flex items-center justify-center' href={`/news/${news.id}`}>Read More</Link>
             </div>
           </div>
