@@ -1,28 +1,76 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { faker } from '@faker-js/faker';
 import Image from 'next/image';
+const HOST_AD = process.env.HOST_AD || 'https://wrpl.yazidrizkik.dev';
 
 interface UserAnswer {
   answer: number;
   correct: boolean;
 }
 
-export default function Page() {
-  const length = 5;
-  const questions = Array.from({ length: length }, () => ({
-    question: faker.lorem.sentence(),
-    id: faker.string.uuid(),
-    answers: Array.from({ length: 3 }, () => faker.lorem.sentence()),
-    answer: faker.number.int(3),
-  }));
+interface Question {
+  question: string;
+  id: string;
+  answers: string[];
+  answer: number;
+}
 
+export default function Page() {
+  
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [loading, setLoading] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
   const [quizFinished, setQuizFinished] = useState(false);
-
   const currentQuestion = questions[currentQuestionIndex];
+  const length = 5;
+
+  const shuffle = (array: string[] | any[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; 
+    }
+    return array;
+  };
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await fetch(`${HOST_AD}/api/content/quiz?limit=${length}`);
+        if (response.status !== 200) {
+          throw new Error("Error fetching questions");
+        }
+        const data = await response.json();
+
+        const formattedQuestions = data.data.questions.map((question: { options: any[]; id: { toString: () => any; }; question: any; }) => {
+          const shuffledOptions = shuffle(question.options.map(option => ({
+            text: option.text,
+            isCorrect: option.isCorrect
+          })));
+
+          return {
+            id: question.id.toString(),
+            question: question.question,
+            answers: shuffledOptions.map(option => option.text),
+            answer: shuffledOptions.findIndex(option => option.isCorrect),
+          };
+        });
+
+        setQuestions(formattedQuestions);
+      } catch (error) {
+        console.error('Failed to fetch questions:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchQuestions();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const handleAnswerClick = (index: number) => {
     const isCorrect = index === currentQuestion.answer;
@@ -38,11 +86,13 @@ export default function Page() {
       setScore(score + 1);
     }
 
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      setQuizFinished(true);
-    }
+    setTimeout(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      } else {
+        setQuizFinished(true);
+      }
+    }, 1000);
   };
 
   const handleBackClick = () => {
