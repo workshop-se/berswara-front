@@ -7,7 +7,7 @@ export default function Page() {
     <div className="flex flex-col">
       <HowToVotePage />
       <div className="bg-[#FFFCF7] h-[108px]"></div>
-      <div>
+      <div className="flex">
         <div className="grow bg-[#B30D19] py-[148px] pl-[156px] flex flex-col gap-y-[43px] text-[#FFFCF7]">
           <Image src="/icons/module.svg" alt="module" width={96} height={96} />
           <h1 className="text-[36px]">Modul</h1>
