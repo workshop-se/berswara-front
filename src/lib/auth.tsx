@@ -1,7 +1,7 @@
 'use server'
 import { cookies } from "next/headers";
 
-const HOST_AD = process.env.HOST_AD || 'http://localhost:3501';
+const HOST = process.env.HOST_AUTH;
 
 function parseJwt(token: string) {
   const base64Url = token.split('.')[1];
@@ -15,7 +15,7 @@ function parseJwt(token: string) {
 
 const login = async (username: string, password: string) => {
   try {
-    const response = await fetch(`${HOST_AD}/authentications`, {
+    const response = await fetch(`${HOST}/authentications`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const login = async (username: string, password: string) => {
 
 const signup = async (fullname: string, email: string, username: string, password: string) => {
   try {
-    const response = await fetch(`${HOST_AD}/users`, {
+    const response = await fetch(`${HOST}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const signup = async (fullname: string, email: string, username: string, passwor
 
 const logout = async () => {
   try {
-    const response = await fetch(`${HOST_AD}/authentications`, {
+    const response = await fetch(`${HOST}/authentications`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const updateSession = async () => {
   if (!cookies().has('refreshToken')) return null;
   const session = cookies().get('refreshToken')?.value;
   try {
-    const response = await fetch(`${HOST_AD}/authentications`, {
+    const response = await fetch(`${HOST}/authentications`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
