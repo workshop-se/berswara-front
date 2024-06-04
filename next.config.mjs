@@ -9,6 +9,7 @@ const nextConfig = {
       'm.media-amazon.com'
     ],
   },
+  reactStrictMode: false,
 };
 
 export default nextConfig;
