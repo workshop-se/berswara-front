@@ -5,7 +5,7 @@ export default function Background({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative bg-[#FFFCF7] min-h-[1000px]">
+    <div className="relative bg-floralwhite min-h-[1000px]">
       <div className='overflow-hidden'>
         <Image
           src="/images/background.svg"

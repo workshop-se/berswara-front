@@ -28,7 +28,7 @@ function SubWidget({ title, lists }: { title: string, lists: { title: string, li
       <div className="h-[1px] bg-gray-200 w-full mb-[5px]"></div>
       <ul className="list-disc list-inside text-[13px] flex flex-col gap-y-[10px]">
         {lists.map((list) => (
-          <li key={list.title} className="text-[#B30D19]">
+          <li key={list.title} className="text-firebrick-0">
             <Link href={`/forum/${list.link}`}>
               {list.title}
             </Link>

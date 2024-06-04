@@ -9,7 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     { title: "Ranking", icon: "/icons/award.svg", url: "/news/ranking" },
   ]
   const navs = [
-    { title: "Your Questions", icon: "/icons/help-circle.svg", url: "/forum/yquestions" },
+    { title: "Your Questions", icon: "/icons/help-circle.svg", url: "/forum/yourquestions" },
     { title: "Your Answers", icon: "/icons/message-circle.svg", url: "/forum/answers" },
     { title: "Your likes & votes", icon: "/icons/heart.svg", url: "/forum/likesandvotes" },
   ]
@@ -30,7 +30,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
 function Item({ item }: { item: { title: string, icon: string, url: string } }) {
   return (
-    <Link href={item.url} className="px-[50px] hover:bg-[#B30D19]/[0.13] h-[41px] flex gap-x-[12px]">
+    <Link href={item.url} className="px-[50px] hover:bg-firebrick-0/[0.13] h-[41px] flex gap-x-[12px]">
       <Image src={item.icon} width={18} height={18} alt={item.title}></Image>
       <h1 className="text-[13px] my-auto">{item.title}</h1>
     </Link>
@@ -40,7 +40,7 @@ function Item({ item }: { item: { title: string, icon: string, url: string } }) 
 function Menu({ title, items }: { title: string, items: { title: string, icon: string, url: string }[] }) {
   return (
     <div className="flex flex-col gap-y-[10px]">
-      <h1 className="text-[13px] text-[#858585] px-[50px]">{title}</h1>
+      <h1 className="text-[13px] text-gray px-[50px]">{title}</h1>
       {items.map((item) => (
         <Item key={item.title} item={item} />
       ))}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import CandidateCards from "@/ui/CandidateCards";
+import HowToVotePage from "@/ui/HowToVotePage";
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
 // import React, { useRef, useState } from 'react';
@@ -65,13 +66,13 @@ export default function Home() {
           <div className="flex justify-center m-[52px] z-10 relative">
             <Link
               href={heroButton[0].url}
-              className="mx-[16.5px] text-white bg-[#B30D19] py-[13px] px-[49px] rounded-[27px]"
+              className="mx-[16.5px] text-white bg-firebrick-0 py-[13px] px-[49px] rounded-[27px]"
             >
               {heroButton[0].name}
             </Link>
             <Link
               href={heroButton[1].url}
-              className="mx-[16.5px] bg-[#F1ECE8] py-[13px] px-[49px] rounded-[27px]"
+              className="mx-[16.5px] bg-whitesmoke py-[13px] px-[49px] rounded-[27px]"
             >
               {heroButton[1].name}
             </Link>
@@ -88,95 +89,14 @@ export default function Home() {
         </p>
         <div className="text-center">todo : image slide</div>
       </div>
-      <div className="bg-[#FFFCF7]">
-        <div className="grid grid-col-2">
-          <div className="col-span-2 mb-[30px]">
-            <h1 className="text-[48px] text-center font-bold">
-              Learn How to Vote Today!
-            </h1>
-            <p className="text-[18px] text-center text-[#5F5F75]">
-              Berswara memiliki beberapa fitur untuk membantu kamu menentukan
-              suaramu.
-            </p>
-          </div>
-          <div className="flex flex-col ml-[200px]">
-            <div className="flex flex-row mb-[50px]">
-              <div className="mr-[29px]">
-                <Image
-                  className="object-cover w-[72px] h-[72px]"
-                  src="/images/icon-modul.svg"
-                  alt="icon modul"
-                  width={0}
-                  height={0}
-                />
-              </div>
-              <div className="w-[389px]">
-                <h1 className="text-[24px] font-bold text-left">
-                  Modul Belajar Pemilu
-                </h1>
-                <p className="text-[18px] text-[#5F5F75] text-left">
-                  Belajar langkah-langkah dan prosedur pemilihan umum.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row mb-[50px]">
-              <div className="mr-[29px]">
-                <Image
-                  className="object-cover w-[72px] h-[72px]"
-                  src="/images/icon-quiz.svg"
-                  alt="icon quiz"
-                  width={0}
-                  height={0}
-                />
-              </div>
-              <div className="w-[389px]">
-                <h1 className="text-[24px] font-bold text-left">
-                  Quiz Interaktif
-                </h1>
-                <p className="text-[18px] text-[#5F5F75] text-left">
-                  Uji pengetahuan kebangsaan dan pengetahuan politikmu!
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row mb-[50px]">
-              <div className="mr-[29px]">
-                <Image
-                  className="object-cover w-[72px] h-[72px]"
-                  src="/images/icon-kandidat.svg"
-                  alt="icon kandidat"
-                  width={0}
-                  height={0}
-                />
-              </div>
-              <div className="w-[389px]">
-                <h1 className="text-[24px] font-bold text-left">
-                  Kenali Calon Kandidatmu!
-                </h1>
-                <p className="text-[18px] text-[#5F5F75] text-left">
-                  Kenali calon kandidat yang mewakili suaramu!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <Image
-              src="/images/hero-2.svg"
-              alt="hero-2"
-              width={0}
-              height={0}
-              className="object-scale-down w-[637px]"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-[#FFFCF7] pt-[150px]">
+      <HowToVotePage/>
+      <div className="bg-floralwhite pt-[150px]">
         <div className="flex flex-col justify-center">
           <h1 className="text-[48px] text-center font-bold">
             Modul Prosedur Proses Pemilihan
           </h1>
           <div className="flex justify-center pb-[53px]">
-            <p className="text-[18px] text-[#5F5F75] w-[577px] text-center">
+            <p className="text-[18px] text-slategray w-[577px] text-center">
               Berikut adalah langkah-langkah yang harus anda lakukan agar dapat
               mengikuti pemilihan dan menggunakan hak suara anda.
             </p>
@@ -197,6 +117,7 @@ export default function Home() {
                   Sejarah & Dasar Hukum Pemilu
                 </h1>
                 <p className="text-[18px] text-[#5F5F75] text-center m-[32px] font-normal group-hover:text-[#FFFCF7]">
+
                   Modul ini memberikan gambaran lengkap mengenai sejarah dan
                   evolusi pemilihan umum di Indonesia, serta dasar-dasar hukum
                   yang mengatur proses pemilu.
@@ -264,7 +185,7 @@ export default function Home() {
         <div className="flex flex-row justify-center mt-[53px]">
           <Link className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]" href="/howtovote">
             <div className="flex flex-row justify-center items-center">
-              <p className="text-[18px] text-[#B30D19] mr-[13px]">
+              <p className="text-[18px] text-firebrick-0 mr-[13px]">
                 Modul Lengkap
               </p>
               <Image
@@ -278,7 +199,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="bg-[#FFFCF7] p-[148px]">
+      <div className="bg-floralwhite p-[148px]">
         <h1 className="text-[48px] text-center font-bold">
           Quiz Kebangsaan Interaktif
         </h1>
@@ -294,9 +215,9 @@ export default function Home() {
               want to see.
             </p>
             <br></br>
-            <div className="bg-[#F5EFE0] w-[195px] h-[48px] rounded-[10px] pt-[11px]">
+            <div className="bg-oldlace w-[195px] h-[48px] rounded-[10px] pt-[11px]">
               <Link className="flex flex-row justify-center items-center" href="/quiz">
-                <p className="text-[18px] text-[#B30D19] mr-[13px]">
+                <p className="text-[18px] text-firebrick-0 mr-[13px]">
                   Mulai Quiz
                 </p>
                 <Image
@@ -329,7 +250,7 @@ export default function Home() {
         </div>
         <Link className="bg-[#FFFCF7] w-[195px] h-[48px] rounded-[10px] pt-[11px] mb-[64px]" href="/candidates">
           <div className="flex flex-row justify-center items-center">
-            <p className="text-[18px] text-[#B30D19] mr-[13px]">
+            <p className="text-[18px] text-firebrick-0 mr-[13px]">
               Cari Kandidat
             </p>
             <Image
@@ -342,19 +263,19 @@ export default function Home() {
           </div>
         </Link>
       </div>
-      <div className="bg-[#FFFCF7] pb-[146px]">
+      <div className="bg-floralwhite pb-[146px]">
         <div className="flex flex-col justify-center">
           <h1 className="text-[48px] text-center font-extrabold mt-[100px]">
             Mulai berdiskusi dalam forum!
           </h1>
-          <p className="text-[18px] text-[#5F5F75] text-center font-normal">
+          <p className="text-[18px] text-slategray text-center font-normal">
             {" "}
             Campoal supports a variety of the most popular category.
           </p>
         </div>
 
         <div className="flex justify-center mt-[200px]">
-          <div className="bg-[#F5EFE0] w-[1127px] h-[336px] rounded-[16px] flex relative">
+          <div className="bg-oldlace w-[1127px] h-[336px] rounded-[16px] flex relative">
             <div className="pt-[48px] pl-[48px]">
               <h1 className="text-[36px] font-extrabold">
                 Mulai berdiskusi dalam forum!
@@ -372,7 +293,7 @@ export default function Home() {
                     width={0}
                     height={0}
                   />
-                  <p className="text-[18px] text-[#F5EFE0] mr-[13px]">
+                  <p className="text-[18px] text-oldlace mr-[13px]">
                     Start a petition
                   </p>
                 </div>

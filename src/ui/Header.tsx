@@ -29,8 +29,8 @@ export default function Header() {
         </div>
         {!session || session?.error
           ? <div className="m-auto w-[206px] h-[36px] rounded-[10px] bg-red-100 mx-[12px] grid grid-cols-2 overflow-hidden">
-            <Link href={authButton[0].url} className="bg-gray-800 flex items-center justify-center text-white">{authButton[0].name}</Link>
-            <Link href={authButton[1].url} className="bg-red-700 flex items-center justify-center text-white">{authButton[1].name}</Link>
+            <Link href={authButton[0].url} className="bg-darkslategray flex items-center justify-center text-white">{authButton[0].name}</Link>
+            <Link href={authButton[1].url} className="bg-firebrick-0 flex items-center justify-center text-white">{authButton[1].name}</Link>
           </div>
           : <Link onClick={handleClick} href={authButton[3].url} className="m-auto p-[10px] mx-[12px]">{authButton[3].name}</Link>
         }

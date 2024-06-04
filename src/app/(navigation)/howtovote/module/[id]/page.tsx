@@ -51,7 +51,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex flex-col items-center">
-      <p className='text-24px w-[851px] pt-[75px] text-center text-[#5F5F75]'>Modul seputar pemilihan umum</p>
+      <p className='text-24px w-[851px] pt-[75px] text-center text-slategray'>Modul seputar pemilihan umum</p>
       <h1 className="text-[48px] text-center pt-[22px]">
         {isLoading ? <div className="bg-gray-300 h-[56px] w-[300px] rounded animate-pulse"></div> : mod.title}
       </h1>
@@ -75,17 +75,17 @@ export default function Page({ params }: { params: { id: string } }) {
             mod.content.map((content, index) => (
               <div key={index}>
                 {content.h1 && <h2 className="text-[36px]">{content.h1}</h2>}
-                {content.p && <p className="mt-[22px] text-[#5F5F75]">{content.p}</p>}
+                {content.p && <p className="mt-[22px] text-slategray">{content.p}</p>}
               </div>
             ))
           )}
 
           {!isLoading && (
             <div className="flex justify-between mt-[55px] mb-[48px]">
-              <a href={`/module/${nav.prev}`} className="text-[#5F5F75] hover:text-[#000000]">
+              <a href={`/module/${nav.prev}`} className="text-slategray hover:text-[#000000]">
                 &larr; Previous
               </a>
-              <a href={`/module/${nav.next}`} className="text-[#5F5F75] hover:text-[#000000]">
+              <a href={`/module/${nav.next}`} className="text-slategray hover:text-[#000000]">
                 Next &rarr;
               </a>
             </div>
