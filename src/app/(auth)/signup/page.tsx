@@ -2,18 +2,16 @@
 
 import Link from 'next/link';
 import FormCard from '@/ui/FormCard';
-import Image from 'next/image';
 import useSWR from "swr";
+import { useState, useRef } from "react";
 
 import { Poppins } from "next/font/google";
-import { authButton, socialAuths } from "@/configs/routes";
+import { authButton } from "@/configs/routes";
 import { login, signup } from "@/lib/auth";
-import { useState } from "react";
 import { useRouter } from 'next/navigation';
+import AuthTextInput from '@/ui/AuthTextInput';
 
-
-const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
-const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
+const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -22,8 +20,16 @@ export default function Page() {
   const router = useRouter();
   const { mutate } = useSWR('/api/session', fetcher);
 
+  const fullnameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [isCanSubmit, setIsCanSubmit] = useState(false);
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
@@ -55,53 +61,40 @@ export default function Page() {
     }
   }
 
+  const handleInput = () => {
+    const fullname = fullnameRef.current?.value;
+    const email = emailRef.current?.value;
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
+    setIsCanSubmit(!!fullname && !!email && !!username && !!password);
+    const button = buttonRef.current;
+    if (button) {
+      button.disabled = !isCanSubmit;
+    }
+  }
+
   return (
     <main className="flex justify-center p-[40px]">
       <FormCard>
-        <div className="w-[442px] h-[41px] rounded-[10px] bg-red-100 grid grid-cols-2 overflow-hidden">
-          <Link href={authButton[0].url} className="bg-gray-800 flex items-center justify-center text-white">{authButton[0].name}</Link>
-          <Link href={authButton[1].url} className="bg-silver flex items-center justify-center text-white">{authButton[1].name}</Link>
+        <div className="w-[442px] h-[41px] rounded-[10px] flex text-center overflow-hidden text-[13.16px] text-white font-bold">
+          <Link href={authButton[0].url} className="grow hover:scale-110 bg-darkslategray flex flex-col justify-center">{authButton[0].name}</Link>
+          <Link href={authButton[1].url} className="grow hover:scale-110 bg-silver flex flex-col justify-center">{authButton[1].name}</Link>
         </div>
-        <div className='w-[333px] mx-auto text-[18px]'>
-          <h1 className={`${poppinsMed.className} text-center p-[30px]`}>Sign up</h1>
-          <div className="grid grid-rows-2 gap-[15px]">
-            {socialAuths.map((social) => (
-              <button key={social.name} onClick={social.action} className="bg-white flex items-center justify-center p-[10px] rounded-[30px] text-[14px] ring-1 ring-black">
-                <Image src={social.src} width={20} height={20} alt={social.name} />
-                <span className="ml-[10px]">Sign up with {social.name}</span>
-              </button>
-            ))}
-          </div>
-          <div className="py-[30px]">
-            <fieldset className="border-t border-dimgray">
-              <legend className="mx-auto px-4 text-[13.5px]">OR</legend>
-            </fieldset>
-          </div>
+        <div className={`w-[333px] mx-auto text-[18px] text-xs font-normal ${poppins.className}`}>
+          <h1 className="text-center p-[30px] text-lg font-medium">Sign up</h1>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-[15px]">
-              <div className="flex flex-col">
-                <label htmlFor="fullname" className={`text-dimgray ${poppinsReg.className} text-[12px]`}>Full Name</label>
-                <input type="text" id="fullname" name="fullname" className="h-[41px] ring-1 ring-silver rounded-[9px]" />
-              </div>
+              <AuthTextInput label="Full Name" type="text" id="fullname" name="fullname" ref={fullnameRef} onInput={handleInput} />
 
-              <div className="flex flex-col">
-                <label htmlFor="email" className={`text-dimgray ${poppinsReg.className} text-[12px]`}>Email Address</label>
-                <input type="email" id="email" name="email" className="h-[41px] ring-1 ring-silver rounded-[9px]" />
-              </div>
+              <AuthTextInput label="Email Address" type="email" id="email" name="email" ref={emailRef} onInput={handleInput} />
 
-              <div className="flex flex-col">
-                <label htmlFor="username" className={`text-dimgray ${poppinsReg.className} text-[12px]`}>Username</label>
-                <input type="text" id="username" name="username" className="h-[41px] ring-1 ring-silver rounded-[9px]" />
-              </div>
+              <AuthTextInput label="Username" type="text" id="username" name="username" ref={usernameRef} onInput={handleInput} />
 
-              <div className="flex flex-col">
-                <label htmlFor="password" className={`text-dimgray ${poppinsReg.className} text-[12px]`}>Password</label>
-                <input type="password" id="password" name="password" className="h-[41px] ring-1 ring-silver rounded-[9px]" />
-              </div>
+              <AuthTextInput label="Password" type="password" id="password" name="password" ref={passwordRef} onInput={handleInput} />
 
               {errMsg && <p className="text-[14px] text-red-500">{errMsg}</p>}
 
-              <button type="submit" className={`rounded-[30px] text-white h-[41px] col-span-2 bg-silver ${poppinsMed.className}`}>Sign up</button>
+              <button ref={buttonRef} disabled type="submit" className={`rounded-[30px] text-white h-[41px] col-span-2 ${isCanSubmit ? "bg-firebrick-0" : "bg-silver"}`}>Sign up</button>
             </div>
           </form>
         </div>
