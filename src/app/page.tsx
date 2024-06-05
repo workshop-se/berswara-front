@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import CandidateCards from "@/ui/CandidateCards";
-import HowToVotePage from "@/ui/HowToVotePage";
+import HowToVoteHero from "@/ui/HowToVoteHero";
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
 // import React, { useRef, useState } from 'react';
@@ -89,7 +89,7 @@ export default function Home() {
         </p>
         <div className="text-center">todo : image slide</div>
       </div>
-      <HowToVotePage/>
+      <HowToVoteHero/>
       <div className="bg-[#FFFCF7] pt-[150px]">
         <div className="flex flex-col justify-center">
           <h1 className="text-[48px] text-center font-bold">

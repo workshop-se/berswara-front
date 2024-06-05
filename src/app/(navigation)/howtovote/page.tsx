@@ -1,11 +1,11 @@
-import HowToVotePage from "@/ui/HowToVotePage";
+import HowToVoteHero from "@/ui/HowToVoteHero";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Page() {
   return (
     <div className="flex flex-col">
-      <HowToVotePage />
+      <HowToVoteHero />
       <div className="bg-[#FFFCF7] h-[108px]"></div>
       <div className="flex">
         <div className="grow bg-[#B30D19] py-[148px] pl-[156px] flex flex-col gap-y-[43px] text-[#FFFCF7]">
