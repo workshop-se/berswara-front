@@ -15,7 +15,7 @@ interface CandidateCardsProps {
 export default function CandidateCards({ candidates }: CandidateCardsProps) {
 
   return (
-    <div className='grid grid-cols-4 mt-[75px] mb-[120px] gap-x-[24px] gap-y-[116px]'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-[75px] mb-[120px] gap-x-[24px] gap-y-[116px]'>
       {candidates.map((candidate) => (
         <Link key={candidate.id} className='h-[354px] w-[263px] relative group' href={`/candidates/${candidate.id}`} >
           <div

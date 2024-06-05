@@ -31,8 +31,8 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-[48px] text-center pt-[75px]">Kenali Kandidatmu</h1>
-      <div className="flex bg-white w-[751px] h-[56px]">
+      <h1 className="text-[48px] text-center mt-[75px]">Kenali Kandidatmu</h1>
+      <div className="grow flex bg-white w-[80vw] lg:w-[751px] h-[56px] hover:shadow">
         <div>
           <svg className="h-[24px] w-[24px] fill-black m-[16px]" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30"
             height="30" viewBox="0 0 30 30">
