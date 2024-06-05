@@ -11,8 +11,9 @@ export default function Page() {
       const data = await getNews(1, 4);
       if (data.error) {
         console.error(data.message);
+      } else {
+        setNewses(data);
       }
-      setNewses(data);
       setLoading(false);
     }
     fetchNews();

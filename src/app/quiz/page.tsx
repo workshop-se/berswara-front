@@ -22,9 +22,10 @@ export default function Page() {
   useEffect(() => {
     const fetchQuestions = async () => {
       const formattedQuestions = await getQuizzes(length);
-      setQuestions(formattedQuestions);
       if (formattedQuestions.error) {
         console.error('Failed to fetch questions:', formattedQuestions.error);
+      } else {
+        setQuestions(formattedQuestions);
       }
       setLoading(false);
     };
