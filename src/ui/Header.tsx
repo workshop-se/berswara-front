@@ -24,7 +24,7 @@ export default function Header() {
         <Image className="mx-[12px]" src="/images/logo.svg" width={224} height={51} alt="Logo" />
         <button onClick={() => setToggleDrawer(!toggleDrawer)} className="text-[48px] lg:hidden">=</button>
         {toggleDrawer && (
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center lg:hidden">
             {navItems.map((item) => (
               <Link key={item.name} href={item.url} className="p-[10px] my-auto hover:bg-firebrick-0 hover:text-white hover:rounded-[10px]">{item.name}</Link>
             ))}
