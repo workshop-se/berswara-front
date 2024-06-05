@@ -2,21 +2,24 @@
 
 import Link from 'next/link';
 import FormCard from '@/ui/FormCard';
-import Image from 'next/image';
 import useSWR from "swr";
 
-import { Poppins } from "next/font/google";
-import { authButton, socialAuths } from "@/configs/routes";
+import { authButton } from "@/configs/routes";
 import { login } from "@/lib/auth";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { Poppins } from 'next/font/google';
+import AuthTextInput from '@/ui/AuthTextInput';
 
-const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
-const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
+const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function Page() {
   const [errMsg, setErrMsg] = useState('');
+  const [isCanSubmit, setIsCanSubmit] = useState(false);
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
   const { mutate } = useSWR('/api/session', fetcher);
 
@@ -37,46 +40,36 @@ export default function Page() {
     }
   };
 
+  const handleInput = () => {
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
+    setIsCanSubmit(!!username && !!password);
+    const button = buttonRef.current;
+    if (button) {
+      button.disabled = !isCanSubmit;
+    }
+  }
+
   return (
     <main className="flex justify-center p-[40px]">
       <FormCard>
-        <div className="w-[442px] h-[41px] rounded-[10px] bg-red-100 grid grid-cols-2 overflow-hidden">
-          <Link href={authButton[0].url} className="bg-[#C3C3C3] flex items-center justify-center text-white">{authButton[0].name}</Link>
-          <Link href={authButton[1].url} className="bg-gray-800 flex items-center justify-center text-white">{authButton[1].name}</Link>
+        <div className="w-[442px] h-[41px] rounded-[10px] flex overflow-hidden text-center text-[13.16px] text-white font-bold">
+          <Link href={authButton[0].url} className="grow hover:scale-110 bg-silver flex flex-col justify-center">{authButton[0].name}</Link>
+          <Link href={authButton[1].url} className="grow hover:scale-110 bg-darkslategray flex flex-col justify-center">{authButton[1].name}</Link>
         </div>
-        <div className='w-[333px] mx-auto text-[18px]'>
-          <h1 className={`${poppinsMed.className} text-center p-[30px]`}>Log in</h1>
-          <div className="grid grid-rows-2 gap-[15px]">
-            {socialAuths.map((social) => (
-              <button key={social.name} onClick={social.action} className="bg-white flex items-center justify-center p-[10px] rounded-[30px] text-[14px] ring-1 ring-black">
-                <Image src={social.src} width={20} height={20} alt={social.name} />
-                <span className="ml-[10px]">Continue with {social.name}</span>
-              </button>
-            ))}
-          </div>
-          <div className="py-[30px]">
-            <fieldset className="border-t border-[#666666]">
-              <legend className="mx-auto px-4 text-[13.5px]">OR</legend>
-            </fieldset>
-          </div>
+        <div className={`w-[333px] mx-auto text-[18px] text-xs font-normal ${poppins.className}`}>
+          <h1 className="text-center p-[30px] text-lg font-medium">Log in</h1>
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-[15px]">
+            <div className="flex flex-col gap-[15px]" >
 
-              <div className="col-span-2 flex flex-col">
-                <label htmlFor="username" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Username</label>
-                <input type="text" id="username" name="username" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
-              </div>
+              <AuthTextInput label="Username" type="text" id="username" name="username" ref={usernameRef} onInput={handleInput} />
+              <AuthTextInput label="Password" type="password" id="password" name="password" ref={passwordRef} onInput={handleInput} />
 
-              <div className="col-span-2 flex flex-col">
-                <label htmlFor="password" className={`text-[#666666] ${poppinsReg.className} text-[12px]`}>Password</label>
-                <input type="password" id="password" name="password" className="h-[41px] ring-1 ring-[#C9C9C9] rounded-[9px]" />
-              </div>
+              {errMsg && <p className="text-[14px] text-red-500">{errMsg}</p>}
 
-              {errMsg && <p className="col-span-2 text-[14px] text-red-500">{errMsg}</p>}
+              <Link href={authButton[2].url} className="text-[10px] underline">{authButton[2].name}</Link>
 
-              <Link href={authButton[2].url} className={`${poppinsReg.className} text-[10px] underline`}>{authButton[2].name}</Link>
-
-              <button type="submit" className={`rounded-[30px] text-white h-[41px] col-span-2 bg-[#C4C4C4] ${poppinsMed.className}`}>Log in</button>
+              <button ref={buttonRef} disabled type="submit" className={`rounded-[30px] text-white h-[41px] col-span-2 ${isCanSubmit ? "bg-firebrick-0" : "bg-silver"}`}>Log in</button>
             </div>
           </form>
         </div>
@@ -84,4 +77,3 @@ export default function Page() {
     </main>
   );
 }
-
