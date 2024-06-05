@@ -1,21 +1,6 @@
 import Image from "next/image";
 
 export default function HowToVoteHero() {
-  const items = [
-    {
-      title: "Modul Belajar Pemilu",
-      description: "Belajar langkah-langkah dan prosedur pemilihan umum.",
-      icon: "/images/icon-modul.svg"
-    }, {
-      title: "Quiz Interaktif",
-      description: "Uji pengetahuan kebangsaan dan pengetahuan politikmu!",
-      icon: "/images/icon-quiz.svg"
-    }, {
-      title: "Kenali Calon Kandidatmu!",
-      description: "Kenali calon kandidat yang mewakili suaramu!",
-      icon: "/images/icon-kandidat.svg"
-    }
-  ]
   return (
     <div className="bg-[#FFFCF7] flex flex-col py-[108px]">
       <h1 className="text-[48px] text-center font-bold">
@@ -25,7 +10,7 @@ export default function HowToVoteHero() {
         Berswara memiliki beberapa fitur untuk membantu kamu menentukan
         suaramu.
       </p>
-      <div className="mt-[24px] flex justify-center">
+      <div className="mt-[24px] flex flex-col-reverse xl:flex-row gap-y-[48px] justify-center items-center">
         <div className="flex flex-col justify-center">
           <Item title="Modul Belajar Pemilu" description="Belajar langkah-langkah dan prosedur pemilihan umum." icon="/images/icon-modul.svg" />
           <Item title="Quiz Interaktif" description="Uji pengetahuan kebangsaan dan pengetahuan politikmu!" icon="/images/icon-quiz.svg" />
@@ -34,9 +19,8 @@ export default function HowToVoteHero() {
         <Image
           src="/images/hero-2.svg"
           alt="hero-2"
-          width={0}
-          height={0}
-          className="object-scale-down w-[637px]"
+          width={637}
+          height={464}
         />
       </div>
     </div >
