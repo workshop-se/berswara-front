@@ -8,9 +8,6 @@ import useSWR from "swr";
 import { useState } from "react";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
-type HeaderProps = {
-  session: any;
-};
 
 export default function Header() {
   const { data: session, mutate } = useSWR('/api/session', fetcher);
@@ -23,7 +20,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-10 flex flex-col lg:flex-row lg:justify-between text-sm font-bold font-['Sen'] py-[27px] lg:py-0 lg:h-[70px] items-center gap-y-[27px]">
+      <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 flex flex-col lg:flex-row lg:justify-between text-sm font-bold font-['Sen'] py-[27px] lg:py-0 lg:h-[70px] items-center gap-y-[27px]">
         <Image className="mx-[12px]" src="/images/logo.svg" width={224} height={51} alt="Logo" />
         <button onClick={() => setToggleDrawer(!toggleDrawer)} className="text-[48px] lg:hidden">=</button>
         {toggleDrawer && (
