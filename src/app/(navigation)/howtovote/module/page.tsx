@@ -1,16 +1,8 @@
 'use client'
 import { Module, getModules } from '@/lib/module';
-import { faker } from '@faker-js/faker';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
-const modules = Array.from({ length: 9 }, () => ({
-  name: faker.lorem.words(1),
-  id: faker.string.uuid(),
-  icon: "/images/draw-circle 1.svg",
-  description: faker.lorem.words(10)
-}))
 
 export default function Page() {
   const [modules, setModules] = useState<Module[]>([]);
@@ -38,7 +30,7 @@ export default function Page() {
               href={module.url}
             >
               <div className='bg-oldlace h-[359px] overflow-hidden flex place-items-center'>
-                <Image className='object-cover w-[128px] h-[128px] m-auto' src={module.thumbnail} alt={module.title} width={0} height={0} />
+                <Image className='object-cover w-[100%] h-[100%] m-auto' src={module.thumbnail} alt={module.title} width={359} height={359} /> 
               </div>
               <div className='p-[24px]'>
                 <h2 className='text-center text-[24px]'>{module.title}</h2>
