@@ -6,21 +6,37 @@ import { navItems, authButton } from "@/configs/routes";
 import { logout } from "@/lib/auth";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
+import Skeleton from "./Skeleton";
+import { useRouter, usePathname } from "next/navigation";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Header() {
-  const { data: session, mutate } = useSWR('/api/session', fetcher);
+  const router = useRouter();
+  const pathname = usePathname();
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [toggleDrawer, setToggleDrawer] = useState(false);
+  const { data, mutate } = useSWR('/api/session', fetcher);
+
+  useEffect(() => {
+    if (data && !data.error) {
+      setSession(data);
+      if (pathname === "/login" || pathname === "/signup") {
+        router.replace("/forum");
+      }
+    } else {
+      if (pathname === "/forum" || pathname === "/profile") {
+        router.replace("/login");
+      }
+    }
+    setLoading(false);
+  }, [data, pathname, router]);
 
   const handleClick = async () => {
     await logout();
     mutate(null, true);
   };
-
-  useEffect(() => {
-    console.log(session)
-  }, [session]);
 
   return (
     <>
@@ -35,12 +51,16 @@ export default function Header() {
           </div>
         )}
         <NavBar className="hidden lg:flex flex-row gap-x-[20px]" />
-        {!session || session?.error
-          ? <div className="my-auto w-[206px] h-[36px] rounded-[10px] mx-[12px] flex overflow-hidden text-center">
-            <Link href={authButton[0].url} className="grow bg-darkslategray text-white hover:scale-110 flex flex-col justify-center">{authButton[0].name}</Link>
-            <Link href={authButton[1].url} className="grow bg-firebrick-0 text-white hover:scale-110 flex flex-col justify-center">{authButton[1].name}</Link>
-          </div>
-          : <Link onClick={handleClick} href={authButton[3].url} className="m-auto p-[10px] mx-[12px] hover:text-white hover:bg-firebrick-0 rounded-[10px]">{authButton[3].name}</Link>
+        {loading
+          ? <Skeleton>
+            <div className="m-auto p-[10px] mx-[12px] rounded-[10px] bg-silver w-[206px] h-[36px]"></div>
+          </Skeleton>
+          : !session
+            ? <div className="my-auto w-[206px] h-[36px] rounded-[10px] mx-[12px] flex overflow-hidden text-center">
+              <Link href={authButton[0].url} className="grow bg-darkslategray text-white hover:scale-110 flex flex-col justify-center">{authButton[0].name}</Link>
+              <Link href={authButton[1].url} className="grow bg-firebrick-0 text-white hover:scale-110 flex flex-col justify-center">{authButton[1].name}</Link>
+            </div>
+            : <Link onClick={handleClick} href={authButton[3].url} className="m-auto p-[10px] mx-[12px] hover:text-white hover:bg-firebrick-0 rounded-[10px]">{authButton[3].name}</Link>
         }
       </nav>
       <nav className="h-[210px] lg:h-[70px]"></nav>
@@ -48,12 +68,12 @@ export default function Header() {
   );
 }
 
-function NavBar({className}: {className: string}) {
+function NavBar({ className }: { className: string }) {
   return (
     <div className={className}>
       {navItems.map((item) => (
         <Link key={item.name} href={item.url} className="p-[10px] my-auto hover:bg-firebrick-0 hover:text-white hover:rounded-[10px]">{item.name}</Link>
       ))}
     </div>
-  )
+  );
 }
