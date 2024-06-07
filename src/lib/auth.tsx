@@ -27,8 +27,15 @@ const login = async (username: string, password: string) => {
     if (!data.error) {
       const accessToken = parseJwt(data.data.accessToken);
       const refreshToken = parseJwt(data.data.refreshToken);
-      cookies().set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/' });
-      cookies().set('refreshToken', data.data.refreshToken, { expires: new Date(refreshToken.exp * 1000), path: '/' });
+      cookies().set(
+        'accessToken',
+        data.data.accessToken,
+        { expires: new Date(accessToken.exp * 1000), path: '/', httpOnly: true }
+      );
+      cookies().set(
+        'refreshToken',
+        data.data.refreshToken,
+        { expires: new Date(refreshToken.exp * 1000), path: '/', httpOnly: true });
     }
     return data;
   } catch (error) {
@@ -74,7 +81,7 @@ const logout = async () => {
 
 const updateSession = async () => {
   if (!cookies().has('refreshToken')) return null;
-  if (cookies().has('accessToken')) return {message: 'Session already updated'};
+  if (cookies().has('accessToken')) return { message: 'Session already updated' };
 
   const session = cookies().get('refreshToken')?.value;
   try {
@@ -92,7 +99,7 @@ const updateSession = async () => {
       return data;
     }
     const accessToken = parseJwt(data.data.accessToken);
-    cookies().set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/' });
+    cookies().set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/', httpOnly: true });
     return data;
 
   } catch (error) {
