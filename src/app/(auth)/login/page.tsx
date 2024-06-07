@@ -66,7 +66,7 @@ export default function Page() {
               <AuthTextInput label="Username" type="text" id="username" name="username" ref={usernameRef} onInput={handleInput} />
               <AuthTextInput label="Password" type="password" id="password" name="password" ref={passwordRef} onInput={handleInput} />
 
-              <p className="text-[14px] text-red-500">{errMsg}</p>
+              <p className="text-[14px] text-firebrick-0">{errMsg}</p>
 
               <Link href={authButton[2].url} className="text-[10px] underline">{authButton[2].name}</Link>
 

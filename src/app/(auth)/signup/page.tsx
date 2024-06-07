@@ -92,7 +92,7 @@ export default function Page() {
 
               <AuthTextInput label="Password" type="password" id="password" name="password" ref={passwordRef} onInput={handleInput} />
 
-              <p className="text-[14px] text-red-500">{errMsg}</p>
+              <p className="text-[14px] text-firebrick-0">{errMsg}</p>
 
               <button ref={buttonRef} disabled type="submit" className={`rounded-[30px] text-white h-[41px] col-span-2 ${isCanSubmit ? "bg-firebrick-0" : "bg-silver"}`}>Sign up</button>
             </div>
