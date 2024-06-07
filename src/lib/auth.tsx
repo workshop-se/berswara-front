@@ -74,6 +74,8 @@ const logout = async () => {
 
 const updateSession = async () => {
   if (!cookies().has('refreshToken')) return null;
+  if (cookies().has('accessToken')) return {message: 'Session already updated'};
+
   const session = cookies().get('refreshToken')?.value;
   try {
     const response = await fetch(`${HOST}/authentications`, {

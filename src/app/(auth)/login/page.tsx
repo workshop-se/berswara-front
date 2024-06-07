@@ -14,6 +14,7 @@ import AuthTextInput from '@/ui/AuthTextInput';
 const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export default function Page() {
   const [errMsg, setErrMsg] = useState('');
   const [isCanSubmit, setIsCanSubmit] = useState(false);
@@ -36,7 +37,7 @@ export default function Page() {
       setErrMsg(data.message);
     } else {
       await mutate(null, true);
-      router.push('/forum');
+      router.replace('/forum');
     }
   };
 
@@ -65,7 +66,7 @@ export default function Page() {
               <AuthTextInput label="Username" type="text" id="username" name="username" ref={usernameRef} onInput={handleInput} />
               <AuthTextInput label="Password" type="password" id="password" name="password" ref={passwordRef} onInput={handleInput} />
 
-              {errMsg && <p className="text-[14px] text-red-500">{errMsg}</p>}
+              <p className="text-[14px] text-red-500">{errMsg}</p>
 
               <Link href={authButton[2].url} className="text-[10px] underline">{authButton[2].name}</Link>
 

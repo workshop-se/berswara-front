@@ -5,7 +5,7 @@ import Image from "next/image";
 import { navItems, authButton } from "@/configs/routes";
 import { logout } from "@/lib/auth";
 import useSWR from "swr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -17,6 +17,10 @@ export default function Header() {
     await logout();
     mutate(null, true);
   };
+
+  useEffect(() => {
+    console.log(session)
+  }, [session]);
 
   return (
     <>

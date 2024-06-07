@@ -57,7 +57,7 @@ export default function Page() {
       setErrMsg(data.message);
     } else {
       mutate(null, true);
-      router.push('/forum');
+      router.replace('/forum');
     }
   }
 
