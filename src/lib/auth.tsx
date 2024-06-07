@@ -99,7 +99,11 @@ const updateSession = async () => {
       return data;
     }
     const accessToken = parseJwt(data.data.accessToken);
-    cookies().set('accessToken', data.data.accessToken, { expires: new Date(accessToken.exp * 1000), path: '/', httpOnly: true });
+    cookies().set(
+      'accessToken',
+      data.data.accessToken,
+      { expires: new Date(accessToken.exp * 1000), path: '/', httpOnly: true }
+    );
     return data;
 
   } catch (error) {
