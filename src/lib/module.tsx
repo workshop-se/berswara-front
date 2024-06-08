@@ -1,4 +1,4 @@
-const HOST = process.env.HOST_QUIZ || 'https://wrpl.yazidrizkik.dev/api/content';
+const HOST = process.env.HOST_MODULE || 'https://wrpl.yazidrizkik.dev/api/content';
 
 interface Module {
   id: number;
