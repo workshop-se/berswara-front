@@ -57,8 +57,40 @@ const getThreadById = async (id: string) => {
   try {
     const response = await fetch(`${HOST}/threads/${id}`);
     const data = await response.json();
-    const formattedThread = data.data.thread as Thread;
-    return formattedThread
+    const thread = data.data.thread
+    const formattedThread: Thread = {
+      id: thread.id,
+      title: thread.title,
+      body: thread.body,
+      createdAt: thread.createdAt,
+      updatedAt: thread.updatedAt,
+      owner: {
+        id: thread.owner.id,
+        username: thread.owner.username,
+      },
+      replies: thread.replies.map((reply: any) => ({
+        id: reply.id,
+        content: reply.content,
+        createdAt: reply.createdAt,
+        updatedAt: reply.updatedAt,
+        owner: {
+          id: reply.owner.id,
+          username: reply.owner.username,
+        },
+        replies: reply.replies ? reply.replies.map((nestedReply: any) => ({
+          id: nestedReply.id,
+          content: nestedReply.content,
+          createdAt: nestedReply.createdAt,
+          updatedAt: nestedReply.updatedAt,
+          owner: {
+            id: nestedReply.owner.id,
+            username: nestedReply.owner.username,
+          },
+          replies: nestedReply.replies || [],
+        })) : [],
+      })),
+    };
+    return formattedThread;
   } catch (error) {
     return {
       error: true,

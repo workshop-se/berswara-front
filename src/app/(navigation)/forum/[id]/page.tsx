@@ -38,9 +38,11 @@ export default function Page({ params }: { params: { id: string } }) {
     <div className="flex gap-x-[45px] mx-[45px] my-[40px]">
       <div className="grow flex flex-col gap-y-[20px]">
         {thread && <ThreadCard thread={thread} />}
-        {thread?.replies.map((reply) => (
-          <ReplyCard key={reply.id} reply={reply} />
-        ))}
+        <div className="flex flex-col gap-y[10px]">
+          {thread?.replies.map((reply) => (
+            <ReplyCard key={reply.id} reply={reply} />
+          ))}
+        </div>
       </div>
       <ForumWidget />
     </div>
