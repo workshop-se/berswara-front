@@ -4,12 +4,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 export default function Template({ children }: { children: React.ReactNode }) {
-  const search = {
-    title: "Search",
-    icon: "/icons/search.svg",
-    icon_red: "/icons/search-red.svg",
-    url: "/forum/search"
-  }
   const menus = [
     {
       title: "Questions",
@@ -54,7 +48,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex">
       <div className="bg-white w-[310px] pt-[40px] flex flex-col gap-y-[30px] min-h-[1000px]">
-        <Item item={search} />
+        <div className={`h-[41px] flex gap-x-[12px] pl-[50px] text-black`}>
+          <Image src="/icons/search.svg" width={18} height={18} alt="Search"></Image>
+          <input type="text" className="w-[100%] text-[13px] bg-transparent px-[12px]" placeholder="Search"></input>
+        </div>
         <Menu title="Menu" items={menus} />
         <Menu title="Personal Navigator" items={navs} />
       </div>
@@ -74,7 +71,7 @@ function Item({ item }: { item: { title: string, icon: string, icon_red: string,
       {isActive && <div className="w-[5px] mr-[33px] h-full bg-firebrick-0"></div>}
       {
         isActive
-          ? <Image src={item.icon_red} width={18} height={18} alt={item.title}></Image> 
+          ? <Image src={item.icon_red} width={18} height={18} alt={item.title}></Image>
           : <Image src={item.icon} width={18} height={18} alt={item.title}></Image>
       }
       <h1 className="text-[13px] my-auto">{item.title}</h1>
