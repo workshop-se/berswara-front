@@ -11,20 +11,21 @@ const getThreads = async (page: number, size: number) => {
       throw new Error("Error fetching questions");
     }
     const data = await response.json();
-    const formattedThreads = data.data.threads.map((thread: Thread) => { 
+    const formattedThreads = data.data.threads.map((thread: Thread) => {
       return {
-      id: thread.id,
-      title: thread.title,
-      body: thread.body,
-      createdAt: thread.createdAt,
-      updatedAt: thread.updatedAt,
-      owner: {
-        id: thread.owner.id,
-        username: thread.owner.username
-      },
-      numberOfReplies: -1,
-      replies: []
-    }})
+        id: thread.id,
+        title: thread.title,
+        body: thread.body,
+        createdAt: thread.createdAt,
+        updatedAt: thread.updatedAt,
+        owner: {
+          id: thread.owner.id,
+          username: thread.owner.username
+        },
+        numberOfReplies: -1,
+        replies: []
+      }
+    })
     return formattedThreads
   } catch (error) {
     return {
@@ -102,4 +103,46 @@ const getThreadById = async (id: string) => {
   }
 }
 
-export { getThreads, postThread, getThreadById };
+const postReply = async (threadId: string, content: string) => {
+  try {
+    const postData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      },
+      body: JSON.stringify({ content }),
+    }
+    const response = await fetch(`${HOST}/threads/${threadId}/replies`, postData);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
+    }
+  }
+}
+
+const postSubReply = async (threadId: string, parentReplyId: string, content: string) => {
+  try {
+    const postData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      },
+      body: JSON.stringify({ content }),
+    }
+    const response = await fetch(`${HOST}/threads/${threadId}/replies?parentId=${parentReplyId}`, postData);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
+    }
+  }
+}
+
+export { getThreads, postThread, getThreadById, postReply, postSubReply };

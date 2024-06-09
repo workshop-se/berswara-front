@@ -1,10 +1,31 @@
 import { Reply } from "@/lib/types";
 import SubReplyCard from "./SubReplyCard";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { postSubReply } from "@/lib/forum";
 
-export default function ReplyCard({ reply }: { reply: Reply }) {
+export default function ReplyCard({ threadId, reply }: { threadId: string, reply: Reply }) {
   const [showReply, setShowReply] = useState(false);
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [isNull, setIsNull] = useState(true);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleChange = () => {
+    const content = textareaRef.current?.value;
+    setIsNull(content === "");
+  }
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const content = textareaRef.current?.value;
+    const response = await postSubReply(threadId, reply.id, content!);
+    if (response.error) {
+      console.error(response.message);
+    } else {
+      window.location.href = `/forum/thread/${threadId}`;
+    }
+  }
+
   return (
     <div className="flex flex-col gap-y-[20px]">
       <div className="bg-white shadow rounded-[5px] flex overflow-hidden">
@@ -28,7 +49,7 @@ export default function ReplyCard({ reply }: { reply: Reply }) {
                 <Image src="/icons/chevrons-up.svg" alt="comments" width={14} height={14} />
                 {showReply ? "Hide" : "Show"} All Replies ({reply.replies.length})
               </div>
-              <div className="flex gap-x-[5px]">
+              <div className="flex gap-x-[5px] cursor-pointer" onClick={() => setShowReplyForm(!showReplyForm)}>
                 <Image src="/icons/corner-down-right.svg" alt="comments" width={14} height={14} />
                 Reply
               </div>
@@ -36,6 +57,18 @@ export default function ReplyCard({ reply }: { reply: Reply }) {
           </div>
         </div>
       </div>
+      {showReplyForm && (
+        <form onSubmit={handleSubmit} className="bg-white shadow rounded-[5px] px-[40px] py-[30px] flex flex-col gap-y-[15px]">
+          <textarea ref={textareaRef} onChange={handleChange} className="ring ring-whitesmoke rounded-[5px] h-[43px] font-normal px-[10px] py-[10px] text-[14px]" placeholder="Type here your reply"></textarea>
+          <div className="flex justify-end gap-x-[12px]">
+            <button type="reset" className="font-normal bg-whitesmoke text-gray px-[20px] py-[12px] rounded-[5px]">Cancel</button>
+            {isNull
+              ? <div className="bg-firebrick-0/[0.5] text-white px-[20px] py-[12px] rounded-[5px]">Suggest</div>
+              : <button type="submit" className="bg-firebrick-0 text-white px-[20px] py-[12px] rounded-[5px]">Reply</button>
+            }
+          </div>
+        </form>
+      )}
       {showReply && (
         <div className="flex flex-col gap-y-[20px]">
           {reply.replies.map((nestedReply) => (
