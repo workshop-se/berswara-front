@@ -1,11 +1,13 @@
 'use client'
 import { postThread } from "@/lib/forum";
 import ForumWidget from "@/ui/ForumWidget";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
+  const router = useRouter();
   const [isNull, setIsNull] = useState(true);
 
   const handleChange = () => {
@@ -20,8 +22,12 @@ export default function Page() {
     const body = bodyRef.current?.value;
 
     const data = await postThread(title!, body!);
-    console.log(data)
     
+    if (data.error) {
+      console.error(data.message);
+    } else {
+      router.push("/forum");
+    }
   }
 
   return (
@@ -37,8 +43,8 @@ export default function Page() {
         </select>
         */}
 
-        <input ref={titleRef} onChange={handleChange} type="text" placeholder="Type catching attention title" className="pl-[10px] h-[34px] bg-white rounded-[5px] ring ring-whitesmoke text-gray text-[12px] font-light" />
-        <textarea ref={bodyRef} onChange={handleChange} placeholder="Type your question" className="pl-[10px] py-[10px] h-[344px] bg-white rounded-[5px] ring ring-whitesmoke text-gray text-[12px] font-light" />
+        <input ref={titleRef} onChange={handleChange} type="text" placeholder="Type catching attention title" className="pl-[10px] h-[34px] bg-white rounded-[5px] ring ring-whitesmoke text-[15px] font-light" />
+        <textarea ref={bodyRef} onChange={handleChange} placeholder="Type your question" className="pl-[10px] py-[10px] h-[344px] bg-white rounded-[5px] ring ring-whitesmoke text-[15px] font-light" />
         <div className="flex gap-x-[20px]">
           {/*
           <div className="bg-firebrick-0 flex px-[20px] py-[12px] rounded-[5px] text-white">
