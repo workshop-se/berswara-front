@@ -112,4 +112,11 @@ const updateSession = async () => {
   }
 }
 
-export { login, signup, logout, updateSession };
+const getUsername = async () => {
+  if (!cookies().has('accessToken')) return null;
+  const session = cookies().get('accessToken')?.value;
+  const accessToken = parseJwt(session!);
+  return accessToken.username;
+}
+
+export { login, signup, logout, updateSession, getUsername };

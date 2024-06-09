@@ -145,4 +145,24 @@ const postSubReply = async (threadId: string, parentReplyId: string, content: st
   }
 }
 
-export { getThreads, postThread, getThreadById, postReply, postSubReply };
+const deleteReply = async (threadId: string, replyId: string) => {
+  try {
+    const postData = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      },
+    }
+    const response = await fetch(`${HOST}/threads/${threadId}/replies/${replyId}`, postData);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
+    }
+  }
+}
+
+export { getThreads, postThread, getThreadById, postReply, postSubReply, deleteReply };

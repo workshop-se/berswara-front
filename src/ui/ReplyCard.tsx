@@ -1,14 +1,27 @@
 import { Reply } from "@/lib/types";
 import SubReplyCard from "./SubReplyCard";
 import Image from "next/image";
-import { useState, useRef } from "react";
-import { postSubReply } from "@/lib/forum";
+import { useState, useRef, useEffect } from "react";
+import { deleteReply, postSubReply } from "@/lib/forum";
+import { getUsername } from "@/lib/auth";
 
 export default function ReplyCard({ threadId, reply }: { threadId: string, reply: Reply }) {
   const [showReply, setShowReply] = useState(false);
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [isNull, setIsNull] = useState(true);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [showDeleteMenu, setShowDeleteMenu] = useState(false);
+  const [showTricolon, setShowTricolon] = useState(false);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getUsername();
+      if (user === reply.owner.username) {
+        setShowTricolon(true);
+      }
+    }
+    fetchUser()
+  }, []);
 
   const handleChange = () => {
     const content = textareaRef.current?.value;
@@ -26,6 +39,15 @@ export default function ReplyCard({ threadId, reply }: { threadId: string, reply
     }
   }
 
+  const handleDelete = async () => {
+    const response = await deleteReply(threadId, reply.id);
+    if (response.error) {
+      console.error(response.message);
+    } else {
+      window.location.href = `/forum/thread/${threadId}`;
+    }
+  }
+
   return (
     <div className="flex flex-col gap-y-[20px]">
       <div className="bg-white shadow rounded-[5px] flex overflow-hidden">
@@ -36,6 +58,16 @@ export default function ReplyCard({ threadId, reply }: { threadId: string, reply
               <div className="text-[13px]">@{reply.owner.username}</div>
               <div className="text-[10px] text-gray">{`${reply.updatedAt}`}</div>
             </div>
+            {showTricolon && (
+              <div className="relative">
+                <div onClick={() => setShowDeleteMenu(!showDeleteMenu)} className="cursor-pointer">&#8285;</div>
+                {showDeleteMenu && (
+                  <div className="absolute right-0 mt-2 w-[100px] bg-white shadow-lg rounded-[5px]">
+                    <div onClick={handleDelete} className="px-4 py-2 font-normal cursor-pointer hover:bg-gray-100">Delete</div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           <div>
             <div className="font-normal">{reply.content}</div>
