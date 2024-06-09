@@ -11,7 +11,8 @@ const getThreads = async (page: number, size: number) => {
       throw new Error("Error fetching questions");
     }
     const data = await response.json();
-    const formattedThreads = data.data.threads.map((thread: Thread) => ({
+    const formattedThreads = data.data.threads.map((thread: Thread) => { 
+      return {
       id: thread.id,
       title: thread.title,
       body: thread.body,
@@ -21,8 +22,9 @@ const getThreads = async (page: number, size: number) => {
         id: thread.owner.id,
         username: thread.owner.username
       },
+      numberOfReplies: -1,
       replies: []
-    }))
+    }})
     return formattedThreads
   } catch (error) {
     return {
@@ -64,6 +66,7 @@ const getThreadById = async (id: string) => {
       body: thread.body,
       createdAt: thread.createdAt,
       updatedAt: thread.updatedAt,
+      numberOfReplies: thread.replies.length,
       owner: {
         id: thread.owner.id,
         username: thread.owner.username,

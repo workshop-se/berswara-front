@@ -7,7 +7,8 @@ interface Thread {
   owner: {
     id: string;
     username: string;
-  }
+  };
+  numberOfReplies: number;
   replies: Reply[];
 }
 

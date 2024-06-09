@@ -21,9 +21,14 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
         <div className="flex gap-x-[10px]">
         </div>
         <div className="flex gap-x-[15px] font-normal">
-          <div>{faker.number.int(50)}</div>
-          <div>{faker.number.int(50)}</div>
-          <div>{faker.number.int(50)}</div>
+          {thread.numberOfReplies > -1 && (
+            <div className="flex gap-x-[5px]">
+              <Image src="/icons/message-square.svg" alt="comments" width={15} height={15} />
+              <span>
+                {thread.numberOfReplies}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </Link>

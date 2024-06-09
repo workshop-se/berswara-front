@@ -18,15 +18,13 @@ export default function ReplyCard({ reply }: { reply: Reply }) {
           <div className="flex gap-x-[10px]">
           </div>
           <div className="flex gap-x-[15px] font-normal">
-            <div>{faker.number.int(50)}</div>
-            <div>{faker.number.int(50)}</div>
-            <div>{faker.number.int(50)}</div>
+            <div>{reply.replies.length}</div>
           </div>
         </div>
       </div>
       <div className="flex flex-col mx-[10px]">
-        {reply.replies.map((reply) => (
-          <ReplyCard key={reply.id} reply={reply} />
+        {reply.replies.map((nestedReply) => (
+          <ReplyCard key={nestedReply.id} reply={nestedReply} />
         ))}
       </div>
     </div>
