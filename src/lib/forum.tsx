@@ -1,16 +1,8 @@
-const HOST = process.env.HOST_FORUM || 'http://localhost:3002';
+'use server'
+import { cookies } from 'next/headers'
+import { Thread } from './types';
 
-interface Thread {
-  id: string;
-  title: string;
-  body: string;
-  createdAt: string;
-  updatedAt: string;
-  owner: {
-    id: string;
-    username: string;
-  }
-}
+const HOST = process.env.HOST_FORUM || 'http://localhost:3002';
 
 const getThreads = async (page: number, size: number) => {
   try {
@@ -35,10 +27,29 @@ const getThreads = async (page: number, size: number) => {
     return {
       error: true,
       message: error,
-      modules: [],
     }
   }
 }
 
-export { getThreads };
-export type { Thread };
+const postThread = async (title: string, body: string) => {
+  try {
+    const postData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      },
+      body: JSON.stringify({ title, body }),
+    }
+    const response = await fetch(`${HOST}/threads`, postData);
+    const data = await response.json();
+    return {data};
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
+    }
+  }
+}
+
+export { getThreads, postThread };
