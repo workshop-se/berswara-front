@@ -1,6 +1,6 @@
 'use server'
 import { cookies } from 'next/headers'
-import { Thread } from './types';
+import { Thread, Reply } from './types';
 
 const HOST = process.env.HOST_FORUM || 'http://localhost:3002';
 
@@ -11,7 +11,7 @@ const getThreads = async (page: number, size: number) => {
       throw new Error("Error fetching questions");
     }
     const data = await response.json();
-    const formattedThreads = data.data.threads.map((thread:Thread) => ({
+    const formattedThreads = data.data.threads.map((thread: Thread) => ({
       id: thread.id,
       title: thread.title,
       body: thread.body,
@@ -20,7 +20,8 @@ const getThreads = async (page: number, size: number) => {
       owner: {
         id: thread.owner.id,
         username: thread.owner.username
-      }
+      },
+      replies: []
     }))
     return formattedThreads
   } catch (error) {
@@ -43,7 +44,7 @@ const postThread = async (title: string, body: string) => {
     }
     const response = await fetch(`${HOST}/threads`, postData);
     const data = await response.json();
-    return {data};
+    return { data };
   } catch (error) {
     return {
       error: true,
@@ -52,4 +53,18 @@ const postThread = async (title: string, body: string) => {
   }
 }
 
-export { getThreads, postThread };
+const getThreadById = async (id: string) => {
+  try {
+    const response = await fetch(`${HOST}/threads/${id}`);
+    const data = await response.json();
+    const formattedThread = data.data.thread as Thread;
+    return formattedThread
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
+    }
+  }
+}
+
+export { getThreads, postThread, getThreadById };

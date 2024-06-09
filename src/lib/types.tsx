@@ -8,6 +8,19 @@ interface Thread {
     id: string;
     username: string;
   }
+  replies: Reply[];
 }
 
-export type { Thread };
+interface Reply {
+  id: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  owner: {
+    id: string;
+    username: string;
+  }
+  replies: Reply[];
+}
+
+export type { Thread, Reply };
