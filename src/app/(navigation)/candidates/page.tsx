@@ -26,7 +26,7 @@ export default function Page() {
   }, []);
 
   const filteredCandidates = candidates.filter(candidate =>
-    candidate.name.toLowerCase().includes(searchQuery.toLowerCase())
+    candidate.name.toLowerCase().includes(searchQuery.toLowerCase()) || candidate.party.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
