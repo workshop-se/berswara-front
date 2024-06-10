@@ -2,8 +2,7 @@
 import { cookies } from 'next/headers'
 import { Thread, Reply } from './types';
 
-// const HOST = process.env.HOST_FORUM || 'http://localhost:3002';
-const HOST = "https://wrpl.yazidrizkik.dev"
+const HOST = process.env.HOST_FORUM || 'http://localhost:3002';
 
 const getThreads = async (page: number, size: number) => {
   try {

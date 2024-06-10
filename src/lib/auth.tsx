@@ -1,8 +1,7 @@
 'use server'
 import { cookies } from "next/headers";
 
-// const HOST = process.env.HOST_AUTH || "http://localhost:3001";
-const HOST = "https://wrpl.yazidrizkik.dev"
+const HOST = process.env.HOST_AUTH || "http://localhost:3001";
 
 function parseJwt(token: string) {
   const base64Url = token.split('.')[1];
