@@ -8,14 +8,15 @@ import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
 // import React, { useRef, useState } from 'react';
 // // Import Swiper React components
-// import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // // Import Swiper styles
-// import 'swiper/css';
-// import 'swiper/css/pagination';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
 
 // // import required modules
-// import { Pagination } from 'swiper/modules';
+import { FreeMode, Pagination } from 'swiper/modules';
 
 interface Candidate {
   name: string;
@@ -31,12 +32,19 @@ const heroButton = [
 
 export default function Home() {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const newses = Array.from({ length: 5 }, () => (
+    {
+      title: faker.lorem.sentence(7),
+      id: faker.string.uuid(),
+      avatar: faker.image.avatar(),
+      url: faker.internet.url(),
+    }))
 
   useEffect(() => {
     const newCandidates: Candidate[] = Array.from({ length: 12 }, () => ({
       name: faker.person.fullName(),
       id: faker.string.uuid(),
-      avatar: faker.image.avatar(),
+      avatar: faker.image.nature(),
       party: faker.company.name(),
     }));
     setCandidates(newCandidates);
@@ -84,10 +92,37 @@ export default function Home() {
         <h1 className="text-[72px] text-center font-bold">
           Baca berita terbaru hari ini!
         </h1>
-        <p className="text-[24px] text-center font-bold">
+        <p className="text-[24px] text-center font-bold mb-[40px]">
           Berita seputar pemilu anti hoaks hoaks gacor.
         </p>
-        <div className="text-center">todo : image slide</div>
+        <div className="text-center bg-[#F5EFE0]">
+       <div className="bg-[#F5EFE0]">
+       <Swiper
+        slidesPerView={2}
+        spaceBetween={0}
+        freeMode={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[FreeMode, Pagination]}
+        className="mySwiper"
+        >
+        {newses.map((news) => (
+            <SwiperSlide>
+              <div className="w-[635px] h-[308px] rounded-[32px] overflow-hidden relative">
+                <Image className="object-cover absolute" width = {0}  height={0} src = {news.avatar} alt="gambar"/> 
+                <div className="w-[400px] h-[308px] rounded-l-lg bg-firebrick-0 relative">
+                  <div className="text-white text-left text-[36px] font-bold mt-[30px] ml-[30px] absolute">
+                    <div>{news.title}</div>
+                    <Link href={news.url} className="absolute text-white text-left text-[20px]">Read More</Link>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+        ))}
+        </Swiper>
+       </div>
+      </div>
       </div>
       <div className="bg-floralwhite pt-[150px]">
         <div className="flex flex-col justify-center">
