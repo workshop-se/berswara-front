@@ -12,6 +12,7 @@ export default function ReplyCard({ threadId, reply }: { threadId: string, reply
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [showDeleteMenu, setShowDeleteMenu] = useState(false);
   const [showTricolon, setShowTricolon] = useState(false);
+  const [hovering, setHovering] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -21,7 +22,15 @@ export default function ReplyCard({ threadId, reply }: { threadId: string, reply
       }
     }
     fetchUser()
-  }, []);
+  }, [reply.owner.username]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (!hovering) {
+      timer = setTimeout(() => setShowDeleteMenu(false), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [hovering]);
 
   const handleChange = () => {
     const content = textareaRef.current?.value;
@@ -48,6 +57,15 @@ export default function ReplyCard({ threadId, reply }: { threadId: string, reply
     }
   }
 
+  const handleTricolonMouseEnter = () => {
+    setHovering(true);
+    setShowDeleteMenu(true);
+  };
+
+  const handleTricolonMouseLeave = () => {
+    setHovering(false);
+  };
+
   return (
     <div className="flex flex-col gap-y-[20px]">
       <div className="bg-white shadow rounded-[5px] flex overflow-hidden">
@@ -59,7 +77,11 @@ export default function ReplyCard({ threadId, reply }: { threadId: string, reply
               <div className="text-[10px] text-gray">{`${reply.updatedAt}`}</div>
             </div>
             {showTricolon && (
-              <div className="relative">
+              <div
+                className="relative"
+                onMouseEnter={handleTricolonMouseEnter}
+                onMouseLeave={handleTricolonMouseLeave}
+              >
                 <div onClick={() => setShowDeleteMenu(!showDeleteMenu)} className="cursor-pointer">&#8285;</div>
                 {showDeleteMenu && (
                   <div className="absolute right-0 mt-2 w-[100px] bg-white shadow-lg rounded-[5px]">
@@ -111,3 +133,4 @@ export default function ReplyCard({ threadId, reply }: { threadId: string, reply
     </div>
   )
 }
+

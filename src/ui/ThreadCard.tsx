@@ -6,33 +6,46 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function ThreadCard({ thread }: { thread: Thread }) {
-  const [showDeleteMenu, setShowDeleteMenu] = useState<boolean>(false)
-  const [showTricolon, setShowTricolon] = useState<boolean>(false)
+  const [showDeleteMenu, setShowDeleteMenu] = useState<boolean>(false);
+  const [showTricolon, setShowTricolon] = useState<boolean>(false);
+  const [hovering, setHovering] = useState<boolean>(false);
 
   const handleDelete = async (event: React.MouseEvent) => {
-    event?.stopPropagation()
-    const response = await deleteThread(thread.id)
+    event?.stopPropagation();
+    const response = await deleteThread(thread.id);
     if (response.error) {
-      console.error(response.message)
+      console.error(response.message);
     } else {
-      window.location.href = "/forum"
+      window.location.href = "/forum";
     }
-  }
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
-      const username = await getUsername()
+      const username = await getUsername();
       if (username === thread.owner.username) {
-        setShowTricolon(true)
+        setShowTricolon(true);
       }
-    }
-    fetchUser()
-  }, [])
+    };
+    fetchUser();
+  }, []);
 
-  const handleTricolonClick = (event: React.MouseEvent) => {
-    event?.stopPropagation()
-    setShowDeleteMenu(!showDeleteMenu)
-  }
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (!hovering) {
+      timer = setTimeout(() => setShowDeleteMenu(false), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [hovering]);
+
+  const handleTricolonMouseEnter = () => {
+    setHovering(true);
+    setShowDeleteMenu(true);
+  };
+
+  const handleTricolonMouseLeave = () => {
+    setHovering(false);
+  };
 
   return (
     <Link href={`/forum/thread/${thread.id}`} key={thread.id} className="bg-white shadow rounded-[5px] px-[30px] py-[25px] flex flex-col gap-y-[15px]">
@@ -45,8 +58,12 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
           <div className="text-[10px] text-gray">{`${thread.updatedAt}`}</div>
         </div>
         {showTricolon && (
-          <div className="relative">
-            <div onClick={handleTricolonClick} className="cursor-pointer">&#8285;</div>
+          <div 
+            className="relative group" 
+            onMouseEnter={handleTricolonMouseEnter} 
+            onMouseLeave={handleTricolonMouseLeave}
+          >
+            <div className="cursor-pointer">&#8285;</div>
             {showDeleteMenu && (
               <div className="absolute right-0 mt-2 w-[100px] bg-white shadow-lg rounded-[5px]">
                 <div onClick={handleDelete} className="px-4 py-2 font-normal cursor-pointer hover:bg-gray-100">Delete</div>
@@ -74,5 +91,6 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
         </div>
       </div>
     </Link>
-  )
+  );
 }
+
