@@ -75,3 +75,5 @@ function Card({ children, className }: { children: React.ReactNode, className: s
     </div>
   );
 }
+
+export const runtime = 'edge';
