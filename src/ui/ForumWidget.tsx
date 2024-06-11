@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Thread } from "@/lib/types";
 
 export default function ForumWidget() {
-  const [mustRead, setMustRead] = useState<Thread>()
+  const [mustRead, setMustRead] = useState<Thread[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const mustReadPosts = [
