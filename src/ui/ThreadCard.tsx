@@ -28,7 +28,7 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
       }
     };
     fetchUser();
-  }, []);
+  }, [thread.owner.username]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
