@@ -108,7 +108,7 @@ export default function Home() {
         className="mySwiper"
         >
         {newses.map((news) => (
-            <SwiperSlide>
+            <SwiperSlide key={news.id}>
               <div className="w-[635px] h-[308px] rounded-[32px] overflow-hidden relative">
                 <Image className="object-cover absolute" width = {0}  height={0} src = {news.avatar} alt="gambar"/> 
                 <div className="w-[400px] h-[308px] rounded-l-lg bg-firebrick-0 relative">
