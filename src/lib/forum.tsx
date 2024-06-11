@@ -56,7 +56,7 @@ const postThread = async (title: string, body: string) => {
   }
 }
 
-const getThreadById = async (id: string) => {
+const getThreadById = async (id: string): Promise<any> => {
   try {
     const response = await fetch(`${HOST}/threads/${id}`);
     const data = await response.json();

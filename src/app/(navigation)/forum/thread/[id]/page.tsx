@@ -9,7 +9,7 @@ import { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [thread, setThread] = useState<Thread | null>(null)
+  const [thread, setThread] = useState<Thread | any>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [isNull, setIsNull] = useState<boolean>(true)
@@ -77,7 +77,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
         </form>
         <div className="flex flex-col gap-y-[20px]">
-          {thread?.replies.map((reply) => (
+          {thread?.replies.map((reply:any) => (
             <ReplyCard key={reply.id} threadId={params.id} reply={reply} />
           ))}
         </div>
