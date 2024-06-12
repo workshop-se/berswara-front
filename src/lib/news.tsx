@@ -31,6 +31,28 @@ const getNews = async (page: number, limit: number) => {
   }
 }
 
+const getNewsByID = async (id: string) => {
+  try {
+    const response = await fetch(`${HOST}/news/${id}`);
+    if (response.status !== 200) {
+      throw new Error("Error fetching questions");
+    }
+    const data = await response.json();
+    return {
+      id: data.data.news.id,
+      title: data.data.news.title,
+      body: data.data.news.body,
+      publishedAt: formatDateToIndonesia(data.data.news.publishedAt.split('T')[0]),
+    }
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
+      modules: [],
+    }
+  }
+}
+
 const formatDateToIndonesia = (dateString: string) => {
   const [year, month, day] = dateString.split('-');
 
@@ -40,5 +62,5 @@ const formatDateToIndonesia = (dateString: string) => {
   return `${day} ${monthNames[parseInt(month) - 1]} ${year}`;
 }
 
-export { getNews };
+export { getNews, getNewsByID };
 export type { News };
