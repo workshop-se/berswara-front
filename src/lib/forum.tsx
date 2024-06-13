@@ -1,6 +1,6 @@
 'use server'
 import { cookies } from 'next/headers'
-import { Thread, Reply } from './types';
+import { Thread } from './types';
 
 const HOST = process.env.HOST_FORUM || 'http://localhost:3002';
 
@@ -22,8 +22,9 @@ const getThreads = async (page: number, size: number) => {
           id: thread.owner.id,
           username: thread.owner.username
         },
-        numberOfReplies: -1,
-        replies: []
+        replies: [],
+        likes: thread.likes,
+        repliesCount: thread.repliesCount,
       }
     })
     return formattedThreads
@@ -67,7 +68,8 @@ const getThreadById = async (id: string): Promise<any> => {
       body: thread.body,
       createdAt: thread.createdAt,
       updatedAt: thread.updatedAt,
-      numberOfReplies: thread.replies.length,
+      repliesCount: thread.replies.length,
+      likes: thread.likes,
       owner: {
         id: thread.owner.id,
         username: thread.owner.username,
@@ -225,7 +227,9 @@ const getMyThreads = async () => {
           id: thread.owner.id,
           username: thread.owner.username
         },
-        numberOfReplies: -1,
+
+        repliesCount: thread.repliesCount,
+        likes: thread.likes,
         replies: []
       }
     })

@@ -8,7 +8,8 @@ interface Thread {
     id: string;
     username: string;
   };
-  numberOfReplies: number;
+  repliesCount: number;
+  likes: number
   replies: Reply[];
 }
 

@@ -9,7 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       title: "Questions",
       icon: "/icons/list.svg",
       icon_red: "/icons/list-red.svg",
-      url: "/forum"
+      url: "/forum/thread"
     },
     {
       title: "Tag",
@@ -48,11 +48,16 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex">
       <div className="bg-white w-[310px] pt-[40px] flex flex-col gap-y-[30px] min-h-[1000px]">
+        {/*
         <div className={`h-[41px] flex gap-x-[12px] pl-[50px] text-black`}>
           <Image src="/icons/search.svg" width={18} height={18} alt="Search"></Image>
           <input type="text" className="w-[100%] text-[13px] bg-transparent px-[12px]" placeholder="Search"></input>
         </div>
-        <Menu title="Menu" items={menus} />
+        */}
+        {/*
+          <Menu title="Menu" items={menus} />
+        */}
+        <Item item={menus[0]} />
         <Menu title="Personal Navigator" items={navs} />
       </div>
       <div className="grow">

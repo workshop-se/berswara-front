@@ -3,7 +3,7 @@ const navItems = [
   { name: "Candidates", url: "/candidates" },
   { name: "News", url: "/news" },
   { name: "How to Vote", url: "/howtovote" },
-  { name: "Forum", url: "/forum" },
+  { name: "Forum", url: "/forum/thread" },
   { name: "Profile", url: "/profile" },
 ];
 
