@@ -36,6 +36,7 @@ export default function Header() {
   const handleClick = async () => {
     await logout();
     mutate(null, true);
+    window.location.href = "/";
   };
 
   return (

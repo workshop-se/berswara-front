@@ -21,10 +21,12 @@ export default function SubReplyCard({ reply }: { reply: Reply }) {
             <div className="flex gap-x-[10px]">
               <div className="text-[13px]">by @{reply.owner.username}</div>
             </div>
+              {/*
             <div className="flex gap-x-[5px] font-normal text-firebrick-0">
               <Image src="/icons/corner-down-right.svg" alt="comments" width={14} height={14} />
               <span>Reply</span>
             </div>
+              */}
           </div>
         </div>
       </div>
