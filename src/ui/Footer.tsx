@@ -12,7 +12,7 @@ const medias = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white px-[150px]">
+    <footer className="bg-firebrick-0 text-white px-[150px]">
       <Image className="pt-[59px] " src="/images/logo-white.svg" height={59} width={260} alt="Logo" />
       <p className={`${jost.className} text-[24px] max-w-[600px] pb-[90px]`}>Sentral Senayan II Lantai 28, Jl. Asia Afrika No. 8, Gelora, Tanah Abang, RT.1/RW.3, Gelora, Tanah Abang, Kota Jakarta Pusat, DKI Jakarta</p>
       <div className="flex pb-[28px]">

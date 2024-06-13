@@ -56,6 +56,7 @@ export default function Page() {
                       </div>
                     </div>
                     <div>
+                      <h1 className="">To thread: {reply.thread.title}</h1>
                       <div className="font-normal">{reply.content}</div>
                     </div>
                   </div>
