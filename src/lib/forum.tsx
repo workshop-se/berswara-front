@@ -1,6 +1,6 @@
 'use server'
 import { cookies } from 'next/headers'
-import { Thread } from './types';
+import { Thread, myReply } from './types';
 
 const HOST = process.env.HOST_FORUM || 'http://localhost:3002';
 
@@ -242,4 +242,47 @@ const getMyThreads = async () => {
   }
 }
 
-export { getThreads, postThread, getThreadById, deleteThread, postReply, postSubReply, deleteReply, toggleLike, getMyThreads };
+
+const getMyAnswers = async () => {
+  try {
+    const response = await fetch(`${HOST}/my/replies`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    const formattedReplies = data.data.replies.map((reply:myReply) => {
+      return {
+        id: reply.id,
+        content: reply.content,
+        createdAt: reply.createdAt,
+        updatedAt: reply.updatedAt,
+        owner: {
+          id: reply.owner.id,
+          username: reply.owner.username
+        },
+        thread: {
+          id: reply.thread.id,
+          title: reply.thread.title
+        }
+      };
+    });
+
+    return formattedReplies;
+
+  } catch (error) {
+    return {
+      error: true,
+      message: error
+    };
+  }
+};
+
+export { getThreads, postThread, getThreadById, deleteThread, postReply, postSubReply, deleteReply, toggleLike, getMyThreads, getMyAnswers };

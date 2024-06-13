@@ -25,6 +25,21 @@ interface Reply {
   replies: Reply[];
 }
 
+interface myReply {
+  id: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  owner: {
+    id: string;
+    username: string;
+  };
+  thread: {
+    id: string;
+    title: string;
+  };
+}
+
 interface User {
   email: string;
   avatar: string;
@@ -33,4 +48,4 @@ interface User {
   password: string;
 }
 
-export type { Thread, Reply, User };
+export type { Thread, Reply, User, myReply };
