@@ -22,13 +22,13 @@ export default function Header() {
   useEffect(() => {
     if (data && !data.error) {
       setSession(data);
-      if (pathname === "/login" || pathname === "/signup") {
-        router.replace("/forum");
-      }
-    } else {
-      if (pathname === "/forum" || pathname === "/profile") {
-        router.replace("/login");
-      }
+    //   if (pathname === "/login" || pathname === "/signup") {
+    //     router.replace("/forum");
+    //   }
+    // } else {
+    //   if (pathname === "/forum" || pathname === "/profile") {
+    //     router.replace("/login");
+    //   }
     }
     setLoading(false);
   }, [data, pathname, router]);
