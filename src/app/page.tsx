@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import CandidateCards from "@/ui/CandidateCards";
 import HowToVoteHero from "@/ui/HowToVoteHero";
+import { News, getNews } from '@/lib/news';
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
-// import React, { useRef, useState } from 'react';
 // // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -25,6 +25,11 @@ interface Candidate {
   party: string;
 }
 
+interface NewsSwiper extends News {
+  avatar: string;
+  url: string;
+}
+
 const heroButton = [
   { name: "Get Started", url: "/" },
   { name: "Learn More", url: "/" },
@@ -32,13 +37,7 @@ const heroButton = [
 
 export default function Home() {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const newses = Array.from({ length: 5 }, () => (
-    {
-      title: faker.lorem.sentence(7),
-      id: faker.string.uuid(),
-      avatar: faker.image.avatar(),
-      url: faker.internet.url(),
-    }))
+  const [newses, setNewses] = useState<NewsSwiper[]>([]);
 
   useEffect(() => {
     const newCandidates: Candidate[] = Array.from({ length: 12 }, () => ({
@@ -48,6 +47,24 @@ export default function Home() {
       party: faker.company.name(),
     }));
     setCandidates(newCandidates);
+
+    const fetchNews = async () => {
+      const data = await getNews(1, 5);
+
+      data.forEach((news: NewsSwiper) => {
+        news.id= news.id,
+        news.title = news.title,
+        news.avatar = faker.image.avatar();
+        news.url = `/news/${news.id}`;
+      })
+
+      if (data.error) {
+        console.error(data.message);
+      } else {
+        setNewses(data);
+      }
+    }
+    fetchNews();
   }, []);
 
   return (
@@ -110,9 +127,9 @@ export default function Home() {
         {newses.map((news) => (
             <SwiperSlide key={news.id}>
               <div className="w-[635px] h-[308px] rounded-[32px] overflow-hidden relative">
-                <Image className="object-cover absolute" width = {0}  height={0} src = {news.avatar} alt="gambar"/> 
+                <Image className="object-cover absolute w-full h-full" width={635} height={308} src = {news.avatar} alt="gambar"/> 
                 <div className="w-[400px] h-[308px] rounded-l-lg bg-firebrick-0 relative">
-                  <div className="text-white text-left text-[36px] font-bold mt-[30px] ml-[30px] absolute">
+                  <div className="text-white text-left text-[24px] font-bold mt-[30px] ml-[30px] absolute">
                     <div>{news.title}</div>
                     <Link href={news.url} className="absolute text-white text-left text-[20px]">Read More</Link>
                   </div>
