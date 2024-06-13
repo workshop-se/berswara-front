@@ -22,8 +22,9 @@ const getThreads = async (page: number, size: number) => {
           id: thread.owner.id,
           username: thread.owner.username
         },
-        numberOfReplies: -1,
-        replies: []
+        replies: [],
+        likes: thread.likes,
+        repliesCount: thread.repliesCount,
       }
     })
     return formattedThreads

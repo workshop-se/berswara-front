@@ -58,9 +58,9 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
           <div className="text-[10px] text-gray">{`${thread.updatedAt}`}</div>
         </div>
         {showTricolon && (
-          <div 
-            className="relative group" 
-            onMouseEnter={handleTricolonMouseEnter} 
+          <div
+            className="relative group"
+            onMouseEnter={handleTricolonMouseEnter}
             onMouseLeave={handleTricolonMouseLeave}
           >
             <div className="cursor-pointer">&#8285;</div>
@@ -80,14 +80,12 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
         <div className="flex gap-x-[10px]">
         </div>
         <div className="flex gap-x-[15px] font-normal">
-          {thread.numberOfReplies > -1 && (
-            <div className="flex gap-x-[5px]">
-              <Image src="/icons/message-square.svg" alt="comments" width={15} height={15} />
-              <span>
-                {thread.numberOfReplies}
-              </span>
-            </div>
-          )}
+          <div className="flex gap-x-[5px]">
+            <Image src="/icons/message-square.svg" alt="comments" width={15} height={15} />
+            <span>
+              {thread.repliesCount}
+            </span>
+          </div>
         </div>
       </div>
     </Link>
