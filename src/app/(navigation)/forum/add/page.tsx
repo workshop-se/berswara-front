@@ -26,7 +26,7 @@ export default function Page() {
     if (data.error) {
       console.error(data.message);
     } else {
-      router.push("/forum");
+      router.push("/forum/thread");
     }
   }
 
