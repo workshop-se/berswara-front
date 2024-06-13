@@ -89,12 +89,12 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
         <div className="flex gap-x-[10px]">
         </div>
         <div className="flex gap-x-[15px] font-normal">
-          <div className="flex gap-x-[5px] hover:scale-110 cursor-pointer">
+          <Link href={`/forum/thread/${thread.id}`} className="flex gap-x-[5px] hover:scale-110 cursor-pointer">
             <Image src="/icons/message-square.svg" alt="comments" width={15} height={15} />
             <span>
               {thread.repliesCount}
             </span>
-          </div>
+          </Link>
 
           <div onClick={handleLike} className="flex cursor-pointer gap-x-[5px] hover:scale-110">
             <Image src="/icons/arrow-up.svg" alt="comments" width={15} height={15} />
