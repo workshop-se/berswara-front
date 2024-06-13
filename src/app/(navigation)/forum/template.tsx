@@ -9,7 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       title: "Questions",
       icon: "/icons/list.svg",
       icon_red: "/icons/list-red.svg",
-      url: "/forum"
+      url: "/forum/thread"
     },
     {
       title: "Tag",
