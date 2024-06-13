@@ -16,7 +16,7 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
     if (response.error) {
       console.error(response.message);
     } else {
-      window.location.href = "/forum";
+      window.location.href = "/forum/thread";
     }
   };
 
