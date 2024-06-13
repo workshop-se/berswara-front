@@ -1,6 +1,6 @@
 'use server'
 import { cookies } from "next/headers";
-import { User } from "./types";
+import { ErrorResponse, User } from "./types";
 
 
 const HOST = process.env.HOST_AUTH || "http://localhost:3001";
@@ -157,7 +157,8 @@ const updateProfile = async (profile: User) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    return { error: true, message: error };
+    const err  = { error: true, message: error } as ErrorResponse;
+    return err;
   }
 }
 

@@ -6,12 +6,20 @@ import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import { getProfile, updateProfile } from "@/lib/auth";
 import { faker } from "@faker-js/faker";
+import { User } from "@/lib/types";
 
 const poppinsMed = Poppins({ weight: "500", subsets: ["latin"] });
 const poppinsReg = Poppins({ weight: "300", subsets: ["latin"] });
 
+interface ErrorResponse {
+  error: boolean;
+  message: string;
+}
+
+type ProfileResponse = User | ErrorResponse;
+
 export default function Page() {
-  const [profile, setProfile] = useState({
+  const [profile, setProfile] = useState<User>({
     fullname: "",
     avatar: faker.image.avatar(),
     email: "",
@@ -21,27 +29,29 @@ export default function Page() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const data = await getProfile();
-      if (!data.error) {
-        data.avatar = faker.image.avatar();
-        setProfile(data);
-      } else {
-        console.error(data.message);
+      try {
+        const data = await getProfile();
+        if ('error' in data) {
+          console.error(data.message);
+        } else {
+          const user = data as User;
+          user.avatar = faker.image.avatar();
+          setProfile(user);
+        }
+      } catch (error) {
+        console.error("Failed to fetch profile", error);
+        alert("Failed to fetch profile");
       }
     };
     fetchProfile();
   }, []);
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { fullname, email, username, password } = profile;
-    const updatedProfile = { fullname, email, username, password };
-    // if (!updatedProfile.password) {
-    //   updatedProfile.password = ""
-    // }
-
+    const updatedProfile = { fullname, email, username, password } as User;
     try {
-      console.log("Updating profile:", updatedProfile)
+      console.log("Updating profile:", updatedProfile);
       const response = await updateProfile(updatedProfile);
       console.log("Profile updated:", response);
     } catch (error) {

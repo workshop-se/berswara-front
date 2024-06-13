@@ -48,4 +48,9 @@ interface User {
   password: string;
 }
 
-export type { Thread, Reply, User, myReply };
+interface ErrorResponse {
+  error: boolean;
+  message: string;
+}
+
+export type { Thread, Reply, User, myReply, ErrorResponse };
