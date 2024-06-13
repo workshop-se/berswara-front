@@ -47,7 +47,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex">
-      <div className="bg-white w-[310px] pt-[40px] flex flex-col gap-y-[30px] min-h-[1000px]">
+      <div className="bg-white w-min-[310px] pt-[40px] flex flex-col gap-y-[30px] min-h-[1000px]">
         {/*
         <div className={`h-[41px] flex gap-x-[12px] pl-[50px] text-black`}>
           <Image src="/icons/search.svg" width={18} height={18} alt="Search"></Image>

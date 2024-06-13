@@ -44,7 +44,7 @@ export default function Page() {
       <div className="grow flex flex-col gap-y-[20px]">
         <div className="flex flex-col gap-y-[20px]">
           {myReplies.map((reply: myReply) => (
-            <Link href={reply.thread.id} key={reply.id}>
+            <Link href={`/forum/thread/${reply.thread.id}`} key={reply.id}>
               <div className="flex flex-col gap-y-[20px]">
                 <div className="bg-white shadow rounded-[5px] flex overflow-hidden">
                   <div className="bg-firebrick-0 w-[5px]"></div>
