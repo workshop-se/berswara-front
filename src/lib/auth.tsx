@@ -1,5 +1,7 @@
 'use server'
 import { cookies } from "next/headers";
+import { User } from "./types";
+
 
 const HOST = process.env.HOST_AUTH || "http://localhost:3001";
 
@@ -119,4 +121,44 @@ const getUsername = async () => {
   return accessToken.username;
 }
 
-export { login, signup, logout, updateSession, getUsername };
+const getProfile = async () => {
+  try {
+    const response = await fetch(`${HOST}/users/profile`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`,
+      },
+    });
+    const data = await response.json();
+    const formattedData = data.data as User;
+
+    return formattedData
+  } catch (error) {
+    return { error: true, message: error };
+  }
+}
+
+const updateProfile = async (profile: User) => {
+  try {
+    const response = await fetch(`${HOST}/users/profile`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`,
+      },
+      body: JSON.stringify({
+        fullname: profile.fullname,
+        email: profile.email,
+        username: profile.username,
+        password: profile.password,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return { error: true, message: error };
+  }
+}
+
+export { login, signup, logout, updateSession, getUsername, getProfile, updateProfile };

@@ -8,7 +8,8 @@ interface Thread {
     id: string;
     username: string;
   };
-  numberOfReplies: number;
+  repliesCount: number;
+  likes: number
   replies: Reply[];
 }
 
@@ -24,4 +25,12 @@ interface Reply {
   replies: Reply[];
 }
 
-export type { Thread, Reply };
+interface User {
+  email: string;
+  avatar: string;
+  fullname: string;
+  username: string;
+  password: string;
+}
+
+export type { Thread, Reply, User };

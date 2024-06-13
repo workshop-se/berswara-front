@@ -1,6 +1,6 @@
 'use server'
 import { cookies } from 'next/headers'
-import { Thread, Reply } from './types';
+import { Thread } from './types';
 
 const HOST = process.env.HOST_FORUM || 'http://localhost:3002';
 
@@ -22,8 +22,9 @@ const getThreads = async (page: number, size: number) => {
           id: thread.owner.id,
           username: thread.owner.username
         },
-        numberOfReplies: -1,
-        replies: []
+        replies: [],
+        likes: thread.likes,
+        repliesCount: thread.repliesCount,
       }
     })
     return formattedThreads
@@ -67,7 +68,8 @@ const getThreadById = async (id: string): Promise<any> => {
       body: thread.body,
       createdAt: thread.createdAt,
       updatedAt: thread.updatedAt,
-      numberOfReplies: thread.replies.length,
+      repliesCount: thread.replies.length,
+      likes: thread.likes,
       owner: {
         id: thread.owner.id,
         username: thread.owner.username,
@@ -124,65 +126,120 @@ const deleteThread = async (id: string) => {
 }
 
 const postReply = async (threadId: string, content: string) => {
-    try {
-      const postData = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
-        },
-        body: JSON.stringify({ content }),
-      }
-      const response = await fetch(`${HOST}/threads/${threadId}/replies`, postData);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return {
-        error: true,
-        message: error,
-      }
+  try {
+    const postData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      },
+      body: JSON.stringify({ content }),
+    }
+    const response = await fetch(`${HOST}/threads/${threadId}/replies`, postData);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
     }
   }
+}
 
-  const postSubReply = async (threadId: string, parentReplyId: string, content: string) => {
-    try {
-      const postData = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
-        },
-        body: JSON.stringify({ content }),
-      }
-      const response = await fetch(`${HOST}/threads/${threadId}/replies?parentId=${parentReplyId}`, postData);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return {
-        error: true,
-        message: error,
-      }
+const postSubReply = async (threadId: string, parentReplyId: string, content: string) => {
+  try {
+    const postData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      },
+      body: JSON.stringify({ content }),
+    }
+    const response = await fetch(`${HOST}/threads/${threadId}/replies?parentId=${parentReplyId}`, postData);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
     }
   }
+}
 
-  const deleteReply = async (threadId: string, replyId: string) => {
-    try {
-      const postData = {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
-        },
-      }
-      const response = await fetch(`${HOST}/threads/${threadId}/replies/${replyId}`, postData);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return {
-        error: true,
-        message: error,
-      }
+const deleteReply = async (threadId: string, replyId: string) => {
+  try {
+    const postData = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      },
+    }
+    const response = await fetch(`${HOST}/threads/${threadId}/replies/${replyId}`, postData);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
     }
   }
+}
 
-  export { getThreads, postThread, getThreadById, deleteThread, postReply, postSubReply, deleteReply };
+const toggleLike = async (threadId: string) => {
+  try {
+    const postData = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      },
+    }
+    const response = await fetch(`${HOST}/threads/${threadId}/likes`, postData);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
+    }
+  }
+}
+
+const getMyThreads = async () => {
+  try {
+    const response = await fetch(`${HOST}/my/threads`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${cookies().get('accessToken')?.value}`
+      }
+    });
+    const data = await response.json();
+    const formattedThreads = data.data.map((thread: Thread) => {
+      return {
+        id: thread.id,
+        title: thread.title,
+        body: thread.body,
+        createdAt: thread.createdAt,
+        updatedAt: thread.updatedAt,
+        owner: {
+          id: thread.owner.id,
+          username: thread.owner.username
+        },
+
+        repliesCount: thread.repliesCount,
+        likes: thread.likes,
+        replies: []
+      }
+    })
+    return formattedThreads;
+  } catch (error) {
+    return {
+      error: true,
+      message: error,
+    }
+  }
+}
+
+export { getThreads, postThread, getThreadById, deleteThread, postReply, postSubReply, deleteReply, toggleLike, getMyThreads };
