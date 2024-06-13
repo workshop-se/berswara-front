@@ -68,7 +68,8 @@ const getThreadById = async (id: string): Promise<any> => {
       body: thread.body,
       createdAt: thread.createdAt,
       updatedAt: thread.updatedAt,
-      numberOfReplies: thread.replies.length,
+      repliesCount: thread.replies.length,
+      likes: thread.likes,
       owner: {
         id: thread.owner.id,
         username: thread.owner.username,
