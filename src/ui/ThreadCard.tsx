@@ -86,6 +86,13 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
               {thread.repliesCount}
             </span>
           </div>
+
+          <div className="flex gap-x-[5px]">
+            <Image src="/icons/arrow-up.svg" alt="comments" width={15} height={15} />
+            <span>
+              {thread.likes}
+            </span>
+          </div>
         </div>
       </div>
     </Link>
