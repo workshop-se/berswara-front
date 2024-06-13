@@ -1,5 +1,5 @@
 import { getUsername } from "@/lib/auth";
-import { deleteThread } from "@/lib/forum";
+import { deleteThread, toggleLike } from "@/lib/forum";
 import { Thread } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,6 +47,15 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
     setHovering(false);
   };
 
+  const handleLike = async () => {
+    const response = await toggleLike(thread.id);
+    if (response.error) {
+      console.error(response.message);
+    } else {
+      window.location.reload();
+    }
+  }
+
   return (
     <div key={thread.id} className="bg-white shadow rounded-[5px] px-[30px] py-[25px] flex flex-col gap-y-[15px]">
       <div className="flex gap-x-[15px]">
@@ -80,14 +89,14 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
         <div className="flex gap-x-[10px]">
         </div>
         <div className="flex gap-x-[15px] font-normal">
-          <div className="flex gap-x-[5px]">
+          <div className="flex gap-x-[5px] hover:scale-110 cursor-pointer">
             <Image src="/icons/message-square.svg" alt="comments" width={15} height={15} />
             <span>
               {thread.repliesCount}
             </span>
           </div>
 
-          <div className="flex gap-x-[5px]">
+          <div onClick={handleLike} className="flex cursor-pointer gap-x-[5px] hover:scale-110">
             <Image src="/icons/arrow-up.svg" alt="comments" width={15} height={15} />
             <span>
               {thread.likes}
