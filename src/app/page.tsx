@@ -335,7 +335,7 @@ export default function Home() {
                 People everywhere are empowered to start campaigns, mobilize
                 supporters, and work with Decision Makers to drive solutions.
               </p>
-              <Link className="bg-[#B30D19] w-[219px] h-[48px] rounded-[10px] pt-[11px] absolute bottom-10" href="/forum">
+              <Link className="bg-[#B30D19] w-[219px] h-[48px] rounded-[10px] pt-[11px] absolute bottom-10" href="/forum/thread">
                 <div className="flex flex-row justify-center items-center">
                   <Image
                     className="object-cover w-[24px] h-[24px] mr-[19px]"
