@@ -48,7 +48,7 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
   };
 
   return (
-    <Link href={`/forum/thread/${thread.id}`} key={thread.id} className="bg-white shadow rounded-[5px] px-[30px] py-[25px] flex flex-col gap-y-[15px]">
+    <div key={thread.id} className="bg-white shadow rounded-[5px] px-[30px] py-[25px] flex flex-col gap-y-[15px]">
       <div className="flex gap-x-[15px]">
         {/*
         <Image className="rounded-full" src={faker.image.avatar()} alt={thread.title} width={40} height={40} />
@@ -72,10 +72,10 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
           </div>
         )}
       </div>
-      <div>
-        <div className="font-bold text-[14px]">{thread.title}</div>
+      <Link href={`/forum/thread/${thread.id}`}>
+        <div  className="font-bold text-[14px]">{thread.title}</div>
         <div className="font-normal">{thread.body}</div>
-      </div>
+      </Link>
       <div className="flex justify-between">
         <div className="flex gap-x-[10px]">
         </div>
@@ -95,7 +95,7 @@ export default function ThreadCard({ thread }: { thread: Thread }) {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
