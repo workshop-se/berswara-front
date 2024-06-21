@@ -1,5 +1,5 @@
-import { News, getNews, getNewsByID } from "@/lib/news";
-import { errorResDTO } from "@/modules/commons/dtos";
+import { News, } from "@/lib/news";
+import { ErrorResDTO } from "@/modules/commons/dtos";
 import { datasource } from "@/modules/datasources/datasource.module";
 import { GetListNewsResDTO } from "@/modules/datasources/dtos/news.dto";
 import { useEffect, useState } from "react";
@@ -11,16 +11,21 @@ export function useNews(page: number, limit: number) {
 
   useEffect(() => {
     const fetchNews = async () => {
-      const data: GetListNewsResDTO | errorResDTO = await datasource.news.getNews(page, limit);
-      if ('errors' in data) {
-        console.error(data.errors.message);
-        setError(data.errors.message);
-        return;
-      }
-      if (data.data) {
+      await datasource.news.getNews(page, limit)
+      .then((data: GetListNewsResDTO|ErrorResDTO) => {
+        if ('errors' in data) {
+          setError(data.errors.message);
+          return;
+        }
         setNewses(data.data.news as unknown as News[]);
-      }
-      setLoading(false);
+      })
+      .catch((error: ErrorResDTO) => {
+        console.error(error.errors.message);
+        setError(error.errors.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
     }
     fetchNews();
   }, [page, limit]);

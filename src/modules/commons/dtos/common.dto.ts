@@ -1,7 +1,7 @@
-interface errorResDTO {
+interface ErrorResDTO {
   errors: {
     message: string;
   }
 }
 
-export type { errorResDTO };
+export type { ErrorResDTO };

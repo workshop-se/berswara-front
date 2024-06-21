@@ -6,7 +6,7 @@ export const newsLoading = () =>
     Loading...
   </>
 
-export const newsError = (message: string) =>
+export const newsError = ({ message }: { message: string }) =>
   <>
     {message}
   </>
