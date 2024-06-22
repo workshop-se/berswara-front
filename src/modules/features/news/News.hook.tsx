@@ -5,7 +5,7 @@ import { GetListNewsResDTO } from "@/modules/datasources/dtos/news.dto";
 import { useEffect, useState } from "react";
 
 export function useNews(page: number, limit: number) {
-  const [newses, setNewses] = useState<News[]>([]);
+  const [news, setNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string|undefined>(undefined);
 
@@ -17,7 +17,7 @@ export function useNews(page: number, limit: number) {
           setError(data.errors.message);
           return;
         }
-        setNewses(data.data.news as unknown as News[]);
+        setNews(data.data.news as unknown as News[]);
       })
       .catch((error: ErrorResDTO) => {
         console.error(error.errors.message);
@@ -30,7 +30,7 @@ export function useNews(page: number, limit: number) {
     fetchNews();
   }, [page, limit]);
   return {
-    newses,
+    news,
     loading,
     error
   };
@@ -50,6 +50,5 @@ export function useNewsById(id: string) {
   return {
     news,
     loading,
-    error
   };
 }

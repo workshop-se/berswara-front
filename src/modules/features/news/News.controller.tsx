@@ -1,14 +1,14 @@
 'use client'
-import { useNews, useNewsById } from './News.usecase';
-import { newsCards, newsDetail, newsError, newsLoading } from './News.view';
+import { useNews, useNewsById } from './News.hook';
+import { NewsCards, NewsDetail, NewsError, NewsLoading } from './News.view';
 
 export function NewsPage() {
-  const { newses, loading, error } = useNews(1, 10);
+  const { news, loading, error } = useNews(1, 10);
   return (
     <>
-      {newses && newsCards(newses)}
-      {loading && newsLoading()}
-      {error && newsError(error)}
+      {news && <NewsCards  news={news} />}
+      {loading && <NewsLoading />}
+      {error && <NewsError message={error} />}
     </>
   )
 }
@@ -18,9 +18,9 @@ export function NewsPageById({ id }: { id: string }) {
 
   return (
     <>
-      {news && newsDetail(news)}
-      {loading && newsLoading()}
-      {!loading && !news && newsError('Failed to load news')}
+      {news && <NewsDetail news={news} />}
+      {loading && <NewsLoading />}
+      {!loading && !news && <NewsError message="News not found" />}
     </>
   )
 }

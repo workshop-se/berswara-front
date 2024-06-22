@@ -1,27 +1,27 @@
 import { News } from "@/lib/news";
 import Link from "next/link";
 
-export const newsLoading = () =>
+export const NewsLoading = () =>
   <>
     Loading...
   </>
 
-export const newsError = ({ message }: { message: string }) =>
+export const NewsError = ({ message }: { message: string }) =>
   <>
     {message}
   </>
 
-export const newsCards = (newses: News[]) =>
+export const NewsCards = ({ news }: { news: News[] }) =>
   <div className='w-[1128px] m-auto pt-[105px]'>
     <h1 className='text-[64px]'>Baca berita terbaru!</h1>
     <div className='flex flex-col gap-y-[47px] pb-[126px]'>
-      {newses.map((news) => (
-        newsCard(news)
+      {news.map((item) => (
+        <NewsCard key={item.id} news={item} />
       ))}
     </div>
   </div>
 
-const newsCard = (news: News) =>
+const NewsCard = ({ news }: { news: News }) =>
   <div key={news.id} className='bg-white px-[48px] py-[40px] rounded-[16px] drop-shadow-md flex flex-col gap-[48px]'>
     <div className='grow'>
       <h2 className='text-[36px]'>
@@ -37,8 +37,7 @@ const newsCard = (news: News) =>
     </div>
   </div>
 
-
-export const newsDetail = (news: News) => {
+export const NewsDetail = ({ news }: { news: News }) => {
   const splitNews = news?.body.split(/(?<=\.)/);
   return (
 
@@ -55,7 +54,8 @@ export const newsDetail = (news: News) => {
               }
               acc[acc.length - 1].push(sentence);
               return acc;
-            }, []).map((paragraph, index) => paragraphItem(index, paragraph))
+            }, []).map((paragraph, index) =>
+              <ParagraphItem key={index} paragraph={paragraph} />)
           }
         </div>
       }
@@ -63,7 +63,7 @@ export const newsDetail = (news: News) => {
   )
 }
 
-const paragraphItem = (key: any, paragraph: string[]) =>
-  <div key={key} className="text-[16px] font-normal text-left">
+const ParagraphItem = ({ paragraph }: { paragraph: string[] }) =>
+  <div className="text-[16px] font-normal text-left">
     {paragraph.join(' ')}
   </div>
