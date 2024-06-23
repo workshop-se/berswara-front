@@ -1,31 +1,36 @@
-import { News, getNews, getNewsByID } from "@/lib/news";
-import { errorResDTO } from "@/modules/commons/dtos";
+import { News, } from "@/lib/news";
+import { ErrorResDTO } from "@/modules/commons/dtos";
 import { datasource } from "@/modules/datasources/datasource.module";
 import { GetListNewsResDTO } from "@/modules/datasources/dtos/news.dto";
 import { useEffect, useState } from "react";
 
 export function useNews(page: number, limit: number) {
-  const [newses, setNewses] = useState<News[]>([]);
+  const [news, setNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string|undefined>(undefined);
 
   useEffect(() => {
     const fetchNews = async () => {
-      const data: GetListNewsResDTO | errorResDTO = await datasource.news.getNews(page, limit);
-      if ('errors' in data) {
-        console.error(data.errors.message);
-        setError(data.errors.message);
-        return;
-      }
-      if (data.data) {
-        setNewses(data.data.news as unknown as News[]);
-      }
-      setLoading(false);
+      await datasource.news.getNews(page, limit)
+      .then((data: GetListNewsResDTO|ErrorResDTO) => {
+        if ('errors' in data) {
+          setError(data.errors.message);
+          return;
+        }
+        setNews(data.data.news as unknown as News[]);
+      })
+      .catch((error: ErrorResDTO) => {
+        console.error(error.errors.message);
+        setError(error.errors.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
     }
     fetchNews();
   }, [page, limit]);
   return {
-    newses,
+    news,
     loading,
     error
   };
@@ -45,6 +50,5 @@ export function useNewsById(id: string) {
   return {
     news,
     loading,
-    error
   };
 }

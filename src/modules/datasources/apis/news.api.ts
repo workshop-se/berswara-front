@@ -1,27 +1,27 @@
-import { errorResDTO } from "@/modules/commons/dtos";
+import { ErrorResDTO } from "@/modules/commons/dtos";
 import { GetListNewsResDTO } from "../dtos/news.dto";
 import { News } from "../entities";
 
-export class NewsRepository {
+export class NewsApi {
   constructor(private HOST: string) { }
 
-  public async getNews(page: number, limit: number): Promise<GetListNewsResDTO | errorResDTO> {
+  public async getNews(page: number, limit: number): Promise<GetListNewsResDTO | ErrorResDTO> {
     try {
       const response = await fetch(`${this.HOST}/news?page=${page}&limit=${limit}`);
       if (!response.ok) {
-        return {
+        return Promise.reject({
           errors: {
             message: "Error fetching news",
           },
-        } as errorResDTO
+        } as ErrorResDTO)
       }
       const data = await response.json();
-      if (data.error) {
-        return {
+      if (data.errors) {
+        return Promise.reject({
           errors: {
-            message: data.message,
+            message: data.errors.message,
           },
-        } as errorResDTO
+        } as ErrorResDTO)
       }
       const formattedNews: GetListNewsResDTO = {
         message: data.message,
@@ -34,13 +34,13 @@ export class NewsRepository {
           }))
         }
       };
-      return formattedNews;
+      return Promise.resolve(formattedNews);
     } catch (error) {
-      return {
+      return Promise.reject({
         errors: {
           message: error,
         },
-      } as errorResDTO
+      } as ErrorResDTO)
     }
   }
 
