@@ -1,5 +1,6 @@
-import { News } from "@/lib/news";
+import { News } from "../../datasources/entities";
 import Link from "next/link";
+import React from "react";
 
 export const NewsLoading = () =>
   <>
